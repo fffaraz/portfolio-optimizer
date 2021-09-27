@@ -73,15 +73,15 @@ OhlcList::OhlcList(double price)
 {
 }
 
-OhlcList::OhlcList(const CsvFile& csv, OhlcTimeFrame timeFrame)
-    : m_data { loadData(csv) }
-    , m_timeFrame { timeFrame }
-{
-}
-
 OhlcList::OhlcList(OhlcList::OhlcVector data)
     : m_data { std::move(data) }
     , m_timeFrame { OhlcTimeFrame::Daily }
+{
+}
+
+OhlcList::OhlcList(const CsvFile& csv, OhlcTimeFrame timeFrame)
+    : m_data { loadData(csv) }
+    , m_timeFrame { timeFrame }
 {
 }
 

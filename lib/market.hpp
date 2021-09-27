@@ -27,7 +27,7 @@ public:
      * @brief Market Constructor
      * @param assets list of assets
      */
-    Market(const std::vector<Asset>& assets);
+    explicit Market(const std::vector<Asset>& assets);
 
     /**
      * @brief get Asset getter function

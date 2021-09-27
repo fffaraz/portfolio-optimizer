@@ -74,11 +74,7 @@ int main()
             ss << "," << 100.0 * holdings.at(item.symbol()) / totalShares;
         }
 
-        if (!data.contains(avgRisk)) {
-            data.insert({ avgRisk, { avgReturn, ss.str() } });
-        } else if (data.at(avgRisk).first < avgReturn) {
-            data.at(avgRisk) = { avgReturn, ss.str() };
-        }
+        data.insert_or_assign(avgRisk, std::make_pair(avgReturn, ss.str()));
     }
 
     std::ofstream outFile(basePath + "output/risk-return-optimizer.csv", std::ios::out | std::ios::trunc);

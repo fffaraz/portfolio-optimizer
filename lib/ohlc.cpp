@@ -84,8 +84,9 @@ double Ohlc::get(PriceType type) const
         return hlc3();
     case PriceType::OHLC4:
         return ohlc4();
+    default:
+        return 0;
     }
-    return 0;
 }
 
 std::string Ohlc::to_string() const

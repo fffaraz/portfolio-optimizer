@@ -16,9 +16,9 @@ class OhlcList {
 public:
     using OhlcVector = std::vector<Ohlc>;
 
-    OhlcList(double price);
+    explicit OhlcList(double price);
+    explicit OhlcList(OhlcVector data);
     OhlcList(const CsvFile& csv, OhlcTimeFrame timeFrame);
-    OhlcList(OhlcVector data);
 
     // const TableType& data() const noexcept { return m_data; }
     size_t size() const noexcept { return m_data.size(); }
