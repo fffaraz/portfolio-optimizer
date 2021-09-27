@@ -146,7 +146,7 @@ double Utils::doublingTime(double ratePercent)
 
 size_t Utils::powi(size_t base, size_t exp)
 {
-    int result = 1;
+    size_t result = 1;
     while (exp) {
         if (exp & 1) {
             result *= base;
