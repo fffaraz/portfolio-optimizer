@@ -14,7 +14,7 @@
 using namespace Farazlib;
 
 CsvFile::CsvFile(std::string filePath, bool hasHeader)
-    : m_filePath { filePath }
+    : m_filePath { std::move(filePath) }
 {
     loadFile(hasHeader);
 }

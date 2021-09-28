@@ -31,7 +31,7 @@ QJsonObject loadJsonFile(const std::string& filePath)
 } // anonymous namespace
 
 Asset::Asset(std::string symbol, double price, AssetInfo info)
-    : m_symbol { symbol }
+    : m_symbol { std::move(symbol) }
     , m_ohlc { price }
     , m_info { std::move(info) }
     , m_tags { AssetTag::Unclassified }
@@ -40,7 +40,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
 }
 
 Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
-    : m_symbol { symbol }
+    : m_symbol { std::move(symbol) }
     , m_ohlc { OhlcList { CsvFile { dataDir + "/" + symbol + ".csv", true }, OhlcTimeFrame::Daily } }
     , m_yahoo { loadJsonFile(dataDir + "/" + symbol + ".json") }
     , m_info { std::move(info) }
