@@ -17,12 +17,12 @@ using namespace Farazlib;
 
 namespace {
 
-auto loadHoldings(const CsvFile& csv)
+auto loadSimplePortfolio(const CsvFile::TableType& data)
 {
     Portfolio::HoldingsType result;
-    for (const auto& item : csv.data()) {
-        if (item.size() != 2) { // Symbol, Quantity
-            std::cout << "Portfolio::loadHoldings [item.size() != 2] " << item.size() << std::endl;
+    for (const auto& item : data) {
+        if (item.size() != 2) {
+            std::cout << "Portfolio::loadSimplePortfolio [item.size() != 2] " << item.size() << std::endl;
             continue;
         }
         const std::string& symbol = item.at(0);
@@ -30,6 +30,47 @@ auto loadHoldings(const CsvFile& csv)
         result.insert({ symbol, quantity });
     }
     return result;
+}
+
+auto loadETradePortfolio(const CsvFile::TableType& data)
+{
+    Portfolio::HoldingsType result;
+    if (data.size() < 16) {
+        std::cout << "Portfolio::loadETradePortfolio [data.size() < 16] " << data.size() << std::endl;
+        return result;
+    }
+    for (size_t i = 10; i < data.size() - 5; ++i) {
+        if (data.at(i).size() != 10) {
+            std::cout << "Portfolio::loadETradePortfolio [data.at(i).size() != 10] " << data.at(i).size() << std::endl;
+            continue;
+        }
+        const std::string& symbol = data.at(i).at(0);
+        double quantity {};
+        if (symbol == "CASH") {
+            quantity = std::stod(data.at(i).at(9));
+        } else {
+            quantity = std::stod(data.at(i).at(4));
+        }
+        result.insert({ symbol, quantity });
+        std::cout << "Portfolio::loadETradePortfolio [symbol] " << symbol << "\t" << quantity << std::endl;
+    }
+    return result;
+}
+
+auto loadHoldings(const CsvFile& csv)
+{
+    const auto& header = csv.header();
+    const auto& data = csv.data();
+    if (header.size() == 2) { // Symbol, Quantity
+        assert(header.at(0) == "Symbol");
+        assert(header.at(1) == "Quantity");
+        assert(data.size() > 0);
+        return loadSimplePortfolio(data);
+    } else { // E*Trade csv dump
+        assert(header.at(0) == "Account Summary");
+        assert(data.size() >= 16);
+        return loadETradePortfolio(data);
+    }
 }
 
 } // anonymous namespace

@@ -24,7 +24,9 @@ int main()
     market.saveCorrelationList(basePath + "output/CorrelationList.txt");
     market.saveMarketInfo(basePath + "output/MarketInfo.csv");
 
-    const Portfolio portfolio { CsvFile { basePath + "data/portfolio.csv", true }, market };
+    // const CsvFile portfolioCsv { basePath + "data/portfolio.csv", true };
+    const CsvFile portfolioCsv { basePath + "data/individual.csv", true };
+    const Portfolio portfolio { portfolioCsv, market };
 
     const double totalValue = portfolio.totalValue(0);
     std::cout << "\nportfolio.totalValue(NOW): " << totalValue << std::endl;
