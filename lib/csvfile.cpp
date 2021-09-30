@@ -9,6 +9,7 @@
 
 #include <algorithm> // For: std::remove
 #include <fstream> // For: std::ifstream
+#include <iostream> // For: std::cout
 #include <sstream> // For: std::istringstream
 
 using namespace Farazlib;
@@ -35,8 +36,12 @@ void CsvFile::loadFile(bool hasHeader)
     std::string item;
     item.reserve(100);
 
-    int lineNum {};
     std::ifstream inFile { m_filePath };
+    if (!inFile.is_open()) {
+        std::cout << "CsvFile::loadFile [Failed to open file] " << m_filePath << std::endl;
+    }
+
+    int lineNum {};
     while (std::getline(inFile, line)) {
         lineNum++;
         std::istringstream iss { line };

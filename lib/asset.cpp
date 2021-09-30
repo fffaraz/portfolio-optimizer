@@ -41,8 +41,8 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
 
 Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
     : m_symbol { std::move(symbol) }
-    , m_ohlc { OhlcList { CsvFile { dataDir + "/" + symbol + ".csv", true }, OhlcTimeFrame::Daily } }
-    , m_yahoo { loadJsonFile(dataDir + "/" + symbol + ".json") }
+    , m_ohlc { OhlcList { CsvFile { dataDir + "/" + m_symbol + ".csv", true }, OhlcTimeFrame::Daily } }
+    , m_yahoo { loadJsonFile(dataDir + "/" + m_symbol + ".json") }
     , m_info { std::move(info) }
     , m_tags { findTags() } // Must be last
 {
