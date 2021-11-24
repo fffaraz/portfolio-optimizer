@@ -48,6 +48,7 @@ enum class AssetTag {
     IntlHighYield,
 
     ForeignLargeBlend,
+    ForeignLargeGrowth,
     ForeignLargeValue,
 
     SmallCap,

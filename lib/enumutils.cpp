@@ -241,6 +241,7 @@ std::string EnumUtils::to_string(AssetTag tag)
         { AssetTag::IntlHighYield, "IntlHighYield" },
 
         { AssetTag::ForeignLargeBlend, "ForeignLargeBlend" },
+        { AssetTag::ForeignLargeGrowth, "ForeignLargeGrowth" },
         { AssetTag::ForeignLargeValue, "ForeignLargeValue" },
 
         { AssetTag::SmallCap, "SmallCap" },

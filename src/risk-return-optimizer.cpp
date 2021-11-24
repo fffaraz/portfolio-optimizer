@@ -32,10 +32,9 @@ int main()
     for (const auto& item : assetsCsv.data()) {
         AssetInfo info;
         const std::string symbol = item.at(0);
-        info.description = item.at(1);
-        info.avgRisk = std::stod(item.at(2)) / 100.0;
-        info.avgReturn = std::stod(item.at(3)) / 100.0;
-        for (size_t i = 4; i < csvHeader.size(); ++i) {
+        info.avgRisk = std::stod(item.at(1)) / 100.0;
+        info.avgReturn = std::stod(item.at(2)) / 100.0;
+        for (size_t i = 3; i < csvHeader.size(); ++i) {
             info.correlation[csvHeader.at(i)] = std::stod(item.at(i));
         }
         assets.emplace_back(symbol, 1, info);

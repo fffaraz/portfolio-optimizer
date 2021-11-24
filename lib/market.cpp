@@ -32,15 +32,20 @@ auto loadAssetInfo(const CsvFile& infoCsv)
     return result;
 }
 
-auto loadAssets(const std::string& dataDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
+auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
 {
     Market::AssetsDb result;
+
+    // Check if dataDir exists
     if (!std::filesystem::exists(dataDir)) {
-        std::cout << "Market::loadAssets [dataDir not found] " << dataDir << std::endl;
+        std::cout << "Market::loadAssetsFromFile [dataDir not found] " << dataDir << std::endl;
         return result;
     }
 
+    // load csv file for assets' extra information
     const auto infoMap = loadAssetInfo(infoCsv);
+
+    // for each .csv file in dataDir create and load SYM.csv and SYM.json
     for (const auto& entry : std::filesystem::directory_iterator(dataDir)) {
         auto filename = entry.path().filename();
         if (filename.extension() == ".csv") {
@@ -49,7 +54,7 @@ auto loadAssets(const std::string& dataDir, const CsvFile& infoCsv, const std::s
                 continue; // no need to load this symbol
             }
             if (result.contains(symbol)) {
-                std::cout << "Market::loadAssets [duplicate symbol] " << symbol << std::endl;
+                std::cout << "Market::loadAssetsFromFile [duplicate symbol] " << symbol << std::endl;
                 continue;
             }
             const auto info = infoMap.contains(symbol) ? infoMap.at(symbol) : CsvFile::RecordType {};
@@ -59,12 +64,12 @@ auto loadAssets(const std::string& dataDir, const CsvFile& infoCsv, const std::s
     return result;
 }
 
-auto convertAssets(const std::vector<Asset>& assets)
+auto loadAssetsFromVector(const std::vector<Asset>& assets)
 {
     Market::AssetsDb result;
     for (const auto& item : assets) {
         if (result.contains(item.symbol())) {
-            std::cout << "Market::convertAssets [duplicate symbol] " << item.symbol() << std::endl;
+            std::cout << "Market::loadAssetsFromVector [duplicate symbol] " << item.symbol() << std::endl;
             continue;
         }
         result.insert({ item.symbol(), item });
@@ -75,13 +80,13 @@ auto convertAssets(const std::vector<Asset>& assets)
 } // anonymous namespace
 
 Market::Market(const std::string& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
-    : m_assets { loadAssets(symbolsDir, infoCsv, symbols) }
+    : m_assets { loadAssetsFromFile(symbolsDir, infoCsv, symbols) }
 {
     std::cout << "Market::Market " << m_assets.size() << std::endl;
 }
 
 Market::Market(const std::vector<Asset>& assets)
-    : m_assets { convertAssets(assets) }
+    : m_assets { loadAssetsFromVector(assets) }
 {
     std::cout << "Market::Market " << m_assets.size() << std::endl;
 }

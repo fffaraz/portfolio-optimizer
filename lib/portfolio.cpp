@@ -117,7 +117,10 @@ std::pair<double, std::set<std::string>> Portfolio::totalValue(AssetTag tag) con
 
 double Portfolio::valueChange(size_t i, size_t offset) const
 {
-    assert(offset > 0); // No same day for portfolio
+    if (offset == 0) {
+        assert(offset > 0);
+        return 0; // No value change in same day
+    }
     const auto today = totalValue(i);
     const auto yesterday = totalValue(i + offset);
     assert(yesterday > 0);
@@ -143,7 +146,7 @@ double Portfolio::avgReturn() const
 
 double Portfolio::avgRisk() const
 {
-    // σ²(port) = ΣΣw(i)w(j)σ(i)σ(j)ρ(i,j)
+    // σ²(portfolio) = ΣΣw(i)w(j)σ(i)σ(j)ρ(i,j)
     const auto total = totalValue(0);
     if (total <= 0) {
         return 0;

@@ -1,7 +1,7 @@
-"Symbol","Description","Risk","Return","BND","SGOL","SIVR","USDS","VNQ","VOO"
-BND,Vanguard Total Bond Market ETF,3.23,3.17,1,0.28,0.14,0,0.11,-0.07
-SGOL,Aberdeen Standard Gold ETF,16.37,2.68,0.28,1,0.79,0,0.08,0.02
-SIVR,Aberdeen Standard Phys Silver Shrs ETF,32.61,0.75,0.14,0.79,1,0,0.20,0.20
-USDS,USD Savings Bank Account,0,0.50,0,0,0,1,0,0
-VNQ,Vanguard Real Estate ETF,15.80,10.78,0.11,0.08,0.20,0,1,0.76
-VOO,Vanguard S&P 500 ETF,13.18,15.62,-0.07,0.02,0.20,0,0.76,1
+"Symbol","Risk","Return","BND","SGOL","SIVR","USDS","VNQ","VOO"
+BND,3.23,3.17,1,0.28,0.14,0,0.11,-0.07
+SGOL,16.37,2.68,0.28,1,0.79,0,0.08,0.02
+SIVR,32.61,0.75,0.14,0.79,1,0,0.20,0.20
+VNQ,15.80,10.78,0.11,0.08,0.20,0,1,0.76
+VOO,13.18,15.62,-0.07,0.02,0.20,0,0.76,1
+Savings,0,0.50,0,0,0,1,0,0

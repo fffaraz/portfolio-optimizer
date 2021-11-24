@@ -13,23 +13,17 @@ using namespace Farazlib;
 
 AssetInfo::AssetInfo(const CsvFile::RecordType& info)
 {
-    if (info.size() != 6) {
-        std::cout << "AssetInfo::AssetInfo [info.size() != 6] " << info.size() << std::endl;
-        // assert(info.size() == 6);
+    if (info.size() != 3) {
+        std::cout << "AssetInfo::AssetInfo [info.size() != 3] " << info.size() << std::endl;
+        // assert(info.size() == 3);
         return;
     }
-    description = info.at(1);
     try {
-        marketCap = std::stoll(info.at(2));
+        dividendYield = std::stod(info.at(1));
     } catch (...) {
     }
     try {
-        dividendYield = std::stod(info.at(3));
+        expenseRatio = std::stod(info.at(2));
     } catch (...) {
     }
-    try {
-        expenseRatio = std::stod(info.at(4));
-    } catch (...) {
-    }
-    fundCategory = info.at(5);
 }

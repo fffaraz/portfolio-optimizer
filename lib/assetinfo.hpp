@@ -18,16 +18,15 @@ struct AssetInfo {
     AssetInfo() = default;
     explicit AssetInfo(const CsvFile::RecordType& info);
 
-    std::string description {};
-    uint64_t marketCap {};
     double dividendYield {};
     double expenseRatio {};
-    std::string fundCategory {};
 
     double avgRisk {};
     double avgReturn {};
     std::unordered_map<std::string, double> correlation; // Symbol -> Correlation Coefficient
 
+    // uint64_t marketCap {};
+    // std::string fundCategory {};
     // std::string category{};
     // std::string country{};
     // int fullTimeEmployees{};
