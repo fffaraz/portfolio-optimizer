@@ -45,6 +45,9 @@ auto loadETradePortfolio(const CsvFile::TableType& data)
             continue;
         }
         const std::string& symbol = data.at(i).at(0);
+        if (symbol.find(" ") != std::string::npos) {
+            continue; // skip options
+        }
         double quantity {};
         if (symbol == "CASH") {
             quantity = std::stod(data.at(i).at(9));
@@ -222,13 +225,15 @@ void Portfolio::saveSymbols(const std::string& filePath) const
 
     outFile << "[";
     for (const auto& [symbol, quantity] : m_holdings) {
+        if (symbol == "CASH") {
+            continue;
+        }
         outFile << "\"" << symbol << "\",";
     }
-    outFile << "]" << std::endl
-            << std::endl;
+    outFile << "]" << std::endl << std::endl;
 
     for (const auto& [symbol, quantity] : m_holdings) {
         const auto& asset = m_market.get(symbol);
-        outFile << symbol << "\t" << asset.yahoo("longName") << "\t" << asset.tags() << std::endl;
+        outFile << symbol << " \t" << asset.yahoo("longName") << "\t / \t" << asset.tags() << std::endl;
     }
 }
