@@ -20,16 +20,22 @@ int main()
     const CsvFile marketInfo { basePath + "data/market.csv", true };
     const Market market { basePath + "data/symbols", marketInfo };
 
+    std::cout << std::endl;
+
     market.saveSymbols(basePath + "output/marketSymbols.txt");
     market.saveCorrelationList(basePath + "output/CorrelationList.txt");
     market.saveMarketInfo(basePath + "output/MarketInfo.csv");
 
+    std::cout << std::endl;
+
     // const CsvFile portfolioCsv { basePath + "data/portfolio.csv", true };
-    const CsvFile portfolioCsv { basePath + "data/individual.csv", true };
+    const CsvFile portfolioCsv { basePath + "data/etrade/individual.csv", true };
     const Portfolio portfolio { portfolioCsv, market };
 
-    const double totalValue = portfolio.totalValue(0);
-    std::cout << "\nportfolio.totalValue(NOW): " << totalValue << std::endl;
+    std::cout << std::endl;
+
+    const double totalValue = portfolio.totalValue();
+    std::cout << "\nportfolio.totalValue: " << totalValue << std::endl;
 
     portfolio.saveSymbols(basePath + "output/portfolioSymbols.txt");
     portfolio.saveAllocations(basePath + "output/Allocations.csv");

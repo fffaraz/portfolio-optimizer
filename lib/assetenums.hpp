@@ -81,6 +81,8 @@ enum class AssetTag {
     Emerging,
     Europe,
     Leveraged,
+
+    LastTag,
 };
 
 enum class AssetAllocation // Asset Class

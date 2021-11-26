@@ -21,7 +21,7 @@ public:
 
     const HoldingsType& holdings() const noexcept { return m_holdings; }
 
-    double totalValue(size_t i) const;
+    double totalValue(size_t i = 0) const;
     std::pair<double, std::set<std::string>> totalValue(AssetTag tag) const;
     double valueChange(size_t i, size_t offset) const;
 

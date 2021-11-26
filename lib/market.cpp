@@ -57,8 +57,11 @@ auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, cons
                 std::cout << "Market::loadAssetsFromFile [duplicate symbol] " << symbol << std::endl;
                 continue;
             }
-            const auto info = infoMap.contains(symbol) ? infoMap.at(symbol) : CsvFile::RecordType {};
-            result.insert({ symbol, Asset { symbol, dataDir, AssetInfo { info } } });
+            if (infoMap.contains(symbol)) {
+                result.insert({ symbol, Asset { symbol, dataDir, AssetInfo { infoMap.at(symbol) } } });
+            } else {
+                result.insert({ symbol, Asset { symbol, dataDir, AssetInfo{} } });
+            }
         }
     }
     return result;
@@ -82,13 +85,13 @@ auto loadAssetsFromVector(const std::vector<Asset>& assets)
 Market::Market(const std::string& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
     : m_assets { loadAssetsFromFile(symbolsDir, infoCsv, symbols) }
 {
-    std::cout << "Market::Market assets.size: " << m_assets.size() << std::endl;
+    std::cout << "\nMarket::Market assets.size: " << m_assets.size() << std::endl;
 }
 
 Market::Market(const std::vector<Asset>& assets)
     : m_assets { loadAssetsFromVector(assets) }
 {
-    std::cout << "Market::Market assets.size: " << m_assets.size() << std::endl;
+    std::cout << "\nMarket::Market assets.size: " << m_assets.size() << std::endl;
 }
 
 const Asset& Market::get(const std::string& symbol) const
@@ -124,7 +127,7 @@ void Market::save(const std::string& symbolsDir) const
 
 void Market::saveCorrelationList(const std::string& filePath) const
 {
-    std::cout << "Market::saveCorrelationList [begin]" << std::endl;
+    std::cout << "\nMarket::saveCorrelationList [begin]" << std::endl;
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
         std::cout << "Market::saveCorrelationList [FAILED TO OPEN FILE]" << std::endl;
@@ -175,7 +178,7 @@ void Market::saveCorrelationList(const std::string& filePath) const
 
 void Market::saveMarketInfo(const std::string& filePath) const
 {
-    std::cout << "Market::saveMarketInfo [begin]" << std::endl;
+    std::cout << "\nMarket::saveMarketInfo [begin]" << std::endl;
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
         std::cout << "Market::saveMarketInfo [FAILED TO OPEN FILE]" << std::endl;
@@ -252,6 +255,7 @@ void Market::saveMarketInfo(const std::string& filePath) const
 
 void Market::saveSymbols(const std::string& filePath) const
 {
+    std::cout << "\nMarket::saveSymbols" << std::endl;
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
         std::cout << "Market::saveSymbols [FAILED TO OPEN FILE]" << std::endl;
@@ -261,8 +265,7 @@ void Market::saveSymbols(const std::string& filePath) const
     for (const auto& [symbol, asset] : m_assets) {
         outFile << "\"" << symbol << "\",";
     }
-    outFile << "]" << std::endl
-            << std::endl;
+    outFile << "]" << std::endl << std::endl;
 
     for (const auto& [symbol, asset] : m_assets) {
         outFile << symbol << "\t" << asset.yahoo("longName") << "\t" << asset.tags() << std::endl;

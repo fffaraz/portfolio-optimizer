@@ -21,8 +21,8 @@ int main()
     const std::set<std::string> symbols { "VOO", "VTI" };
     const Market market { basePath + "data/symbols", marketInfo, symbols };
 
-    market.save(basePath + "output/symbols");
-    market.saveSymbols(basePath + "output/marketSymbols.txt");
+    market.save(basePath + "output/symbols"); // assets' ohlc
+    market.saveSymbols(basePath + "output/marketSymbols.txt");  // symbols array
     market.saveCorrelationList(basePath + "output/CorrelationList.txt");
     market.saveMarketInfo(basePath + "output/MarketInfo.csv");
 

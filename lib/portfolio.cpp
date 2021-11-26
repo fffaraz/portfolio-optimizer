@@ -52,7 +52,7 @@ auto loadETradePortfolio(const CsvFile::TableType& data)
             quantity = std::stod(data.at(i).at(4));
         }
         result.insert({ symbol, quantity });
-        std::cout << "Portfolio::loadETradePortfolio [symbol] " << symbol << "\t" << quantity << std::endl;
+        // std::cout << "Portfolio::loadETradePortfolio [symbol] " << symbol << "\t" << quantity << std::endl;
     }
     return result;
 }
@@ -188,6 +188,7 @@ double Portfolio::avgRisk(int length) const
 
 void Portfolio::saveAllocations(const std::string& filePath) const
 {
+    std::cout << "\nPortfolio::saveAllocations" << std::endl;
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
         std::cout << "Portfolio::saveAllocations [FAILED TO OPEN FILE] " << filePath << std::endl;
@@ -198,7 +199,7 @@ void Portfolio::saveAllocations(const std::string& filePath) const
     double total = totalValue(0);
 
     // Body
-    for (AssetTag tag = AssetTag::ETF; tag <= AssetTag::Unclassified; tag = static_cast<AssetTag>(static_cast<int>(tag) + 1)) {
+    for (AssetTag tag = AssetTag::Unclassified; tag < AssetTag::LastTag; tag = static_cast<AssetTag>(static_cast<int>(tag) + 1)) {
         const auto value = totalValue(tag);
         outFile << EnumUtils::to_string(tag) << ","
                 << value.first << ","
@@ -213,6 +214,7 @@ void Portfolio::saveAllocations(const std::string& filePath) const
 
 void Portfolio::saveSymbols(const std::string& filePath) const
 {
+    std::cout << "\nPortfolio::saveSymbols" << std::endl;
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
         std::cout << "Portfolio::saveSymbols [FAILED TO OPEN FILE] " << filePath << std::endl;
