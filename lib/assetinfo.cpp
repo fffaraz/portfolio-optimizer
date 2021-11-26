@@ -14,7 +14,7 @@ using namespace Farazlib;
 AssetInfo::AssetInfo(const CsvFile::RecordType& info)
 {
     if (info.size() != 3) {
-        std::cout << "AssetInfo::AssetInfo [info.size() != 3] " << info.size() << std::endl;
+        std::cout << "AssetInfo::AssetInfo [info.size() != 3] info.size: " << info.size() << std::endl;
         // assert(info.size() == 3);
         return;
     }

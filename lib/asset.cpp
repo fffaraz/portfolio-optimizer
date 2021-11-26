@@ -36,7 +36,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     , m_info { std::move(info) }
     , m_tags { AssetTag::Unclassified }
 {
-    std::cout << "Asset::Asset " << m_symbol << " " << m_ohlc.size() << std::endl;
+    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << std::endl;
 }
 
 Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
@@ -46,7 +46,7 @@ Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
     , m_info { std::move(info) }
     , m_tags { findTags() } // Must be last
 {
-    std::cout << "Asset::Asset " << m_symbol << " " << m_ohlc.size() << std::endl;
+    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << std::endl;
 }
 
 std::set<AssetTag> Asset::findTags() const

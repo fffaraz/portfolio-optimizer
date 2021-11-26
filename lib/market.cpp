@@ -82,13 +82,13 @@ auto loadAssetsFromVector(const std::vector<Asset>& assets)
 Market::Market(const std::string& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
     : m_assets { loadAssetsFromFile(symbolsDir, infoCsv, symbols) }
 {
-    std::cout << "Market::Market " << m_assets.size() << std::endl;
+    std::cout << "Market::Market assets.size: " << m_assets.size() << std::endl;
 }
 
 Market::Market(const std::vector<Asset>& assets)
     : m_assets { loadAssetsFromVector(assets) }
 {
-    std::cout << "Market::Market " << m_assets.size() << std::endl;
+    std::cout << "Market::Market assets.size: " << m_assets.size() << std::endl;
 }
 
 const Asset& Market::get(const std::string& symbol) const
