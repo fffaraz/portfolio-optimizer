@@ -12,3 +12,6 @@ target_link_libraries(simple-risk-return portopt)
 
 add_executable(risk-return-optimizer risk-return-optimizer.cpp)
 target_link_libraries(risk-return-optimizer portopt)
+
+add_executable(retirement-calculator retirement-calculator.cpp)
+target_link_libraries(retirement-calculator portopt)
