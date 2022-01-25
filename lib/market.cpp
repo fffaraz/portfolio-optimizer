@@ -222,8 +222,8 @@ void Market::saveMarketInfo(const std::string& filePath) const
                 << asset.ohlc().percentFromAth() << "," // 6
                 << asset.ohlc().percentToAth() << "," // 7
                 << asset.ohlc().size() << "," // 8
-                << asset.ohlc().priceChange(0, 30) << "," // 9
-                << asset.ohlc().priceChange(0, 365) << "," // 10
+                << asset.ohlc().priceChange(0, 30, PriceType::HL2) << "," // 9
+                << asset.ohlc().priceChange(0, 365, PriceType::HL2) << "," // 10
                 << asset.ohlc().avgReturn(365) << "," // 11
                 << asset.ohlc().avgRisk(365); // 12
 

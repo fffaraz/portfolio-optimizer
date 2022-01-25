@@ -157,17 +157,22 @@ PriceDirection OhlcList::priceDirection(size_t i, size_t offset) const
     return PriceDirection::Narrow; // Invalid
 }
 
-double OhlcList::priceChange(size_t i, size_t offset) const
+double OhlcList::priceChange(size_t i) const
 {
     assert(i < m_data.size());
+    const auto& today = at(i);
+    assert(today.open > 0);
+    return (today.close - today.open) / today.open;
+}
 
+double OhlcList::priceChange(size_t i, size_t offset, PriceType type) const
+{
+    assert(i < m_data.size());
     if (offset == 0) { // Same day case
-        const auto& today = at(i);
-        return (today.close - today.open) / today.open;
+        return priceChange(i);
     }
-
-    const auto today = at(i).hl2();
-    const auto yesterday = at(i + offset).hl2();
+    const auto today = at(i).get(type);
+    const auto yesterday = at(i + offset).get(type);
     assert(yesterday > 0);
     return (today - yesterday) / yesterday;
 }
@@ -227,7 +232,7 @@ double OhlcList::avgReturn(size_t length) const
     double result {};
     const size_t size = m_data.size() - length;
     for (size_t i = 0; i < size; ++i) {
-        result += priceChange(i, length);
+        result += priceChange(i, length, PriceType::HL2);
     }
     return result / size;
 }
@@ -246,7 +251,7 @@ double OhlcList::avgRisk(size_t length) const
     vector.reserve(size);
 
     for (size_t i = 0; i < size; ++i) {
-        vector.push_back(priceChange(i, length));
+        vector.push_back(priceChange(i, length, PriceType::HL2));
     }
 
     return Utils::stdDev(vector);
