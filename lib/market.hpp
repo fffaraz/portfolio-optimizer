@@ -37,7 +37,7 @@ public:
     const Asset& get(const std::string& symbol) const;
     double correlation(const std::string& symbol1, const std::string& symbol2) const;
 
-    void save(const std::string& symbolsDir) const; // Save assets' ohlc data
+    void saveAssets(const std::string& symbolsDir) const; // Save ohlc data
     void saveCorrelationList(const std::string& filePath) const;
     void saveMarketInfo(const std::string& filePath) const;
     void saveSymbols(const std::string& filePath) const; // Save symbols array

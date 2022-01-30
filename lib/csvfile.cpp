@@ -14,35 +14,40 @@
 
 using namespace Farazlib;
 
-CsvFile::CsvFile(std::string filePath, bool hasHeader)
+CsvFile::CsvFile(std::string filePath, bool hasHeader, uint64_t maxRecords)
     : m_filePath { std::move(filePath) }
 {
     std::cout << "CsvFile::CsvFile " << m_filePath << std::endl;
-    loadFile(hasHeader);
+    loadFile(hasHeader, maxRecords);
 }
 
-void CsvFile::loadFile(bool hasHeader)
+void CsvFile::loadFile(bool hasHeader, uint64_t maxRecords)
 {
-    constexpr char delimiter = ',';
-    constexpr char quotation = '"';
-
-    m_data.reserve(100'000);
-
-    std::vector<std::string> items;
-    items.reserve(10);
-
-    std::string line;
-    line.reserve(100);
-
-    std::string item;
-    item.reserve(100);
-
     std::ifstream inFile { m_filePath };
     if (!inFile.is_open()) {
         std::cout << "CsvFile::loadFile [Failed to open file] " << m_filePath << std::endl;
     }
 
+    constexpr char delimiter = ',';
+    constexpr char quotation = '"';
+
+    if (maxRecords > 0) {
+        m_data.reserve(maxRecords);
+    } else {
+        m_data.reserve(100'000);
+    }
+
+    std::vector<std::string> items;
+    items.reserve(10); // number of columns
+
+    std::string line;
+    line.reserve(100); // chars in a line
+
+    std::string item;
+    item.reserve(100); // chars in a column
+
     int lineNum {};
+
     while (std::getline(inFile, line)) {
         lineNum++;
         std::istringstream iss { line };

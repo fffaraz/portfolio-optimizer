@@ -14,7 +14,7 @@ namespace Farazlib {
 
 class CsvFile {
 public:
-    CsvFile(std::string filePath, bool hasHeader);
+    CsvFile(std::string filePath, bool hasHeader, uint64_t maxRecords = 0);
 
     using RecordType = std::vector<std::string>;
     using TableType = std::vector<RecordType>;
@@ -24,7 +24,7 @@ public:
     const TableType& data() const noexcept { return m_data; }
 
 private:
-    void loadFile(bool hasHeader);
+    void loadFile(bool hasHeader, uint64_t maxRecords);
     const std::string m_filePath;
     RecordType m_header;
     TableType m_data;

@@ -15,3 +15,6 @@ target_link_libraries(risk-return-optimizer portopt)
 
 add_executable(retirement-calculator retirement-calculator.cpp)
 target_link_libraries(retirement-calculator portopt)
+
+add_executable(percent-ath percent-ath.cpp)
+target_link_libraries(percent-ath portopt)

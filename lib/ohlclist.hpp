@@ -28,13 +28,28 @@ public:
     PriceDirection priceDirection(size_t i, size_t offset) const;
     double priceChange(size_t i) const;
     double priceChange(size_t i, size_t offset, PriceType type) const;
-    std::vector<double> vector(size_t size, size_t offset, PriceType type) const;
-    std::vector<double> sma(size_t length, PriceType type) const;
-    std::vector<double> wma(size_t length, PriceType type) const;
-    std::vector<double> ema(size_t length, PriceType type) const;
-    double allTimeHigh() const;
-    double percentFromAth() const;
-    double percentToAth() const;
+
+    std::vector<double> toVector(size_t size, size_t offset, PriceType type) const;
+    std::vector<double> sma(size_t length, PriceType type) const; // Simple Moving Average
+    std::vector<double> wma(size_t length, PriceType type) const; // Weighted Moving Average
+    std::vector<double> ema(size_t length, PriceType type) const; // Exponential Moving Average
+    std::vector<double> dema(size_t length, PriceType type) const; // Double Exponential Moving Average
+    std::vector<double> tema(size_t length, PriceType type) const; // Triple Exponential Moving Average
+    // volatility
+    // momentum
+    // stochasticK
+    // williamsR
+    // RSI
+
+    double allTimeHigh(const size_t skip) const;
+    std::vector<double> allTimeHigh() const;
+
+    double percentFromAth(const size_t i) const;
+    std::vector<double> percentFrom(const std::vector<double>& ath) const;
+
+    double percentToAth(const size_t i) const;
+    std::vector<double> percentTo(const std::vector<double>& ath) const;
+
     double avgReturn(size_t length) const;
     double avgRisk(size_t length) const;
     bool matchDatetime(const OhlcList& other, size_t maxSize) const;

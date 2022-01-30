@@ -27,7 +27,7 @@ auto loadData(const CsvFile& csv)
     result.reserve(data.size());
 
     const auto maxDateTime = Utils::toDateTime("2021-12-01"); // TODO: parameterize
-    const auto minDateTime = Utils::toDateTime("2000-01-01"); // TODO: parameterize
+    const auto minDateTime = Utils::toDateTime("2010-01-01"); // TODO: parameterize
 
     for (auto itr = data.rbegin(); itr != data.rend(); ++itr) {
         Ohlc item { *itr };
@@ -101,21 +101,31 @@ void OhlcList::save(const std::string& filePath) const
         std::cout << "OhlcList::save [FAILED TO OPEN FILE] " << filePath << std::endl;
     }
 
-    outFile << "Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,isFake\n";
+    outFile << "Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,isFake,";
+    outFile << "priceChange,allTimeHigh,percentFromAth,percentToAth\n";
 
     outFile.setf(std::ios::fixed);
     // outFile.precision(8);
 
-    for (auto itr = m_data.rbegin(); itr != m_data.rend(); ++itr) {
-        outFile << itr->datetime.toString("yyyy-MM-dd").toStdString() << ",";
-        outFile << itr->open << ",";
-        outFile << itr->high << ",";
-        outFile << itr->low << ",";
-        outFile << itr->close << ",";
-        outFile << std::fixed << std::noshowpoint << itr->volume << ",";
-        outFile << std::noshowpoint << itr->dividends << ",";
-        outFile << std::noshowpoint << itr->splits << ",";
-        outFile << itr->isFake << "\n";
+    const auto ath = allTimeHigh();
+    const auto pfAth = percentFrom(ath);
+    const auto ptAth = percentTo(ath);
+
+    for (size_t i = 0; i < m_data.size(); ++i) {
+        const auto& itr = m_data.at(i);
+        outFile << itr.datetime.toString("yyyy-MM-dd").toStdString() << ",";
+        outFile << itr.open << ",";
+        outFile << itr.high << ",";
+        outFile << itr.low << ",";
+        outFile << itr.close << ",";
+        outFile << std::fixed << std::noshowpoint << itr.volume << ",";
+        outFile << std::noshowpoint << itr.dividends << ",";
+        outFile << std::noshowpoint << itr.splits << ",";
+        outFile << itr.isFake << ",";
+        outFile << priceChange(i) << ",";
+        outFile << ath.at(i) << ",";
+        outFile << pfAth.at(i) << ",";
+        outFile << ptAth.at(i) << "\n";
     }
 }
 
@@ -162,7 +172,7 @@ double OhlcList::priceChange(size_t i) const
     assert(i < m_data.size());
     const auto& today = at(i);
     assert(today.open > 0);
-    return (today.close - today.open) / today.open;
+    return (today.high - today.low) / today.low;
 }
 
 double OhlcList::priceChange(size_t i, size_t offset, PriceType type) const
@@ -177,13 +187,13 @@ double OhlcList::priceChange(size_t i, size_t offset, PriceType type) const
     return (today - yesterday) / yesterday;
 }
 
-std::vector<double> OhlcList::vector(size_t size, size_t offset, PriceType type) const
+std::vector<double> OhlcList::toVector(size_t size, size_t offset, PriceType type) const
 {
     assert(offset + size <= m_data.size());
-    std::vector<double> result;
     if (offset + size > m_data.size()) {
-        return result;
+        return {};
     }
+    std::vector<double> result;
     result.reserve(size);
     for (size_t i = 0; i < size; ++i) {
         result.push_back(m_data.at(offset + i).get(type));
@@ -191,33 +201,71 @@ std::vector<double> OhlcList::vector(size_t size, size_t offset, PriceType type)
     return result;
 }
 
-double OhlcList::allTimeHigh() const
+double OhlcList::allTimeHigh(const size_t skip) const
 {
     double result {};
-    for (const auto& item : m_data) {
-        if (item.high > result) {
-            result = item.high;
+    for (size_t i = skip; i < m_data.size(); ++i) {
+        if (m_data[i].high > result) {
+            result = m_data[i].high;
         }
     }
     return result;
 }
 
-double OhlcList::percentFromAth() const
+std::vector<double> OhlcList::allTimeHigh() const
 {
-    const double lastPrice = m_data.at(0).close;
-    const double ath = allTimeHigh();
-    assert(ath > 0);
-    assert(ath >= lastPrice);
-    return (ath - lastPrice) / ath * 100;
+    double ath {};
+    std::vector<double> result;
+    result.resize(m_data.size());
+    for (int64_t i = m_data.size() - 1; i >= 0; --i) {
+        if (m_data[i].high > ath) {
+            ath = m_data[i].high;
+        }
+        result[i] = ath;
+    }
+    return result;
 }
 
-double OhlcList::percentToAth() const
+double OhlcList::percentFromAth(const size_t i) const
 {
-    const double lastPrice = m_data.at(0).close;
+    const double lastPrice = m_data.at(i).low;
+    const double ath = allTimeHigh(i);
+    assert(ath > 0);
+    assert(ath >= lastPrice);
+    return (lastPrice - ath) / ath * 100;
+}
+
+std::vector<double> OhlcList::percentFrom(const std::vector<double>& ath) const
+{
+    std::vector<double> result;
+    result.reserve(m_data.size());
+    for (size_t i = 0; i < m_data.size(); ++i) {
+        const double lastPrice = m_data.at(i).low;
+        assert(ath[i] >= lastPrice);
+        result.push_back((lastPrice - ath[i]) / ath[i] * 100);
+    }
+    return result;
+}
+
+double OhlcList::percentToAth(const size_t i) const
+{
+    const double lastPrice = m_data.at(i).low;
     assert(lastPrice > 0);
-    const double ath = allTimeHigh();
+    const double ath = allTimeHigh(i);
     assert(ath >= lastPrice);
     return (ath - lastPrice) / lastPrice * 100;
+}
+
+std::vector<double> OhlcList::percentTo(const std::vector<double>& ath) const
+{
+    std::vector<double> result;
+    result.reserve(m_data.size());
+    for (size_t i = 0; i < m_data.size(); ++i) {
+        const double lastPrice = m_data.at(i).low;
+        assert(ath[i] >= lastPrice);
+        result.push_back((ath[i] - lastPrice) / lastPrice * 100);
+    }
+    return result;
 }
 
 double OhlcList::avgReturn(size_t length) const

@@ -118,7 +118,7 @@ double Market::correlation(const std::string& symbol1, const std::string& symbol
     return asset1.correlation(asset2, PriceType::HL2, false);
 }
 
-void Market::save(const std::string& symbolsDir) const
+void Market::saveAssets(const std::string& symbolsDir) const
 {
     for (const auto& asset : m_assets) {
         asset.second.save(symbolsDir);
@@ -219,8 +219,8 @@ void Market::saveMarketInfo(const std::string& filePath) const
                 << asset.yahoo("category") << asset.yahoo("sector") << "," // 3
                 << asset.info().dividendYield << "," // 4
                 << asset.info().expenseRatio << "," // 5
-                << asset.ohlc().percentFromAth() << "," // 6
-                << asset.ohlc().percentToAth() << "," // 7
+                << asset.ohlc().percentFromAth(0) << "," // 6
+                << asset.ohlc().percentToAth(0) << "," // 7
                 << asset.ohlc().size() << "," // 8
                 << asset.ohlc().priceChange(0, 30, PriceType::HL2) << "," // 9
                 << asset.ohlc().priceChange(0, 365, PriceType::HL2) << "," // 10

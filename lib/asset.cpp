@@ -131,8 +131,8 @@ double Asset::correlation(const Asset& other, const PriceType priceType, const b
         std::cout << "Asset::correlation [datetime mismatch] " << m_symbol << " " << other.m_symbol << std::endl;
         return 0;
     }
-    const auto vector1 = m_ohlc.vector(size, 0, priceType);
-    const auto vector2 = other.m_ohlc.vector(size, 0, priceType);
+    const auto vector1 = m_ohlc.toVector(size, 0, priceType);
+    const auto vector2 = other.m_ohlc.toVector(size, 0, priceType);
     return rankify ? Utils::spearmanCorrelation(vector1, vector2) : Utils::pearsonCorrelation(vector1, vector2);
 }
 
