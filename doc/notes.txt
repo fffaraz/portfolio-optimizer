@@ -22,3 +22,8 @@ https://github.com/czielinski/portfolioopt
 https://github.com/lequant40/portfolio_allocation_js
 https://github.com/albertosantini/node-finance
 https://github.com/melvinmt/sharpefolio
+
+https://investor.vanguard.com/calculator-tools/retirement-income-calculator/
+https://ficalc.app/
+
+https://etfdb.com/etf/VOO/#technicals
