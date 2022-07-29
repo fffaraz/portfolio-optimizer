@@ -18,3 +18,6 @@ target_link_libraries(retirement-calculator portopt)
 
 add_executable(percent-ath percent-ath.cpp)
 target_link_libraries(percent-ath portopt)
+
+add_executable(arbitrage arbitrage.cpp)
+target_link_libraries(arbitrage portopt)
