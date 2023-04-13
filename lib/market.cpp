@@ -60,7 +60,7 @@ auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, cons
             if (infoMap.contains(symbol)) {
                 result.insert({ symbol, Asset { symbol, dataDir, AssetInfo { infoMap.at(symbol) } } });
             } else {
-                result.insert({ symbol, Asset { symbol, dataDir, AssetInfo{} } });
+                result.insert({ symbol, Asset { symbol, dataDir, AssetInfo {} } });
             }
         }
     }
@@ -265,7 +265,8 @@ void Market::saveSymbols(const std::string& filePath) const
     for (const auto& [symbol, asset] : m_assets) {
         outFile << "\"" << symbol << "\",";
     }
-    outFile << "]" << std::endl << std::endl;
+    outFile << "]\n"
+            << std::endl;
 
     for (const auto& [symbol, asset] : m_assets) {
         outFile << symbol << "\t" << asset.yahoo("longName") << "\t" << asset.tags() << std::endl;

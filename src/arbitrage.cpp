@@ -7,20 +7,20 @@
 
 #include "lib/portfolio.hpp"
 
+#include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <iostream>
+#include <limits>
+#include <map>
 #include <set>
 #include <vector>
-#include <algorithm>
-#include <map>
-#include <limits>
-#include <cmath>
 
 using namespace Farazlib;
 
 typedef std::map<std::pair<std::string, std::string>, double> Weights;
 
-void print(const Weights &table)
+void print(const Weights& table)
 {
     std::cout << "table.size: " << table.size() << std::endl;
     for (const auto& item : table) {
@@ -31,7 +31,7 @@ void print(const Weights &table)
 // https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 // https://stackoverflow.com/questions/2282427/interesting-problem-currency-arbitrage
 
-void BellmanFord(const std::vector<std::string> &assets, const std::vector<std::vector<double>> &rates, size_t source)
+void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::vector<double>>& rates, size_t source)
 {
     const size_t numAssets = assets.size();
     double distance[numAssets], predecessor[numAssets];
@@ -87,7 +87,7 @@ int main()
         auto asset1 = item.at(0);
         auto asset2 = item.at(1);
         auto rate = std::stod(item.at(2));
-        table.insert({{asset1, asset2}, rate});
+        table.insert({ { asset1, asset2 }, rate });
         assetsSet.insert(asset1);
         assetsSet.insert(asset2);
     }
@@ -107,10 +107,10 @@ int main()
             auto asset1 = assets.at(i);
             auto asset2 = assets.at(j);
             double rate = 0;
-            if (table.find({asset1, asset2}) != table.end()) {
-                rate = table.at({asset1, asset2});
-            } else if (table.find({asset2, asset1}) != table.end()) {
-                rate = 1.0 / table.at({asset2, asset1});
+            if (table.find({ asset1, asset2 }) != table.end()) {
+                rate = table.at({ asset1, asset2 });
+            } else if (table.find({ asset2, asset1 }) != table.end()) {
+                rate = 1.0 / table.at({ asset2, asset1 });
             } else if (asset1 == asset2) {
                 rate = 1;
             } else {

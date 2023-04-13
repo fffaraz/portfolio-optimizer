@@ -22,7 +22,7 @@ int main()
     const Market market { basePath + "data/symbols", marketInfo, symbols };
 
     market.saveAssets(basePath + "output/symbols"); // assets' ohlc
-    market.saveSymbols(basePath + "output/marketSymbols.txt");  // symbols array
+    market.saveSymbols(basePath + "output/marketSymbols.txt"); // symbols array
     market.saveCorrelationList(basePath + "output/CorrelationList.txt");
     market.saveMarketInfo(basePath + "output/MarketInfo.csv");
 

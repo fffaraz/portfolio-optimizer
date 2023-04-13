@@ -230,7 +230,8 @@ void Portfolio::saveSymbols(const std::string& filePath) const
         }
         outFile << "\"" << symbol << "\",";
     }
-    outFile << "]" << std::endl << std::endl;
+    outFile << "]\n"
+            << std::endl;
 
     for (const auto& [symbol, quantity] : m_holdings) {
         const auto& asset = m_market.get(symbol);
