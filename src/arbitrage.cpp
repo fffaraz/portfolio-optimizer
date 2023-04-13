@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <map>
 #include <limits>
+#include <cmath>
 
 using namespace Farazlib;
 
@@ -123,7 +124,7 @@ int main()
     for (size_t i = 0; i < numAssets; ++i) {
         for (size_t j = 0; j < numAssets; ++j) {
             std::cout << rates[i][j] << "  ";
-            rates[i][j] = -log(rates[i][j]);
+            rates[i][j] = -std::log(rates[i][j]);
         }
         std::cout << std::endl;
     }

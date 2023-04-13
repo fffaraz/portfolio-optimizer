@@ -11,6 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_PREFIX_PATH "/home/faraz/Qt/5.15.2/gcc_64/")
+
 find_package(Threads REQUIRED)
 find_package(
   QT NAMES Qt6 Qt5
