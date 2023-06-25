@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file
  */
 
-#include "lib/portfolio.hpp"
+#include "lib/csvfile.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -34,8 +34,10 @@ void print(const Weights& table)
 void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::vector<double>>& rates, size_t source)
 {
     const size_t numAssets = assets.size();
-    double distance[numAssets];
-    double predecessor[numAssets];
+    std::vector<double> distance(numAssets);
+    std::vector<int> predecessor(numAssets);
+    // double distance[numAssets];
+    // int predecessor[numAssets];
 
     // Step 1: initialize graph
     for (size_t i = 0; i < numAssets; ++i) {
@@ -51,7 +53,7 @@ void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::
             for (size_t j = 0; j < numAssets; ++j) {
                 if (distance[i] + rates[i][j] < distance[j]) {
                     distance[j] = distance[i] + rates[i][j];
-                    predecessor[j] = i;
+                    predecessor[j] = static_cast<int>(i);
                 }
             }
         }
