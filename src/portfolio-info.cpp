@@ -28,8 +28,11 @@ int main()
 
     std::cout << std::endl;
 
-    // const CsvFile portfolioCsv { basePath + "data/portfolio.csv", true };
-    const CsvFile portfolioCsv { basePath + "data/etrade/individual.csv", true };
+    const std::string etradePath = basePath + "data/etrade/individual.csv";
+    // const std::string etradePath = basePath + "data/etrade/rollover.csv";
+    // const std::string etradePath = basePath + "data/etrade/all.csv";
+
+    const CsvFile portfolioCsv { etradePath, true };
     const Portfolio portfolio { portfolioCsv, market };
 
     std::cout << std::endl;

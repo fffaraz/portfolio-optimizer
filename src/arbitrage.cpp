@@ -34,7 +34,8 @@ void print(const Weights& table)
 void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::vector<double>>& rates, size_t source)
 {
     const size_t numAssets = assets.size();
-    double distance[numAssets], predecessor[numAssets];
+    double distance[numAssets];
+    double predecessor[numAssets];
 
     // Step 1: initialize graph
     for (size_t i = 0; i < numAssets; ++i) {
