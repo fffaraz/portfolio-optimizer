@@ -13,37 +13,47 @@
 
 int main()
 {
-    auto current_age = 31;
-    const auto retirement_age = 45;
-    const auto death_age = 85;
+    const auto current_age = 30;
+    const auto retirement_age = 50;
+    const auto social_security_age = 67;
+    const auto death_age = 90;
 
-    auto annual_income = 80'000;
-    const auto income_increase = 3;
-    const auto retirement_income = 50;
+    const auto monthly_savings = 1000; // stop at retirement age
+    const auto monthly_expenses = 1000; // after retirement
+    const auto social_security = 1000; // start at social security age
+    auto current_savings = 100'000; // at current age
 
-    const auto savings_percent = 50;
-    auto current_savings = 200'000;
+    const auto rate_of_return_before = 4; // before retirement (annual)
+    const auto rate_of_return_after = 2; // after retirement (annual)
 
-    const auto rate_of_return_before = 8;
-    const auto rate_of_return_after = 4;
+    std::cout << "age\tsavings" << std::endl;
+    std::cout << current_age << "\t" << current_savings << std::endl;
 
-    while (current_age < retirement_age) {
-        std::cout << "current_age: " << current_age++ << std::endl;
-        current_savings += annual_income * (savings_percent / 100.0);
-        current_savings *= (100.0 + rate_of_return_before) / 100.0;
-        std::cout << "current_savings: " << current_savings << std::endl;
-        annual_income *= (100.0 + income_increase) / 100.0;
-        std::cout << "annual_income: " << annual_income << std::endl;
-        std::cout << std::endl;
+    auto current_age_month = current_age * 12;
+    while (current_age_month < retirement_age * 12) {
+        current_age_month++;
+        current_savings *= (100.0 + rate_of_return_before / 12.0) / 100.0;
+        current_savings += monthly_savings;
+        std::cout << current_age_month / 12.0 << "\t" << current_savings << std::endl;
     }
-    while (current_age < death_age) {
-        std::cout << "current_age: " << current_age++ << std::endl;
-        current_savings -= annual_income * (retirement_income / 100.0);
-        current_savings *= (100.0 + rate_of_return_after) / 100.0;
-        std::cout << "current_savings: " << current_savings << std::endl;
-        annual_income *= (100.0 + income_increase) / 100.0;
-        std::cout << "annual_income: " << annual_income << std::endl;
-        std::cout << std::endl;
+
+    // std::cout << "retirement starts" << std::endl;
+
+    while (current_age_month < social_security_age * 12) {
+        current_age_month++;
+        if (current_savings > 0) current_savings *= (100.0 + rate_of_return_after / 12.0) / 100.0;
+        current_savings -= monthly_expenses;
+        std::cout << current_age_month / 12.0 << "\t" << current_savings << std::endl;
+    }
+
+    // std::cout << "social security starts" << std::endl;
+
+    while (current_age_month < death_age * 12) {
+        current_age_month++;
+        if (current_savings > 0) current_savings *= (100.0 + rate_of_return_after / 12.0) / 100.0;
+        current_savings -= monthly_expenses;
+        current_savings += social_security;
+        std::cout << current_age_month / 12.0 << "\t" << current_savings << std::endl;
     }
 
     std::cout << "\nDONE" << std::endl;
