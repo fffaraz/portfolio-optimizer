@@ -1,5 +1,0 @@
-*.csv
-*.csv#
-*.txt
-*.json
-!.gitignore
