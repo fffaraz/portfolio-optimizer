@@ -7,11 +7,11 @@
 
 #pragma once
 
-#include "assetenums.hpp"
-#include "assetinfo.hpp"
-#include "ohlclist.hpp"
+#include "AssetEnums.hpp"
+#include "AssetInfo.hpp"
+#include "OhlcList.hpp"
 
-#include <QJsonObject>
+#include <nlohmann/json.hpp>
 
 #include <optional>
 #include <set>
@@ -63,7 +63,7 @@ private:
 
     const std::string m_symbol; ///< Ticker symbol
     const OhlcList m_ohlc; ///< Open-high-low-close chart
-    const QJsonObject m_yahoo; ///< Yahoo Finance Json
+    const nlohmann::json m_yahoo; ///< Yahoo Finance Json
     const AssetInfo m_info; ///< Other asset attributes
     const std::set<AssetTag> m_tags; ///< Tags
 };

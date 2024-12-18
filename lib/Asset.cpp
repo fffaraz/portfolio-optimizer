@@ -5,12 +5,9 @@
  * license that can be found in the LICENSE file
  */
 
-#include "asset.hpp"
-#include "enumutils.hpp"
-#include "utils.hpp"
-
-#include <QJsonDocument>
-#include <QJsonObject>
+#include "Asset.hpp"
+#include "EnumUtils.hpp"
+#include "Utils.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -20,11 +17,10 @@ using namespace Farazlib;
 
 namespace {
 
-QJsonObject loadJsonFile(const std::string& filePath)
+nlohmann::json loadJsonFile(const std::string& filePath)
 {
     std::ifstream ifs(filePath);
-    std::string buffer((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-    QJsonDocument document = QJsonDocument::fromJson(QString::fromStdString(buffer).toUtf8());
+    nlohmann::json document = nlohmann::json::parse(ifs);
     return document.object();
 }
 
@@ -101,12 +97,12 @@ std::string Asset::tags() const
 
 std::string Asset::yahoo(const std::string& key) const
 {
-    const QString qKey = QString::fromStdString(key);
-    if (!m_yahoo.contains(qKey)) {
+    if (!m_yahoo.contains(key)) {
         std::cout << "Asset::yahoo [not found] " << m_symbol << "\t" << key << std::endl;
     }
-    QString result = m_yahoo.value(qKey).toString();
-    return result.replace(",", "").toStdString();
+    std::string result = m_yahoo[key];
+    std::replace(result.begin(), result.end(), ',', ' ');
+    return result;
 }
 
 void Asset::save(const std::string& dataDir) const
