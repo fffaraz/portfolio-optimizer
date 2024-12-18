@@ -5,12 +5,21 @@
  * license that can be found in the LICENSE file
  */
 
-#include "ohlc.hpp"
-#include "utils.hpp"
+#include "Ohlc.hpp"
+#include "Utils.hpp"
 
+#include <cassert>
 #include <iostream>
 
 using namespace Farazlib;
+
+Ohlc::Ohlc(double value) noexcept
+    : open { value }
+    , high { value }
+    , low { value }
+    , close { value }
+{
+}
 
 Ohlc::Ohlc(double open, double high, double low, double close, double volume)
     : open { open }
@@ -21,7 +30,7 @@ Ohlc::Ohlc(double open, double high, double low, double close, double volume)
 {
 }
 
-Ohlc::Ohlc(const CsvFile::RecordType& record)
+Ohlc::Ohlc(const CsvFile::RowType& record)
 {
     if (record.size() != 8) {
         std::cout << "Ohlc::Ohlc [record.size() != 8]" << std::endl;
@@ -92,7 +101,7 @@ double Ohlc::get(PriceType type) const
 std::string Ohlc::to_string() const
 {
     // clang-format off
-    return datetime.toString("yyyy-MM-dd").toStdString() +
+    return Utils::to_string(datetime) +
            "\tO " + std::to_string(open) +
            "\tH " + std::to_string(high) +
            "\tL " + std::to_string(low) +

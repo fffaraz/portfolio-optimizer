@@ -5,11 +5,10 @@
  * license that can be found in the LICENSE file
  */
 
-#include "ohlclist.hpp"
-#include "utils.hpp"
+#include "OhlcList.hpp"
+#include "Utils.hpp"
 
-#include <QDebug>
-
+#include <cassert>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -20,7 +19,7 @@ namespace {
 
 auto loadData(const CsvFile& csv)
 {
-    std::cout << "OhlcList::loadData " << csv.filePath() << std::endl;
+    std::cout << "OhlcList::loadData" << std::endl;
     const auto& data = csv.data();
 
     OhlcList::OhlcVector result;
@@ -44,10 +43,11 @@ auto loadData(const CsvFile& csv)
         }
 
         // Fill missing dates with last record
+        const std::chrono::duration<int, std::ratio<86400>> one_day(1);
         if (!result.empty()) {
             int missingDays = 0;
             const auto lastRecord = result.at(result.size() - 1);
-            for (auto date = lastRecord.datetime.addDays(-1); date > item.datetime; date = date.addDays(-1)) {
+            for (auto date = lastRecord.datetime - one_day; date > item.datetime; date -= one_day) {
                 auto missingRecord = lastRecord;
                 missingRecord.datetime = date;
                 missingRecord.isFake = true;
@@ -113,7 +113,7 @@ void OhlcList::save(const std::string& filePath) const
 
     for (size_t i = 0; i < m_data.size(); ++i) {
         const auto& itr = m_data.at(i);
-        outFile << itr.datetime.toString("yyyy-MM-dd").toStdString() << ",";
+        outFile << Utils::to_string(itr.datetime) << ",";
         outFile << itr.open << ",";
         outFile << itr.high << ",";
         outFile << itr.low << ",";
@@ -313,8 +313,8 @@ bool OhlcList::matchDatetime(const OhlcList& other, size_t maxSize) const
         const auto& date1 = m_data.at(i).datetime;
         const auto& date2 = other.m_data.at(i).datetime;
         if (date1 != date2) {
-            qDebug() << "OhlcList::matchDatetime [datetime mismatch]" << i
-                     << date1.toString("yyyy-MM-dd") << date2.toString("yyyy-MM-dd");
+            std::cerr << "OhlcList::matchDatetime [datetime mismatch]" << i
+                     << Utils::to_string(date1) << Utils::to_string(date2);
             return false;
         }
     }

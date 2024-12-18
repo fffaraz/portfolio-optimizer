@@ -7,11 +7,12 @@
 
 #pragma once
 
-#include "csvfile.hpp"
-#include "ohlc.hpp"
+#include "CsvFile.hpp"
+#include "Ohlc.hpp"
 
 namespace Farazlib {
 
+// List of Open, High, Low, Close (OHLC) data
 class OhlcList {
 public:
     using OhlcVector = std::vector<Ohlc>;
