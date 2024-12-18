@@ -257,16 +257,13 @@ void Market::saveSymbols(const std::string& filePath) const
 {
     std::cout << "\nMarket::saveSymbols" << std::endl;
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
-    if (!outFile.is_open()) {
-        std::cout << "Market::saveSymbols [FAILED TO OPEN FILE]" << std::endl;
-    }
+    assert(outFile.is_open());
 
     outFile << "[";
     for (const auto& [symbol, asset] : m_assets) {
         outFile << "\"" << symbol << "\",";
     }
-    outFile << "]\n"
-            << std::endl;
+    outFile << "]\n\n";
 
     for (const auto& [symbol, asset] : m_assets) {
         outFile << symbol << "\t" << asset.yahoo("longName") << "\t" << asset.tags() << std::endl;
