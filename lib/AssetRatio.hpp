@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "asset.hpp"
+#include "Asset.hpp"
 
 namespace Farazlib {
 

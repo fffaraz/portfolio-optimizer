@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file
  */
 
-#include "assetratio.hpp"
+#include "AssetRatio.hpp"
 
 using namespace Farazlib;
 

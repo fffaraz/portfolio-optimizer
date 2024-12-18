@@ -5,13 +5,13 @@
  * license that can be found in the LICENSE file
  */
 
-#include "assetinfo.hpp"
+#include "AssetInfo.hpp"
 
 #include <iostream>
 
 using namespace Farazlib;
 
-AssetInfo::AssetInfo(const CsvFile::RecordType& info)
+AssetInfo::AssetInfo(const CsvFile::RowType& info)
 {
     if (info.size() != 3) {
         std::cout << "AssetInfo::AssetInfo [info.size() != 3] info.size: " << info.size() << std::endl;
