@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file
  */
 
-#include "enumutils.hpp"
+#include "EnumUtils.hpp"
 
 #include <iostream>
 #include <unordered_map>
