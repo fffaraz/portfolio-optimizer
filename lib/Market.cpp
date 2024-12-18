@@ -5,9 +5,9 @@
  * license that can be found in the LICENSE file
  */
 
-#include "market.hpp"
-#include "enumutils.hpp"
-#include "utils.hpp"
+#include "Market.hpp"
+#include "EnumUtils.hpp"
+#include "Utils.hpp"
 
 #include <algorithm> // std::min
 #include <filesystem>
