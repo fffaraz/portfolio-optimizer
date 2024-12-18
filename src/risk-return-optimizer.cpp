@@ -8,10 +8,11 @@
 // Efficient frontier for multi asset portfolio loaded from assets.csv
 // https://www.portfoliovisualizer.com/asset-correlations
 
-#include "lib/portfolio.hpp"
-#include "lib/utils.hpp"
-
-#include <QRandomGenerator>
+#include "lib/Asset.hpp"
+#include "lib/CsvFile.hpp"
+#include "lib/Market.hpp"
+#include "lib/Portfolio.hpp"
+#include "lib/Utils.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -51,26 +52,25 @@ int main()
             std::cout << 100.0 * i / iterations << std::endl;
         }
 
-        Portfolio::HoldingsType holdings;
+        Portfolio portfolio{};
         int totalShares {};
         for (size_t j = 0; j < assets.size(); ++j) {
             int shares = (i / Utils::powi(10, j)) % 10;
             shares *= 10;
             totalShares += shares;
-            holdings.insert({ assets.at(j).symbol(), shares });
+            portfolio.set(assets.at(j).symbol(), shares);
         }
 
-        const Portfolio portfolio { holdings, market };
-        const int avgRisk = std::round(portfolio.avgRisk() * 1000);
-        const double avgReturn = portfolio.avgReturn() * 100;
+        const int avgRisk = std::round(Utils::avgRisk(market, portfolio) * 1000);
+        const double avgReturn = Utils::avgReturn(market, portfolio) * 100;
 
         std::stringstream ss;
         for (const auto& item : assets) {
-            ss << item.symbol() << ":" << holdings.at(item.symbol()) << "-";
+            ss << item.symbol() << ":" << portfolio.get(item.symbol()) << "-";
         }
-        ss << "," << portfolio.avgRisk() * 100 << "," << avgReturn;
+        ss << "," << Utils::avgRisk(market, portfolio) * 100 << "," << avgReturn;
         for (const auto& item : assets) {
-            ss << "," << 100.0 * holdings.at(item.symbol()) / totalShares;
+            ss << "," << 100.0 * portfolio.get(item.symbol()) / totalShares;
         }
 
         data.insert_or_assign(avgRisk, std::make_pair(avgReturn, ss.str()));

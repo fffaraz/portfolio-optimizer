@@ -7,8 +7,6 @@
 
 // https://www.bankrate.com/retirement/calculators/retirement-plan-calculator/
 
-#include <QDateTime>
-
 #include <iostream>
 
 int main()

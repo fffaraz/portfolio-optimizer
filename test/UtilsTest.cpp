@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file
  */
 
-#include "lib/utils.hpp"
+#include "lib/Utils.hpp"
 
 #include <gtest/gtest.h>
 
@@ -15,7 +15,7 @@ constexpr double epsilon = 1e-3;
 
 TEST(Utils, toDateTime)
 {
-    EXPECT_EQ(QDateTime::fromString("2020-01-02", "yyyy-MM-dd"), Utils::toDateTime("2020-01-02"));
+    EXPECT_EQ(Utils::to_string(Utils::toDateTime("2020-01-02")), "2020-01-02");
 }
 
 TEST(Utils, join)

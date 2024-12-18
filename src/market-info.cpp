@@ -5,10 +5,13 @@
  * license that can be found in the LICENSE file
  */
 
-#include "lib/portfolio.hpp"
+#include "lib/CsvFile.hpp"
+#include "lib/Portfolio.hpp"
+#include "lib/Market.hpp"
 
 #include <filesystem>
 #include <iostream>
+#include <set>
 
 using namespace Farazlib;
 

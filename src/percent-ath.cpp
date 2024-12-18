@@ -5,7 +5,9 @@
  * license that can be found in the LICENSE file
  */
 
-#include "lib/portfolio.hpp"
+#include "lib/CsvFile.hpp"
+#include "lib/Market.hpp"
+#include "lib/Portfolio.hpp"
 
 #include <filesystem>
 #include <iostream>

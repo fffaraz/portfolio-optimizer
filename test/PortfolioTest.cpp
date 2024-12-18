@@ -5,7 +5,10 @@
  * license that can be found in the LICENSE file
  */
 
-#include "lib/portfolio.hpp"
+#include "lib/Asset.hpp"
+#include "lib/Market.hpp"
+#include "lib/Portfolio.hpp"
+#include "lib/Utils.hpp"
 
 #include <gtest/gtest.h>
 
@@ -29,13 +32,12 @@ TEST(Portfolio, riskreturn1)
 
     const Market market { { asset1, asset2 } };
 
-    Portfolio::HoldingsType holdings;
-    holdings.insert({ asset1.symbol(), 100 });
-    holdings.insert({ asset2.symbol(), 100 });
-    const Portfolio portfolio { holdings, market };
+    Portfolio portfolio;
+    portfolio.set(asset1.symbol(), 100);
+    portfolio.set(asset2.symbol(), 100);
 
-    EXPECT_NEAR(0.10, portfolio.avgRisk(), epsilon);
-    EXPECT_NEAR(0.10, portfolio.avgReturn(), epsilon);
+    EXPECT_NEAR(0.10, Utils::avgRisk(market, portfolio), epsilon);
+    EXPECT_NEAR(0.10, Utils::avgReturn(market, portfolio), epsilon);
 }
 
 TEST(Portfolio, riskreturn2)
@@ -54,11 +56,10 @@ TEST(Portfolio, riskreturn2)
 
     const Market market { { asset1, asset2 } };
 
-    Portfolio::HoldingsType holdings;
-    holdings.insert({ asset1.symbol(), 100 });
-    holdings.insert({ asset2.symbol(), 100 });
-    const Portfolio portfolio { holdings, market };
+    Portfolio portfolio;
+    portfolio.set(asset1.symbol(), 100);
+    portfolio.set(asset2.symbol(), 100);
 
-    EXPECT_NEAR(0.071, portfolio.avgRisk(), epsilon);
-    EXPECT_NEAR(0.10, portfolio.avgReturn(), epsilon);
+    EXPECT_NEAR(0.071, Utils::avgRisk(market, portfolio), epsilon);
+    EXPECT_NEAR(0.10, Utils::avgReturn(market, portfolio), epsilon);
 }

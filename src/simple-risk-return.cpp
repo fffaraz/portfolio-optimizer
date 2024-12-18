@@ -8,7 +8,10 @@
 // Efficient frontier for 2 asset portfolio based on individual risk-return
 // https://www.portfoliovisualizer.com/asset-correlations
 
-#include "lib/portfolio.hpp"
+#include "lib/Asset.hpp"
+#include "lib/Market.hpp"
+#include "lib/Portfolio.hpp"
+#include "lib/Utils.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -39,14 +42,12 @@ void calc(std::ofstream& outFile, const int category, const AssetData ad1, const
     const Market market { { asset1, asset2 } };
 
     for (int i = 0; i <= 100; i += 5) {
-        Portfolio::HoldingsType holdings;
-        holdings.insert({ asset1.symbol(), i });
-        holdings.insert({ asset2.symbol(), 100 - i });
-        const Portfolio portfolio { holdings, market };
-
+        Portfolio portfolio{};
+        portfolio.set(asset1.symbol(), i);
+        portfolio.set(asset2.symbol(), 100 - i);
         outFile << category << ","
                 << ad1.symbol << ":" << i << "-" << ad2.symbol << ":" << (100 - i) << ","
-                << portfolio.avgRisk() * 100 << "," << portfolio.avgReturn() * 100 << "\n";
+                << Utils::avgRisk(market, portfolio) * 100 << "," << Utils::avgReturn(market, portfolio) * 100 << "\n";
     }
 }
 

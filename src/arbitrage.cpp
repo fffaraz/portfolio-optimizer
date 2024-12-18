@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file
  */
 
-#include "lib/csvfile.hpp"
+#include "lib/CsvFile.hpp"
 
 #include <algorithm>
 #include <cmath>
