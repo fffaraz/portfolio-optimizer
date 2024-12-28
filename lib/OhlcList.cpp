@@ -29,7 +29,7 @@ auto loadData(const CsvFile& csv)
     const auto minDateTime = Utils::toDateTime("2010-01-01"); // TODO(faraz): parameterize
 
     for (auto itr = data.rbegin(); itr != data.rend(); ++itr) {
-        Ohlc item { *itr };
+        const Ohlc item { *itr };
 
         if (!item.isValid) {
             continue;

@@ -32,7 +32,7 @@ int main()
 
     for (const auto& item : assetsCsv.data()) {
         AssetInfo info;
-        const std::string symbol = item.at(0);
+        const std::string& symbol = item.at(0);
         info.avgRisk = std::stod(item.at(1)) / 100.0;
         info.avgReturn = std::stod(item.at(2)) / 100.0;
         for (size_t i = 3; i < csvHeader.size(); ++i) {

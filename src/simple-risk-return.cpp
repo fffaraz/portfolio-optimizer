@@ -19,7 +19,7 @@
 
 using namespace Farazlib;
 
-struct AssetData {
+struct __attribute__((aligned(64))) AssetData {
     std::string symbol;
     double avgRisk {};
     double avgReturn {};

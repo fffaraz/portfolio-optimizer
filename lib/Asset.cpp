@@ -94,7 +94,7 @@ std::string Asset::tags() const
 {
     std::vector<std::string> result;
     result.reserve(m_tags.size());
-    for (AssetTag tag : m_tags) {
+    for (const AssetTag tag : m_tags) {
         result.push_back(EnumUtils::to_string(tag));
     }
     return Utils::join(result, ", ");

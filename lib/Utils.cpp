@@ -69,8 +69,8 @@ double Utils::stdDev(const std::vector<double>& vector)
     }
     const double m = mean(vector);
     double sum_deviation {};
-    for (double d : vector) {
-        double deviation = d - m;
+    for (const double d : vector) {
+        const double deviation = d - m;
         sum_deviation += deviation * deviation;
     }
     return std::sqrt(sum_deviation / vector.size());
@@ -105,9 +105,9 @@ std::vector<double> Utils::rankify(const std::vector<double>& vector)
 double Utils::pearsonCorrelation(const std::vector<double>& x, const std::vector<double>& y)
 {
     // https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
-    assert(x.size() > 0);
+    assert(!x.empty());
     assert(x.size() == y.size());
-    if (x.size() == 0 || x.size() != y.size()) {
+    if (x.empty() || x.size() != y.size()) {
         return 0;
     }
 
@@ -146,9 +146,9 @@ double Utils::spearmanCorrelation(const std::vector<double>& x, const std::vecto
 
 std::pair<double, double> Utils::linearRegression(const std::vector<double>& x, const std::vector<double>& y)
 {
-    assert(x.size() > 0);
+    assert(!x.empty());
     assert(x.size() == y.size());
-    if (x.size() == 0 || x.size() != y.size()) {
+    if (x.empty() || x.size() != y.size()) {
         return {};
     }
     const auto n = x.size();
@@ -163,7 +163,7 @@ std::pair<double, double> Utils::linearRegression(const std::vector<double>& x, 
 
 double Utils::doublingTime(double ratePercent)
 {
-    return std::log(2) / std::log(1 + ratePercent / 100);
+    return std::log(2) / std::log(1 + (ratePercent / 100));
 }
 
 std::size_t Utils::powi(std::size_t base, std::size_t exp)
@@ -248,7 +248,7 @@ void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, co
 
     // Header
     outFile << "tag,totalAmount,percent,symbols...\n";
-    double total = totalValue(market, portfolio, 0);
+    const double total = totalValue(market, portfolio, 0);
 
     // Body
     for (AssetTag tag = AssetTag::Unclassified; tag < AssetTag::LastTag; tag = static_cast<AssetTag>(static_cast<int>(tag) + 1)) {
