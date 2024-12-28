@@ -6,8 +6,8 @@
  */
 
 #include "lib/CsvFile.hpp"
-#include "lib/Market.hpp"
 #include "lib/EtradePortfolio.hpp"
+#include "lib/Market.hpp"
 #include "lib/Utils.hpp"
 
 #include <filesystem>
@@ -46,6 +46,6 @@ int main()
     Utils::saveAllocations(market, portfolio, basePath + "output/Allocations.csv");
 
     std::cout << "\nDONE" << std::endl;
- 
+
     return 0;
 }

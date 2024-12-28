@@ -314,7 +314,7 @@ bool OhlcList::matchDatetime(const OhlcList& other, size_t maxSize) const
         const auto& date2 = other.m_data.at(i).datetime;
         if (date1 != date2) {
             std::cerr << "OhlcList::matchDatetime [datetime mismatch]" << i
-                     << Utils::to_string(date1) << Utils::to_string(date2);
+                      << Utils::to_string(date1) << Utils::to_string(date2);
             return false;
         }
     }

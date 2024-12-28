@@ -6,8 +6,8 @@
  */
 
 #include "lib/CsvFile.hpp"
-#include "lib/Portfolio.hpp"
 #include "lib/Market.hpp"
+#include "lib/Portfolio.hpp"
 
 #include <filesystem>
 #include <iostream>

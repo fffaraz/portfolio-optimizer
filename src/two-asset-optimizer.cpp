@@ -7,8 +7,8 @@
 
 // Efficient frontier for 2 asset portfolio from historical prices
 
-#include "lib/Portfolio.hpp"
 #include "lib/Market.hpp"
+#include "lib/Portfolio.hpp"
 #include "lib/Utils.hpp"
 
 #include <filesystem>
@@ -26,7 +26,7 @@ void calc(std::ofstream& outFile, const Market& market, const int category, cons
         const auto price2 = market.get(symbol2).ohlc().at(length).hl2();
         const auto shares1 = i * total / price1 / 100;
         const auto shares2 = (100 - i) * total / price2 / 100;
-        Portfolio portfolio{};
+        Portfolio portfolio {};
         portfolio.set(symbol1, shares1);
         portfolio.set(symbol2, shares2);
         outFile << category << ","

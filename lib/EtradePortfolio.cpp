@@ -9,8 +9,8 @@
 
 #include "CsvFile.hpp"
 
-#include <iostream>
 #include <cassert>
+#include <iostream>
 
 using namespace Farazlib;
 

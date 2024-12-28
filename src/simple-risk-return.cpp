@@ -42,7 +42,7 @@ void calc(std::ofstream& outFile, const int category, const AssetData ad1, const
     const Market market { { asset1, asset2 } };
 
     for (int i = 0; i <= 100; i += 5) {
-        Portfolio portfolio{};
+        Portfolio portfolio {};
         portfolio.set(asset1.symbol(), i);
         portfolio.set(asset2.symbol(), 100 - i);
         outFile << category << ","

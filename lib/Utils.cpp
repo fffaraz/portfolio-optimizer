@@ -7,14 +7,14 @@
 
 #include "Utils.hpp"
 
-#include "Portfolio.hpp"
-#include "Market.hpp"
 #include "EnumUtils.hpp"
+#include "Market.hpp"
+#include "Portfolio.hpp"
 
 #include <cassert>
 #include <cmath>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <numeric>
 
 using namespace Farazlib;

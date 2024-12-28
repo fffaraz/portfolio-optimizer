@@ -5,9 +5,9 @@
  * license that can be found in the LICENSE file
  */
 
+#include "lib/Portfolio.hpp"
 #include "lib/Asset.hpp"
 #include "lib/Market.hpp"
-#include "lib/Portfolio.hpp"
 #include "lib/Utils.hpp"
 
 #include <gtest/gtest.h>

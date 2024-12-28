@@ -1,4 +1,5 @@
-add_library(portopt
+add_library(
+  portopt
   Asset.cpp
   Asset.hpp
   AssetEnums.hpp
@@ -22,7 +23,6 @@ add_library(portopt
   Portfolio.cpp
   Portfolio.hpp
   Utils.cpp
-  Utils.hpp
-)
+  Utils.hpp)
 
 target_link_libraries(portopt PUBLIC nlohmann_json::nlohmann_json)

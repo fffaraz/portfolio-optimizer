@@ -52,7 +52,7 @@ int main()
             std::cout << 100.0 * i / iterations << std::endl;
         }
 
-        Portfolio portfolio{};
+        Portfolio portfolio {};
         int totalShares {};
         for (size_t j = 0; j < assets.size(); ++j) {
             int shares = (i / Utils::powi(10, j)) % 10;
