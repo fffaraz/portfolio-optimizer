@@ -97,7 +97,7 @@ std::vector<double> Utils::rankify(const std::vector<double>& vector)
         }
 
         // Use Fractional Rank formula
-        result.push_back(r + (s - 1) * 0.5);
+        result.push_back(r + ((s - 1) * 0.5));
     }
     return result;
 }

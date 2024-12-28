@@ -27,7 +27,7 @@ struct Ohlc {
     bool isValid {}; // Whether data was parsed correctly
     bool isFake {}; // Set to true for filling missing data
 
-    DateTime datetime {};
+    DateTime datetime;
 
     double open {};
     double high {};
@@ -38,12 +38,12 @@ struct Ohlc {
     double dividends {};
     double splits {};
 
-    double get(PriceType type) const;
-    std::string to_string() const;
+    [[nodiscard]] double get(PriceType type) const;
+    [[nodiscard]] std::string to_string() const;
 
-    double hl2() const noexcept { return (high + low) / 2.0; } ///< midpoint
-    double hlc3() const noexcept { return (high + low + close) / 3.0; }
-    double ohlc4() const noexcept { return (open + high + low + close) / 4.0; }
+    [[nodiscard]] double hl2() const noexcept { return (high + low) / 2.0; } ///< midpoint
+    [[nodiscard]] double hlc3() const noexcept { return (high + low + close) / 3.0; }
+    [[nodiscard]] double ohlc4() const noexcept { return (open + high + low + close) / 4.0; }
 };
 
 } // namespace Farazlib

@@ -11,4 +11,5 @@ Checks: '*,
   -abseil-*,
   -misc-include-cleaner,
   -fuchsia-*,
-  -cppcoreguidelines-non-private-member-variables-in-classes'
+  -cppcoreguidelines-non-private-member-variables-in-classes,
+  -altera-unroll-loops'

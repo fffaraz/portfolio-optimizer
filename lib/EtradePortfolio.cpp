@@ -20,7 +20,7 @@ EtradePortfolio::EtradePortfolio(const std::string& csvPath)
 {
     std::cerr << "EtradePortfolio::EtradePortfolio [csvPath] " << csvPath << "\n";
     const CsvFile csv { csvPath, false };
-    assert(csv.header().size() == 0);
+    assert(csv.header().empty());
     const auto& data = csv.data();
     assert(data.size() >= 18); // 18 rows minimum, 11 (header) + 1 (asset) + 6 (footer)
     assert(data.at(0).at(0) == "Account Summary");
@@ -33,7 +33,7 @@ EtradePortfolio::EtradePortfolio(const std::string& csvPath)
     for (size_t i = 11; i < data.size() - 6; ++i) {
         assert(data.at(i).size() == 10);
         const std::string& symbol = data.at(i).at(0);
-        if (symbol.find(" ") != std::string::npos) {
+        if (symbol.find(' ') != std::string::npos) {
             continue; // skip options
         }
         const double quantity = std::stod(data.at(i).at(4));
@@ -42,7 +42,7 @@ EtradePortfolio::EtradePortfolio(const std::string& csvPath)
     }
 
     // load cash balance
-    const int cashRow = data.size() - 6;
+    const size_t cashRow = data.size() - 6;
     assert(data.at(cashRow).size() == 11);
     assert(data.at(cashRow).at(0) == CASH);
     const double cash = std::stod(data.at(cashRow).at(9));

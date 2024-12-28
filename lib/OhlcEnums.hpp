@@ -7,10 +7,12 @@
 
 #pragma once
 
+#include <cstdint>
+
 namespace Farazlib {
 
 // clang-format off
-enum class PriceDirection {
+enum class PriceDirection : std::uint8_t {
     VeryUp,   // H2 > H1, L2 > H1
     Up,       // H2 > H1, L2 > L1
     Widen,    // H2 > H1, L2 < L1
@@ -20,7 +22,7 @@ enum class PriceDirection {
 };
 // clang-format on
 
-enum class PriceType {
+enum class PriceType : std::uint8_t {
     Open,
     High,
     Low,
@@ -30,7 +32,7 @@ enum class PriceType {
     OHLC4,
 };
 
-enum class OhlcTimeFrame {
+enum class OhlcTimeFrame : std::uint8_t {
     Hourly,
     Daily,
     Weekly,
