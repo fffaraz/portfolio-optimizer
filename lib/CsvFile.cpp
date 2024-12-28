@@ -16,11 +16,11 @@ using namespace Farazlib;
 
 CsvFile::CsvFile(const std::string& filePath, bool hasHeader)
 {
-    std::cerr << "CsvFile::CsvFile [filePath] " << filePath << std::endl;
+    std::cerr << "CsvFile::CsvFile [filePath] " << filePath << "\n";
 
     std::ifstream file { filePath };
     if (!file.is_open()) {
-        std::cerr << "CsvFile::CsvFile [failed to open file] " << filePath << std::endl;
+        std::cerr << "CsvFile::CsvFile [failed to open file] " << filePath << "\n";
         return;
     }
 

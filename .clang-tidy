@@ -1,1 +1,10 @@
-Checks: '*,-modernize-use-trailing-return-type,-readability-magic-numbers,-cppcoreguidelines-avoid-magic-numbers,-google-build-using-namespace,-misc-non-private-member-variables-in-classes'
+---
+Checks: '*,
+  -modernize-use-trailing-return-type,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -google-build-using-namespace,
+  -misc-non-private-member-variables-in-classes,
+  -llvmlibc-*,
+  -llvm-header-guard,
+  -boost-use-ranges'

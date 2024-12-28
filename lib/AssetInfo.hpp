@@ -7,17 +7,12 @@
 
 #pragma once
 
-#include "CsvFile.hpp"
-
 #include <string>
 #include <unordered_map>
 
 namespace Farazlib {
 
 struct AssetInfo {
-    AssetInfo() = default;
-    explicit AssetInfo(const CsvFile::RowType& info);
-
     double dividendYield {};
     double expenseRatio {};
 

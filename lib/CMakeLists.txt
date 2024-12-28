@@ -3,7 +3,6 @@ add_library(
   Asset.cpp
   Asset.hpp
   AssetEnums.hpp
-  AssetInfo.cpp
   AssetInfo.hpp
   AssetRatio.cpp
   AssetRatio.hpp

@@ -12,6 +12,7 @@
 #include <chrono>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace Farazlib {
@@ -32,9 +33,9 @@ namespace Utils {
     double avgRisk(const Market& market, const Portfolio& portfolio, int length);
     double avgReturn(const Market& market, const Portfolio& portfolio, int length);
 
-    double totalValue(const Market& market, const Portfolio& portfolio, size_t i = 0);
+    double totalValue(const Market& market, const Portfolio& portfolio, std::size_t i = 0);
     std::pair<double, std::set<std::string>> totalValue(const Market& market, const Portfolio& portfolio, AssetTag tag);
-    double valueChange(const Market& market, const Portfolio& portfolio, size_t i, size_t offset);
+    double valueChange(const Market& market, const Portfolio& portfolio, std::size_t i, std::size_t offset);
 
     void saveAllocations(const Market& market, const Portfolio& portfolio, const std::string& filePath);
 
@@ -48,7 +49,7 @@ namespace Utils {
     std::pair<double, double> linearRegression(const std::vector<double>& x, const std::vector<double>& y);
 
     double doublingTime(double ratePercent);
-    size_t powi(size_t base, size_t exp);
+    std::size_t powi(std::size_t base, std::size_t exp);
 
 } // namespace Utils
 } // namespace Farazlib

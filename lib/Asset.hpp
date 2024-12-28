@@ -15,13 +15,14 @@
 
 #include <optional>
 #include <set>
+#include <string>
 
 namespace Farazlib {
 
 class Asset {
 public:
     /**
-     * @brief Asset Constructor from symbol and price
+     * @brief Construct a simple asset from symbol and price
      * @param symbol Ticker symbol
      * @param price price of the asset per share in USD
      * @param info extra asset attributes
@@ -43,7 +44,7 @@ public:
     std::string yahoo(const std::string& key) const; ///< Returns value from yahoo json
     void save(const std::string& dataDir) const; ///< save ohlc to a symbol.csv file
 
-    double correlation(const Asset& other, const PriceType priceType, const bool rankify) const;
+    double correlation(const Asset& other, PriceType priceType, bool rankify) const;
     double avgRisk(size_t length) const;
     double avgReturn(size_t length) const;
 

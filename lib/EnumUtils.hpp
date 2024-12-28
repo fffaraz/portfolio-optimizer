@@ -7,7 +7,10 @@
 
 #pragma once
 
-#include "Asset.hpp"
+#include "AssetEnums.hpp"
+
+#include <set>
+#include <string>
 
 namespace Farazlib {
 namespace EnumUtils {

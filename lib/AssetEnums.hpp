@@ -7,9 +7,11 @@
 
 #pragma once
 
+#include <cstdint>
+
 namespace Farazlib {
 
-enum class AssetTag {
+enum class AssetTag : std::uint8_t {
     Unclassified,
 
     ETF, // passive or active
@@ -85,7 +87,7 @@ enum class AssetTag {
     LastTag,
 };
 
-enum class AssetAllocation // Asset Class
+enum class AssetAllocation : std::uint8_t // Asset Class
 {
     Unclassified,
 
@@ -99,7 +101,7 @@ enum class AssetAllocation // Asset Class
     Alternatives, // Other
 };
 
-enum class WorldRegions // Asset Geography
+enum class WorldRegions : std::uint8_t // Asset Geography
 {
     Unclassified,
 
@@ -121,7 +123,7 @@ enum class WorldRegions // Asset Geography
     AsiaEmerging, // Greater Asia
 };
 
-enum class StockSector // Industry
+enum class StockSector : std::uint8_t // Industry
 {
     Unclassified,
 
@@ -140,7 +142,7 @@ enum class StockSector // Industry
     RealEstate, // Cyclical
 };
 
-enum class StockStyle {
+enum class StockStyle : std::uint8_t {
     Unclassified,
 
     LargeCapBlend,
@@ -156,7 +158,7 @@ enum class StockStyle {
     SmallCapValue,
 };
 
-enum class BondStyle {
+enum class BondStyle : std::uint8_t {
     Unclassified,
 
     HighLtd,
@@ -172,7 +174,7 @@ enum class BondStyle {
     LowExt,
 };
 
-enum class StockType {
+enum class StockType : std::uint8_t {
     Unclassified,
 
     HighYield,
@@ -185,7 +187,7 @@ enum class StockType {
     SpeculativeGrowth,
 };
 
-enum class MarketCap {
+enum class MarketCap : std::uint8_t {
     Giant,
     Large,
     Medium,
@@ -193,7 +195,7 @@ enum class MarketCap {
     Micro,
 };
 
-enum class AlternativeType {
+enum class AlternativeType : std::uint8_t {
     Unclassified,
 
     DomesticRealEstate,
@@ -207,7 +209,7 @@ enum class AlternativeType {
     OtherMetals,
 };
 
-enum class BondType {
+enum class BondType : std::uint8_t {
     USGov,
     USCorp,
     International,

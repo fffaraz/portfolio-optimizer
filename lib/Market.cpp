@@ -32,6 +32,21 @@ auto loadAssetInfo(const CsvFile& infoCsv)
     return result;
 }
 
+auto getAssetInfo(const CsvFile::RowType& info)
+{
+    assert(info.size() == 3);
+    AssetInfo result;
+    try {
+        result.dividendYield = std::stod(info.at(1));
+    } catch (...) {
+    }
+    try {
+        result.expenseRatio = std::stod(info.at(2));
+    } catch (...) {
+    }
+    return result;
+}
+
 auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
 {
     Market::AssetsDb result;
@@ -58,7 +73,7 @@ auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, cons
                 continue;
             }
             if (infoMap.contains(symbol)) {
-                result.insert({ symbol, Asset { symbol, dataDir, AssetInfo { infoMap.at(symbol) } } });
+                result.insert({ symbol, Asset { symbol, dataDir, getAssetInfo(infoMap.at(symbol)) } });
             } else {
                 result.insert({ symbol, Asset { symbol, dataDir, AssetInfo {} } });
             }

@@ -80,11 +80,11 @@ std::vector<double> Utils::rankify(const std::vector<double>& vector)
 {
     std::vector<double> result;
     result.reserve(vector.size());
-    for (size_t i = 0; i < vector.size(); ++i) {
+    for (std::size_t i = 0; i < vector.size(); ++i) {
         int r { 1 };
         int s { 1 };
         // Count no of smaller elements in 0 to i-1 and i+1 to N-1
-        for (size_t j = 0; j < vector.size(); j++) {
+        for (std::size_t j = 0; j < vector.size(); j++) {
             if (i == j) {
                 continue;
             }
@@ -117,7 +117,7 @@ double Utils::pearsonCorrelation(const std::vector<double>& x, const std::vector
     double cov {}; // covariance
     double std1 {}; // standard deviation x
     double std2 {}; // standard deviation y
-    for (size_t i = 0; i < x.size(); ++i) {
+    for (std::size_t i = 0; i < x.size(); ++i) {
         const double diff1 = x.at(i) - mean1;
         const double diff2 = y.at(i) - mean2;
         cov += diff1 * diff2;
@@ -166,9 +166,9 @@ double Utils::doublingTime(double ratePercent)
     return std::log(2) / std::log(1 + ratePercent / 100);
 }
 
-size_t Utils::powi(size_t base, size_t exp)
+std::size_t Utils::powi(std::size_t base, std::size_t exp)
 {
-    size_t result = 1;
+    std::size_t result = 1;
     while (exp) {
         if (exp & 1) {
             result *= base;
@@ -264,7 +264,7 @@ void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, co
     }
 }
 
-double Utils::totalValue(const Market& market, const Portfolio& portfolio, size_t i)
+double Utils::totalValue(const Market& market, const Portfolio& portfolio, std::size_t i)
 {
     double total {};
     for (const auto& [symbol, quantity] : portfolio.holdings()) {
@@ -290,7 +290,7 @@ std::pair<double, std::set<std::string>> Utils::totalValue(const Market& market,
     return { total, list };
 }
 
-double Utils::valueChange(const Market& market, const Portfolio& portfolio, size_t i, size_t offset)
+double Utils::valueChange(const Market& market, const Portfolio& portfolio, std::size_t i, std::size_t offset)
 {
     if (offset == 0) {
         assert(offset > 0);

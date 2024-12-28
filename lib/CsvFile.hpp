@@ -20,8 +20,8 @@ public:
     using RowType = std::vector<std::string>; // list of columns in a row
     using TableType = std::vector<RowType>; // list of rows (each row is a list of columns)
 
-    const RowType& header() const noexcept { return m_header; }
-    const TableType& data() const noexcept { return m_data; }
+    [[nodiscard]] const RowType& header() const noexcept { return m_header; }
+    [[nodiscard]] const TableType& data() const noexcept { return m_data; }
 
 private:
     RowType m_header; // list of columns in the header row
