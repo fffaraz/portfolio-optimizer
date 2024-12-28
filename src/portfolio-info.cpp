@@ -17,35 +17,35 @@ using namespace Farazlib;
 
 int main()
 {
-    std::cerr << "current_path: " << std::filesystem::current_path().string() << std::endl;
+    std::cerr << "current_path: " << std::filesystem::current_path().string() << "\n";
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const std::string csvPath = basePath + "data/etrade/PortfolioDownload.csv";
     const EtradePortfolio portfolio { csvPath };
 
-    std::cout << "Number of holdings: " << portfolio.holdings().size() << std::endl;
+    std::cout << "Number of holdings: " << portfolio.holdings().size() << "\n";
     portfolio.saveCsv(basePath + "data/output/portfolio.csv");
     portfolio.saveSymbols(basePath + "data/output/symbols.txt");
 
     const Portfolio portfolio2 { basePath + "data/output/portfolio.csv" };
-    std::cout << "Number of holdings: " << portfolio2.holdings().size() << std::endl;
+    std::cout << "Number of holdings: " << portfolio2.holdings().size() << "\n";
 
     const CsvFile marketInfo { basePath + "data/market.csv", true };
     const Market market { basePath + "data/symbols", marketInfo };
 
-    std::cout << std::endl;
+    std::cout << "\n";
 
     market.saveCorrelationList(basePath + "output/CorrelationList.txt");
     market.saveMarketInfo(basePath + "output/MarketInfo.csv");
 
-    std::cout << std::endl;
+    std::cout << "\n";
 
     const double totalValue = Utils::totalValue(market, portfolio);
-    std::cout << "\ntotalValue: " << totalValue << std::endl;
+    std::cout << "\ntotalValue: " << totalValue << "\n";
 
     Utils::saveAllocations(market, portfolio, basePath + "output/Allocations.csv");
 
-    std::cout << "\nDONE" << std::endl;
+    std::cout << "\nDONE\n";
 
     return 0;
 }

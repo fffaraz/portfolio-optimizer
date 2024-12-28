@@ -18,7 +18,7 @@ using namespace Farazlib;
 
 Portfolio::Portfolio(const std::string& csvPath)
 {
-    std::cerr << "Portfolio::Portfolio [csvPath] " << csvPath << std::endl;
+    std::cerr << "Portfolio::Portfolio [csvPath] " << csvPath << "\n";
     const CsvFile csv { csvPath, true };
     const auto& header = csv.header();
     assert(header.size() == 2);
@@ -51,7 +51,7 @@ const Portfolio::HoldingsType& Portfolio::holdings() const noexcept
 
 void Portfolio::saveCsv(const std::string& csvPath) const
 {
-    std::cout << "Portfolio::saveCsv [csvPath] " << csvPath << std::endl;
+    std::cout << "Portfolio::saveCsv [csvPath] " << csvPath << "\n";
     std::ofstream file(csvPath, std::ios::out | std::ios::trunc);
     assert(file.is_open());
     file << "Symbol,Quantity\n";
@@ -62,7 +62,7 @@ void Portfolio::saveCsv(const std::string& csvPath) const
 
 void Portfolio::saveSymbols(const std::string& filePath) const
 {
-    std::cout << "Portfolio::saveSymbols [filePath] " << filePath << std::endl;
+    std::cout << "Portfolio::saveSymbols [filePath] " << filePath << "\n";
     std::ofstream file(filePath, std::ios::out | std::ios::trunc);
     assert(file.is_open());
     file << "[";

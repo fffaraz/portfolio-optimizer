@@ -22,9 +22,9 @@ typedef std::map<std::pair<std::string, std::string>, double> Weights;
 
 void print(const Weights& table)
 {
-    std::cout << "table.size: " << table.size() << std::endl;
+    std::cout << "table.size: " << table.size() << "\n";
     for (const auto& item : table) {
-        std::cout << item.first.first << " -> " << item.first.second << " : " << item.second << std::endl;
+        std::cout << item.first.first << " -> " << item.first.second << " : " << item.second << "\n";
     }
 }
 
@@ -60,10 +60,10 @@ void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::
     }
 
     for (size_t k = 0; k < numAssets; ++k) {
-        std::cout << "assets[" << k << "] = " << assets[k] << std::endl;
-        std::cout << "distance[" << k << "] = " << distance[k] << std::endl;
-        std::cout << "predecessor[" << k << "] = " << predecessor[k] << std::endl;
-        std::cout << std::endl;
+        std::cout << "assets[" << k << "] = " << assets[k] << "\n";
+        std::cout << "distance[" << k << "] = " << distance[k] << "\n";
+        std::cout << "predecessor[" << k << "] = " << predecessor[k] << "\n";
+        std::cout << "\n";
     }
 
     // Step 3: check for negative-weight cycles
@@ -72,7 +72,7 @@ void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::
             if (distance[i] + rates[i][j] < distance[j]) {
                 // Step 4: find a negative-weight cycle
                 // Node j is part of a negative cycle
-                std::cout << "distance[" << i << "] + " << rates[i][j] << " < distance[" << j << "]" << std::endl;
+                std::cout << "distance[" << i << "] + " << rates[i][j] << " < distance[" << j << "]\n";
             }
         }
     }
@@ -80,7 +80,7 @@ void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << std::endl;
+    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const CsvFile csvPairs { basePath + "data/pairs.csv", false };
@@ -117,21 +117,21 @@ int main()
             } else if (asset1 == asset2) {
                 rate = 1;
             } else {
-                std::cout << "rate not found: " << asset1 << " -> " << asset2 << std::endl;
+                std::cout << "rate not found: " << asset1 << " -> " << asset2 << "\n";
             }
             rates[i][j] = rate;
         }
     }
 
-    std::cout << std::endl;
+    std::cout << "\n";
     for (size_t i = 0; i < numAssets; ++i) {
         for (size_t j = 0; j < numAssets; ++j) {
             std::cout << rates[i][j] << "  ";
             rates[i][j] = -std::log(rates[i][j]);
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
-    std::cout << std::endl;
+    std::cout << "\n";
 
     BellmanFord(assets, rates, 0);
 

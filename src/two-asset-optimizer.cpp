@@ -37,7 +37,7 @@ void calc(std::ofstream& outFile, const Market& market, const int category, cons
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << std::endl;
+    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const CsvFile marketInfo { basePath + "data/market.csv", true };
@@ -54,6 +54,6 @@ int main()
     calc(outFile, market, 5, "VOO", "VNQ");
     calc(outFile, market, 6, "SGOL", "VNQ");
 
-    std::cout << "\nDONE" << std::endl;
+    std::cout << "\nDONE\n";
     return 0;
 }

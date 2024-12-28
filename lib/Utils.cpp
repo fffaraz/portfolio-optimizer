@@ -240,14 +240,14 @@ double Utils::avgReturn(const Market& market, const Portfolio& portfolio, int le
 
 void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, const std::string& filePath)
 {
-    std::cout << "\nPortfolio::saveAllocations" << std::endl;
+    std::cout << "\nPortfolio::saveAllocations\n";
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
-        std::cout << "Portfolio::saveAllocations [FAILED TO OPEN FILE] " << filePath << std::endl;
+        std::cout << "Portfolio::saveAllocations [FAILED TO OPEN FILE] " << filePath << "\n";
     }
 
     // Header
-    outFile << "tag,totalAmount,percent,symbols..." << std::endl;
+    outFile << "tag,totalAmount,percent,symbols...\n";
     double total = totalValue(market, portfolio, 0);
 
     // Body
@@ -260,7 +260,7 @@ void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, co
         for (const auto& symbol : value.second) {
             outFile << "," << symbol;
         }
-        outFile << std::endl;
+        outFile << "\n";
     }
 }
 

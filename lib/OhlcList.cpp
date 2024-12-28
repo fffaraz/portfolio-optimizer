@@ -19,7 +19,7 @@ namespace {
 
 auto loadData(const CsvFile& csv)
 {
-    std::cout << "OhlcList::loadData" << std::endl;
+    std::cout << "OhlcList::loadData\n";
     const auto& data = csv.data();
 
     OhlcList::OhlcVector result;
@@ -35,7 +35,7 @@ auto loadData(const CsvFile& csv)
             continue;
         }
         if (item.datetime > maxDateTime) {
-            // std::cout << "OhlcList::loadData [ignoring] " << itr->at(0) << std::endl;
+            // std::cout << "OhlcList::loadData [ignoring] " << itr->at(0) << "\n";
             continue;
         }
         if (item.datetime < minDateTime) {
@@ -55,7 +55,7 @@ auto loadData(const CsvFile& csv)
                 missingDays++;
             }
             if (false && missingDays > 0) {
-                std::cout << "OhlcList::loadData [missing] " << itr->at(0) << " " << missingDays << std::endl;
+                std::cout << "OhlcList::loadData [missing] " << itr->at(0) << " " << missingDays << "\n";
             }
         }
 
@@ -98,7 +98,7 @@ void OhlcList::save(const std::string& filePath) const
 {
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
-        std::cout << "OhlcList::save [FAILED TO OPEN FILE] " << filePath << std::endl;
+        std::cout << "OhlcList::save [FAILED TO OPEN FILE] " << filePath << "\n";
     }
 
     outFile << "Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,isFake,";
@@ -162,7 +162,7 @@ PriceDirection OhlcList::priceDirection(size_t i, size_t offset) const
 
     std::cout << "OhlcList::priceDirection [PriceDirection::Invalid] "
               << today.to_string() << "\t" << yesterday.to_string()
-              << std::endl;
+              << "\n";
     assert(false);
     return PriceDirection::Narrow; // Invalid
 }

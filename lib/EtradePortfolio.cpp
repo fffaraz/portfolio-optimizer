@@ -18,7 +18,7 @@ constexpr const char* CASH = "CASH";
 
 EtradePortfolio::EtradePortfolio(const std::string& csvPath)
 {
-    std::cerr << "EtradePortfolio::EtradePortfolio [csvPath] " << csvPath << std::endl;
+    std::cerr << "EtradePortfolio::EtradePortfolio [csvPath] " << csvPath << "\n";
     const CsvFile csv { csvPath, false };
     assert(csv.header().size() == 0);
     const auto& data = csv.data();
@@ -38,7 +38,7 @@ EtradePortfolio::EtradePortfolio(const std::string& csvPath)
         }
         const double quantity = std::stod(data.at(i).at(4));
         m_holdings.insert({ symbol, quantity });
-        std::cerr << "EtradePortfolio::EtradePortfolio [Symbol, Quantity] " << symbol << " " << quantity << std::endl;
+        std::cerr << "EtradePortfolio::EtradePortfolio [Symbol, Quantity] " << symbol << " " << quantity << "\n";
     }
 
     // load cash balance
@@ -47,5 +47,5 @@ EtradePortfolio::EtradePortfolio(const std::string& csvPath)
     assert(data.at(cashRow).at(0) == CASH);
     const double cash = std::stod(data.at(cashRow).at(9));
     m_holdings.insert({ CASH, cash });
-    std::cerr << "EtradePortfolio::EtradePortfolio [CASH] " << cash << std::endl;
+    std::cerr << "EtradePortfolio::EtradePortfolio [CASH] " << cash << "\n";
 }

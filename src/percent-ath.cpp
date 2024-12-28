@@ -16,7 +16,7 @@ using namespace Farazlib;
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << std::endl;
+    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const CsvFile marketInfo { basePath + "data/market.csv", true };
@@ -25,6 +25,6 @@ int main()
 
     market.saveAssets(basePath + "output/symbols"); // assets' ohlc
 
-    std::cout << "\nDONE" << std::endl;
+    std::cout << "\nDONE\n";
     return 0;
 }

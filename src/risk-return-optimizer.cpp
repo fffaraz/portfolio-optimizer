@@ -23,7 +23,7 @@ using namespace Farazlib;
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << std::endl;
+    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const CsvFile assetsCsv { basePath + "data/assets.csv", true };
@@ -49,7 +49,7 @@ int main()
     const size_t iterations = Utils::powi(10, assets.size());
     for (size_t i = 1; i < iterations; ++i) {
         if (i % 2000 == 0) {
-            std::cout << 100.0 * i / iterations << std::endl;
+            std::cout << 100.0 * i / iterations << "\n";
         }
 
         Portfolio portfolio {};
@@ -87,6 +87,6 @@ int main()
         outFile << item.second.second << "\n";
     }
 
-    std::cout << "\nDONE" << std::endl;
+    std::cout << "\nDONE\n";
     return 0;
 }

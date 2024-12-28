@@ -33,7 +33,7 @@ Ohlc::Ohlc(double open, double high, double low, double close, double volume)
 Ohlc::Ohlc(const CsvFile::RowType& record)
 {
     if (record.size() != 8) {
-        std::cout << "Ohlc::Ohlc [record.size() != 8]" << std::endl;
+        std::cout << "Ohlc::Ohlc [record.size() != 8]\n";
         assert(record.size() == 8);
         return;
     }
@@ -47,7 +47,7 @@ Ohlc::Ohlc(const CsvFile::RowType& record)
         dividends = std::stod(record.at(6)); // Dividends
         splits = std::stod(record.at(7)); // Stock Splits
     } catch (std::exception& e) {
-        std::cout << "Ohlc::Ohlc [exception] " << e.what() << "\t" << Utils::join(record, ",") << std::endl;
+        std::cout << "Ohlc::Ohlc [exception] " << e.what() << "\t" << Utils::join(record, ",") << "\n";
         return;
     }
 

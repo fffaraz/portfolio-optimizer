@@ -69,6 +69,6 @@ int main()
     calc(outFile, 5, voo, vnq, 0.76);
     calc(outFile, 6, sgol, vnq, 0.08);
 
-    std::cout << "\nDONE" << std::endl;
+    std::cout << "\nDONE\n";
     return 0;
 }
