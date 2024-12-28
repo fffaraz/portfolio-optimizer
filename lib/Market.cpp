@@ -175,7 +175,7 @@ void Market::saveCorrelationList(const std::string& filePath) const
                << " (" << item2.second.yahoo("longName") << ") [" << item2.second.info().expenseRatio << "] "
                << item2.second.tags();
 
-            list.emplace_back({ correlation1, ss.str() });
+            list.push_back({ correlation1, ss.str() });
         }
 
         sort(list.rbegin(), list.rend());
