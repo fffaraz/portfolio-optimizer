@@ -12,4 +12,5 @@ Checks: '*,
   -misc-include-cleaner,
   -fuchsia-*,
   -cppcoreguidelines-non-private-member-variables-in-classes,
-  -altera-unroll-loops'
+  -altera-unroll-loops,
+  -altera-id-dependent-backward-branch'
