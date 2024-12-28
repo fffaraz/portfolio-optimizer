@@ -26,7 +26,7 @@ auto loadAssetInfo(const CsvFile& infoCsv)
 {
     std::unordered_map<std::string, std::vector<std::string>> result;
     for (const auto& item : infoCsv.data()) {
-        const std::string symbol = item.at(0);
+        const std::string& symbol = item.at(0);
         result.insert({ symbol, item });
     }
     return result;
@@ -39,17 +39,19 @@ auto getAssetInfo(const CsvFile::RowType& info)
     try {
         result.dividendYield = std::stod(info.at(1));
     } catch (...) {
+        assert(false);
     }
     try {
         result.expenseRatio = std::stod(info.at(2));
     } catch (...) {
+        assert(false);
     }
     return result;
 }
 
 auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
 {
-    Market::AssetsDb result;
+    std::map<std::string, Asset> result;
 
     // Check if dataDir exists
     if (!std::filesystem::exists(dataDir)) {
@@ -84,7 +86,7 @@ auto loadAssetsFromFile(const std::string& dataDir, const CsvFile& infoCsv, cons
 
 auto loadAssetsFromVector(const std::vector<Asset>& assets)
 {
-    Market::AssetsDb result;
+    std::map<std::string, Asset> result;
     for (const auto& item : assets) {
         if (result.contains(item.symbol())) {
             std::cout << "Market::loadAssetsFromVector [duplicate symbol] " << item.symbol() << std::endl;

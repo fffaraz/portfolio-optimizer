@@ -12,11 +12,9 @@
 #include <set>
 #include <string>
 
-namespace Farazlib {
-namespace EnumUtils {
+namespace Farazlib::EnumUtils {
 
-    std::set<AssetTag> assetTag(const std::string& key);
-    std::string to_string(AssetTag tag);
+std::set<AssetTag> assetTag(const std::string& key);
+std::string to_string(AssetTag tag);
 
-} // namespace EnumUtils
-} // namespace Farazlib
+} // namespace Farazlib::EnumUtils

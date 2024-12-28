@@ -8,4 +8,7 @@ Checks: '*,
   -llvmlibc-*,
   -llvm-header-guard,
   -boost-use-ranges,
-  -abseil-*'
+  -abseil-*,
+  -misc-include-cleaner,
+  -fuchsia-*,
+  -cppcoreguidelines-non-private-member-variables-in-classes'

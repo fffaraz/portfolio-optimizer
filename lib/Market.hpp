@@ -25,7 +25,7 @@ public:
 
     /**
      * @brief Market Constructor
-     * @param assets list of assets
+     * @param assets list of loaded assets
      */
     explicit Market(const std::vector<Asset>& assets);
 
@@ -34,18 +34,23 @@ public:
      * @param symbol Ticker symbol of an asset
      * @return const refrence to the asset
      */
-    const Asset& get(const std::string& symbol) const;
-    double correlation(const std::string& symbol1, const std::string& symbol2) const;
+    [[nodiscard]] const Asset& get(const std::string& symbol) const;
+
+    /**
+     * @brief correlation
+     * @param symbol1
+     * @param symbol2
+     * @return
+     */
+    [[nodiscard]] double correlation(const std::string& symbol1, const std::string& symbol2) const;
 
     void saveAssets(const std::string& symbolsDir) const; // Save ohlc data
     void saveCorrelationList(const std::string& filePath) const;
     void saveMarketInfo(const std::string& filePath) const;
     void saveSymbols(const std::string& filePath) const; // Save symbols array
 
-    using AssetsDb = std::map<std::string, Asset>; ///< Symbol -> Asset Database
-
 private:
-    const AssetsDb m_assets; ///< Symbol to Asset hashmap
+    const std::map<std::string, Asset> m_assets; ///< Symbol to Asset hashmap
 };
 
 } // namespace Farazlib

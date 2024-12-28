@@ -19,10 +19,10 @@ public:
     virtual ~Portfolio() = default;
 
     void set(const std::string& symbol, double quantity); // add or update symbol quantity
-    double get(const std::string& symbol) const; // get quantity of a symbol
+    [[nodiscard]] double get(const std::string& symbol) const; // get quantity of a symbol
 
     using HoldingsType = std::map<std::string, double>;
-    const HoldingsType& holdings() const noexcept; // get all holdings
+    [[nodiscard]] const HoldingsType& holdings() const noexcept; // get all holdings
 
     void saveCsv(const std::string& csvPath) const; // save portfolio to csv file
     void saveSymbols(const std::string& filePath) const; // save symbols array

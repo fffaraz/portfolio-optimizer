@@ -19,7 +19,7 @@ namespace {
 nlohmann::json loadJsonFile(const std::string& filePath)
 {
     std::ifstream ifs(filePath);
-    nlohmann::json document = nlohmann::json::parse(ifs);
+    const nlohmann::json document = nlohmann::json::parse(ifs);
     return document.object();
 }
 
@@ -56,7 +56,7 @@ std::set<AssetTag> findTags(const Asset& asset)
     auto sectorTags = EnumUtils::assetTag(asset.yahoo("sector"));
     result.insert(sectorTags.begin(), sectorTags.end());
 
-    if (result.size() < 1) {
+    if (result.empty()) {
         result.insert(AssetTag::Unclassified);
     }
 
@@ -76,7 +76,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     , m_info { std::move(info) }
     , m_tags { AssetTag::Unclassified }
 {
-    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << std::endl;
+    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << "\n";
 }
 
 Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
@@ -86,7 +86,7 @@ Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
     , m_info { std::move(info) }
     , m_tags { findTags(*this) } // Must be last
 {
-    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << std::endl;
+    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << "\n";
 }
 
 std::string Asset::tags() const
