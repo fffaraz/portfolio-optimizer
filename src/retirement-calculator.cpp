@@ -39,8 +39,9 @@ int main()
 
     while (current_age_month < social_security_age * 12) {
         current_age_month++;
-        if (current_savings > 0)
+        if (current_savings > 0) {
             current_savings *= (100.0 + rate_of_return_after / 12.0) / 100.0;
+        }
         current_savings -= monthly_expenses;
         std::cout << current_age_month / 12.0 << "\t" << current_savings << std::endl;
     }
@@ -49,8 +50,9 @@ int main()
 
     while (current_age_month < death_age * 12) {
         current_age_month++;
-        if (current_savings > 0)
+        if (current_savings > 0) {
             current_savings *= (100.0 + rate_of_return_after / 12.0) / 100.0;
+        }
         current_savings -= monthly_expenses;
         current_savings += social_security;
         std::cout << current_age_month / 12.0 << "\t" << current_savings << std::endl;
