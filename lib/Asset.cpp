@@ -11,7 +11,6 @@
 
 #include <fstream>
 #include <iostream>
-#include <streambuf>
 
 using namespace Farazlib;
 
@@ -22,6 +21,51 @@ nlohmann::json loadJsonFile(const std::string& filePath)
     std::ifstream ifs(filePath);
     nlohmann::json document = nlohmann::json::parse(ifs);
     return document.object();
+}
+
+/**
+ * @brief findTags
+ * @param asset
+ * @return a set of tags associated with this asset
+ */
+std::set<AssetTag> findTags(const Asset& asset)
+{
+    std::set<AssetTag> result;
+
+    if (asset.isETF()) {
+        result.insert(AssetTag::ETF);
+        // Only ETFs have tags based on their symbol
+        auto symbolTags = EnumUtils::assetTag(asset.symbol());
+        result.insert(symbolTags.begin(), symbolTags.end());
+    } else {
+        result.insert(AssetTag::NotETF);
+    }
+    if (asset.isBond()) {
+        result.insert(AssetTag::Bond);
+    }
+    if (asset.isForeign()) {
+        result.insert(AssetTag::Foreign);
+    }
+    if (asset.isREIT()) {
+        result.insert(AssetTag::REIT);
+    }
+
+    auto categoryTags = EnumUtils::assetTag(asset.yahoo("category"));
+    result.insert(categoryTags.begin(), categoryTags.end());
+
+    auto sectorTags = EnumUtils::assetTag(asset.yahoo("sector"));
+    result.insert(sectorTags.begin(), sectorTags.end());
+
+    if (result.size() < 1) {
+        result.insert(AssetTag::Unclassified);
+    }
+
+    const auto mngt = asset.management();
+    if (mngt.has_value()) {
+        result.insert(mngt.value());
+    }
+
+    return result;
 }
 
 } // anonymous namespace
@@ -40,49 +84,9 @@ Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
     , m_ohlc { OhlcList { CsvFile { dataDir + "/" + m_symbol + ".csv", true }, OhlcTimeFrame::Daily } }
     , m_yahoo { loadJsonFile(dataDir + "/" + m_symbol + ".json") }
     , m_info { std::move(info) }
-    , m_tags { findTags() } // Must be last
+    , m_tags { findTags(*this) } // Must be last
 {
     std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << std::endl;
-}
-
-std::set<AssetTag> Asset::findTags() const
-{
-    std::set<AssetTag> result;
-
-    if (isETF()) {
-        result.insert(AssetTag::ETF);
-        // Only ETFs have tags based on their symbol
-        auto symbolTags = EnumUtils::assetTag(m_symbol);
-        result.insert(symbolTags.begin(), symbolTags.end());
-    } else {
-        result.insert(AssetTag::NotETF);
-    }
-    if (isBond()) {
-        result.insert(AssetTag::Bond);
-    }
-    if (isForeign()) {
-        result.insert(AssetTag::Foreign);
-    }
-    if (isREIT()) {
-        result.insert(AssetTag::REIT);
-    }
-
-    auto categoryTags = EnumUtils::assetTag(yahoo("category"));
-    result.insert(categoryTags.begin(), categoryTags.end());
-
-    auto sectorTags = EnumUtils::assetTag(yahoo("sector"));
-    result.insert(sectorTags.begin(), sectorTags.end());
-
-    if (result.size() < 1) {
-        result.insert(AssetTag::Unclassified);
-    }
-
-    const auto mngt = management();
-    if (mngt.has_value()) {
-        result.insert(mngt.value());
-    }
-
-    return result;
 }
 
 std::string Asset::tags() const

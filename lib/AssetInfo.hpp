@@ -12,7 +12,7 @@
 
 namespace Farazlib {
 
-struct AssetInfo {
+struct __attribute__((aligned(128))) AssetInfo {
     double dividendYield {};
     double expenseRatio {};
 

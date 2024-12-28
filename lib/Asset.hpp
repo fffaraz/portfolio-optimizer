@@ -41,6 +41,7 @@ public:
     const OhlcList& ohlc() const noexcept { return m_ohlc; }
     const AssetInfo& info() const noexcept { return m_info; }
     bool hasTag(AssetTag tag) const { return m_tags.contains(tag); }
+
     std::string yahoo(const std::string& key) const; ///< Returns value from yahoo json
     void save(const std::string& dataDir) const; ///< save ohlc to a symbol.csv file
 
@@ -56,12 +57,6 @@ public:
     std::optional<AssetTag> management() const; ///< returns ETF asset management company
 
 private:
-    /**
-     * @brief findTags
-     * @return a generated set of tags associated with this asset
-     */
-    std::set<AssetTag> findTags() const;
-
     const std::string m_symbol; ///< Ticker symbol
     const OhlcList m_ohlc; ///< Open-high-low-close chart
     const nlohmann::json m_yahoo; ///< Yahoo Finance Json

@@ -8,6 +8,7 @@
 #include "CsvFile.hpp"
 
 #include <algorithm> // For: std::remove
+#include <cassert>
 #include <fstream> // For: std::ifstream
 #include <iostream> // For: std::cout
 #include <sstream> // For: std::istringstream
@@ -19,10 +20,7 @@ CsvFile::CsvFile(const std::string& filePath, bool hasHeader)
     std::cerr << "CsvFile::CsvFile [filePath] " << filePath << "\n";
 
     std::ifstream file { filePath };
-    if (!file.is_open()) {
-        std::cerr << "CsvFile::CsvFile [failed to open file] " << filePath << "\n";
-        return;
-    }
+    assert(file.is_open());
 
     m_header.reserve(16); // reserve 16 columns
     m_data.reserve(100'000); // reserve 100,000 rows

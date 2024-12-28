@@ -7,4 +7,5 @@ Checks: '*,
   -misc-non-private-member-variables-in-classes,
   -llvmlibc-*,
   -llvm-header-guard,
-  -boost-use-ranges'
+  -boost-use-ranges,
+  -abseil-*'

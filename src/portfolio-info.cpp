@@ -17,7 +17,7 @@ using namespace Farazlib;
 
 int main()
 {
-    std::cerr << "current_path: " << std::filesystem::current_path() << std::endl;
+    std::cerr << "current_path: " << std::filesystem::current_path().string() << std::endl;
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const std::string csvPath = basePath + "data/etrade/PortfolioDownload.csv";
