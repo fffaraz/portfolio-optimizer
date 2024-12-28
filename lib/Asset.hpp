@@ -22,7 +22,7 @@ namespace Farazlib {
 class Asset {
 public:
     /**
-     * @brief Construct a simple asset from symbol and price
+     * @brief Construct an asset from a symbol and a fixed price
      * @param symbol Ticker symbol
      * @param price price of the asset per share in USD
      * @param info extra asset attributes

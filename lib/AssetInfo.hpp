@@ -12,6 +12,7 @@
 
 namespace Farazlib {
 
+// AssetInfo is a struct that holds extra attributes of an asset
 struct __attribute__((aligned(128))) AssetInfo {
     double dividendYield {};
     double expenseRatio {};

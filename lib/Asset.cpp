@@ -76,7 +76,8 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     , m_info { std::move(info) }
     , m_tags { AssetTag::Unclassified }
 {
-    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << "\n";
+    std::cout << "Asset::Asset " << m_symbol << " price: " << price << "\n";
+    assert(ohlc().size() == 1);
 }
 
 Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
@@ -84,9 +85,9 @@ Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
     , m_ohlc { OhlcList { CsvFile { dataDir + "/" + m_symbol + ".csv", true }, OhlcTimeFrame::Daily } }
     , m_yahoo { loadJsonFile(dataDir + "/" + m_symbol + ".json") }
     , m_info { std::move(info) }
-    , m_tags { findTags(*this) } // Must be last
+    , m_tags { findTags(*this) } // must be last to have all the necessary data
 {
-    std::cout << "Asset::Asset " << m_symbol << " ohlc.size:" << m_ohlc.size() << "\n";
+    std::cout << "Asset::Asset " << m_symbol << " ohlc.size: " << m_ohlc.size() << "\n";
 }
 
 std::string Asset::tags() const
@@ -117,15 +118,17 @@ void Asset::save(const std::string& dataDir) const
 double Asset::correlation(const Asset& other, const PriceType priceType, const bool rankify) const
 {
     if (m_symbol == other.m_symbol) {
-        return 1;
+        return 1; // correlation with itself is 1
     }
     if (m_ohlc.size() < 2) {
+        // if price data is not available, use the correlation from the info
         return m_info.correlation.contains(other.m_symbol) ? m_info.correlation.at(other.m_symbol) : 0;
     }
     if (other.m_ohlc.size() < 2) {
+        // if price data is not available, use the correlation from the info
         return other.m_info.correlation.contains(m_symbol) ? other.m_info.correlation.at(m_symbol) : 0;
     }
-    const size_t maxSize = 400; // TODO: parameterize
+    constexpr size_t maxSize = 400; // TODO(faraz): parameterize
     const size_t size = std::min({ m_ohlc.size(), other.m_ohlc.size(), maxSize });
     if (!m_ohlc.matchDatetime(other.m_ohlc, size)) {
         std::cout << "Asset::correlation [datetime mismatch] " << m_symbol << " " << other.m_symbol << "\n";
@@ -199,6 +202,7 @@ bool Asset::isForeign() const
     if (!country.empty() && country != "United States") {
         return true;
     }
+
     return false;
 }
 
@@ -228,5 +232,5 @@ std::optional<AssetTag> Asset::management() const
     if (name.find("Invesco") != std::string::npos) {
         return AssetTag::Invesco;
     }
-    return {};
+    return {}; // empty optional
 }

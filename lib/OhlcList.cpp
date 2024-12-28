@@ -25,8 +25,8 @@ auto loadData(const CsvFile& csv)
     OhlcList::OhlcVector result;
     result.reserve(data.size());
 
-    const auto maxDateTime = Utils::toDateTime("2021-12-01"); // TODO: parameterize
-    const auto minDateTime = Utils::toDateTime("2010-01-01"); // TODO: parameterize
+    const auto maxDateTime = Utils::toDateTime("2021-12-01"); // TODO(faraz): parameterize
+    const auto minDateTime = Utils::toDateTime("2010-01-01"); // TODO(faraz): parameterize
 
     for (auto itr = data.rbegin(); itr != data.rend(); ++itr) {
         Ohlc item { *itr };

@@ -52,7 +52,7 @@ CsvFile::CsvFile(const std::string& filePath, bool hasHeader)
         }
 
         if (hasHeader && lineNum == 1) {
-            m_header = row;
+            m_header = row; // first row is the header
         } else {
             m_data.push_back(row);
         }
