@@ -24,10 +24,13 @@ using namespace Farazlib::Utils;
 std::string Utils::to_string(const DateTime& dt)
 {
     const auto tt = std::chrono::system_clock::to_time_t(dt);
-    auto *const tm = std::localtime(&tt);
-    char buf[32];
-    std::strftime(buf, sizeof(buf), "%Y-%m-%d", tm);
-    return buf;
+    std::tm tmbuf{};
+    std::tm* const tm = localtime_r(&tt, &tmbuf);
+    assert(tm != nullptr);
+    std::array<char, 32> buf{};
+    const size_t res = std::strftime(buf.data(), sizeof(buf), "%Y-%m-%d", tm);
+    assert(res > 0);
+    return {buf.data(), res};
 }
 
 DateTime Utils::toDateTime(const std::string& str)
