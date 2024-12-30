@@ -175,10 +175,10 @@ void Market::saveCorrelationList(const std::filesystem::path& filePath) const
                << " (" << item2.second.yahoo("longName") << ") [" << item2.second.info().expenseRatio << "] "
                << item2.second.tags();
 
-            list.push_back({ correlation1, ss.str() });
+            list.emplace_back(correlation1, ss.str());
         }
 
-        sort(list.rbegin(), list.rend());
+        std::sort(list.rbegin(), list.rend());
 
         const size_t maxSize = std::min(static_cast<size_t>(10), list.size());
         for (size_t i = 0; i < maxSize; ++i) {
