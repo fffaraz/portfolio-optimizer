@@ -16,7 +16,7 @@ using namespace Farazlib;
 
 constexpr const char* CASH = "CASH";
 
-EtradePortfolio::EtradePortfolio(const std::string& csvPath)
+EtradePortfolio::EtradePortfolio(const std::filesystem::path& csvPath)
 {
     std::cerr << "EtradePortfolio::EtradePortfolio [csvPath] " << csvPath << "\n";
     const CsvFile csv { csvPath, false };

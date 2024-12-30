@@ -21,7 +21,7 @@ public:
      * @param infoCsv loaded market.csv file
      * @param symbols list of symbols to load (default: all)
      */
-    Market(const std::string& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols = {});
+    Market(const std::filesystem::path& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols = {});
 
     /**
      * @brief Market Constructor
@@ -44,10 +44,10 @@ public:
      */
     [[nodiscard]] double correlation(const std::string& symbol1, const std::string& symbol2) const;
 
-    void saveAssets(const std::string& symbolsDir) const; // Save ohlc data
-    void saveCorrelationList(const std::string& filePath) const;
-    void saveMarketInfo(const std::string& filePath) const;
-    void saveSymbols(const std::string& filePath) const; // Save symbols array
+    void saveAssets(const std::filesystem::path& symbolsDir) const; // Save ohlc data
+    void saveCorrelationList(const std::filesystem::path& filePath) const;
+    void saveMarketInfo(const std::filesystem::path& filePath) const;
+    void saveSymbols(const std::filesystem::path& filePath) const; // Save symbols array
 
 private:
     const std::map<std::string, Asset> m_assets; ///< Symbol to Asset hashmap

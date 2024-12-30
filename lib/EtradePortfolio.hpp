@@ -9,14 +9,14 @@
 
 #include "Portfolio.hpp"
 
-#include <string>
+#include <filesystem>
 
 namespace Farazlib {
 
 // Portfolio loaded from an Etrade CSV file
 class EtradePortfolio : public Portfolio {
 public:
-    explicit EtradePortfolio(const std::string& csvPath);
+    explicit EtradePortfolio(const std::filesystem::path& csvPath);
 };
 
 } // namespace Farazlib

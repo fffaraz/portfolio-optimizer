@@ -16,7 +16,7 @@ using namespace Farazlib;
 
 namespace {
 
-nlohmann::json loadJsonFile(const std::string& filePath)
+nlohmann::json loadJsonFile(const std::filesystem::path& filePath)
 {
     std::ifstream ifs(filePath);
     const nlohmann::json document = nlohmann::json::parse(ifs);
@@ -24,11 +24,11 @@ nlohmann::json loadJsonFile(const std::string& filePath)
 }
 
 /**
- * @brief findTags
+ * @brief getAssetTags
  * @param asset
  * @return a set of tags associated with this asset
  */
-std::set<AssetTag> findTags(const Asset& asset)
+std::set<AssetTag> getAssetTags(const Asset& asset)
 {
     std::set<AssetTag> result;
 
@@ -80,12 +80,12 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     assert(ohlc().size() == 1);
 }
 
-Asset::Asset(std::string symbol, const std::string& dataDir, AssetInfo info)
+Asset::Asset(std::string symbol, const std::filesystem::path& dataDir, AssetInfo info)
     : m_symbol { std::move(symbol) }
-    , m_ohlc { OhlcList { CsvFile { dataDir + "/" + m_symbol + ".csv", true }, OhlcTimeFrame::Daily } }
-    , m_yahoo { loadJsonFile(dataDir + "/" + m_symbol + ".json") }
+    , m_ohlc { OhlcList { CsvFile { dataDir / (m_symbol + ".csv"), true }, OhlcTimeFrame::Daily } }
+    , m_yahoo { loadJsonFile(dataDir / (m_symbol + ".json")) }
     , m_info { std::move(info) }
-    , m_tags { findTags(*this) } // must be last to have all the necessary data
+    , m_tags { getAssetTags(*this) } // must be last to have all the necessary data
 {
     std::cout << "Asset::Asset " << m_symbol << " ohlc.size: " << m_ohlc.size() << "\n";
 }

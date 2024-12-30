@@ -94,7 +94,7 @@ const Ohlc& OhlcList::at(size_t i) const
     return m_data.at(i);
 }
 
-void OhlcList::save(const std::string& filePath) const
+void OhlcList::save(const std::filesystem::path& filePath) const
 {
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
@@ -205,9 +205,7 @@ double OhlcList::allTimeHigh(const size_t skip) const
 {
     double result {};
     for (size_t i = skip; i < m_data.size(); ++i) {
-        if (m_data[i].high > result) {
-            result = m_data[i].high;
-        }
+        result = std::max(result, m_data[i].high);
     }
     return result;
 }
@@ -218,9 +216,7 @@ std::vector<double> OhlcList::allTimeHigh() const
     std::vector<double> result;
     result.resize(m_data.size());
     for (int64_t i = m_data.size() - 1; i >= 0; --i) {
-        if (m_data[i].high > ath) {
-            ath = m_data[i].high;
-        }
+        ath = std::max(ath, m_data[i].high);
         result[i] = ath;
     }
     return result;

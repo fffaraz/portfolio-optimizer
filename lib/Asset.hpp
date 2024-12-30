@@ -13,6 +13,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include <filesystem>
 #include <optional>
 #include <set>
 #include <string>
@@ -35,7 +36,7 @@ public:
      * @param dataDir directory path for SYM.csv and SYM.json files
      * @param info extra asset attributes
      */
-    Asset(std::string symbol, const std::string& dataDir, AssetInfo info);
+    Asset(std::string symbol, const std::filesystem::path& dataDir, AssetInfo info);
 
     const std::string& symbol() const noexcept { return m_symbol; }
     const OhlcList& ohlc() const noexcept { return m_ohlc; }

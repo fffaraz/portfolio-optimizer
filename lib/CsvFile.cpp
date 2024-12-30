@@ -15,7 +15,7 @@
 
 using namespace Farazlib;
 
-CsvFile::CsvFile(const std::string& filePath, bool hasHeader)
+CsvFile::CsvFile(const std::filesystem::path& filePath, bool hasHeader)
 {
     std::cerr << "CsvFile::CsvFile [filePath] " << filePath << "\n";
 

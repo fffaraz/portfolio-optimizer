@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <filesystem>
 #include <string>
 #include <vector>
 
@@ -15,7 +16,7 @@ namespace Farazlib {
 // Read only CSV file loaded into memory
 class CsvFile {
 public:
-    CsvFile(const std::string& filePath, bool hasHeader);
+    CsvFile(const std::filesystem::path& filePath, bool hasHeader);
 
     using RowType = std::vector<std::string>; // list of columns in a row
     using TableType = std::vector<RowType>; // list of rows (each row is a list of columns)

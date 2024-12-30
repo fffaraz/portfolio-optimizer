@@ -17,7 +17,7 @@ namespace Farazlib {
 
 using DateTime = std::chrono::system_clock::time_point;
 
-// Open, High, Low, Close (OHLC) structure
+// Open, High, Low, Close (OHLC) price information
 struct Ohlc {
     Ohlc() = default;
     explicit Ohlc(double value) noexcept;

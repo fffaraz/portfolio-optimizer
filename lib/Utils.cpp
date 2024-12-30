@@ -169,7 +169,7 @@ double Utils::doublingTime(double ratePercent)
 std::size_t Utils::powi(std::size_t base, std::size_t exp)
 {
     std::size_t result = 1;
-    while (exp) {
+    while (exp > 0) {
         if (exp & 1) {
             result *= base;
         }
