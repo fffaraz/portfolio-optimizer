@@ -15,6 +15,7 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <numbers>
 #include <numeric>
 
 using namespace Farazlib;
@@ -163,7 +164,7 @@ std::pair<double, double> Utils::linearRegression(const std::vector<double>& x, 
 
 double Utils::doublingTime(double ratePercent)
 {
-    return std::log(2) / std::log(1 + (ratePercent / 100));
+    return std::numbers::ln2 / std::log(1 + (ratePercent / 100));
 }
 
 std::size_t Utils::powi(std::size_t base, std::size_t exp)

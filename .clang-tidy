@@ -1,5 +1,6 @@
 ---
 Checks: '*,
+  -readability-identifier-length,
   -modernize-use-trailing-return-type,
   -readability-magic-numbers,
   -cppcoreguidelines-avoid-magic-numbers,
