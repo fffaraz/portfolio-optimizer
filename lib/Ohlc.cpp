@@ -8,6 +8,7 @@
 #include "Ohlc.hpp"
 #include "Utils.hpp"
 
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 
@@ -32,11 +33,7 @@ Ohlc::Ohlc(double open, double high, double low, double close, double volume)
 
 Ohlc::Ohlc(const CsvFile::RowType& record)
 {
-    if (record.size() != 8) {
-        std::cout << "Ohlc::Ohlc [record.size() != 8]\n";
-        assert(record.size() == 8);
-        return;
-    }
+    assert(record.size() == 8);
     datetime = Utils::toDateTime(record.at(0)); // Date
     try {
         open = std::stod(record.at(1)); // Open

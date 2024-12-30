@@ -24,7 +24,7 @@ using namespace Farazlib::Utils;
 std::string Utils::to_string(const DateTime& dt)
 {
     const auto tt = std::chrono::system_clock::to_time_t(dt);
-    const auto tm = std::localtime(&tt);
+    auto *const tm = std::localtime(&tt);
     char buf[32];
     std::strftime(buf, sizeof(buf), "%Y-%m-%d", tm);
     return buf;
@@ -59,7 +59,7 @@ double Utils::mean(const std::vector<double>& vector)
         return 0;
     }
     const double sum = std::accumulate(vector.begin(), vector.end(), 0.0);
-    return sum / vector.size();
+    return sum / static_cast<double>(vector.size());
     // std::reduce(std::execution::par_unseq, std::begin(vector), std::end(vector));
 }
 
@@ -74,7 +74,7 @@ double Utils::stdDev(const std::vector<double>& vector)
         const double deviation = d - m;
         sum_deviation += deviation * deviation;
     }
-    return std::sqrt(sum_deviation / vector.size());
+    return std::sqrt(sum_deviation / static_cast<double>(vector.size()));
 }
 
 std::vector<double> Utils::rankify(const std::vector<double>& vector)
@@ -125,9 +125,9 @@ double Utils::pearsonCorrelation(const std::vector<double>& x, const std::vector
         std1 += diff1 * diff1;
         std2 += diff2 * diff2;
     }
-    cov /= x.size();
-    std1 = std::sqrt(std1 / x.size());
-    std2 = std::sqrt(std2 / x.size());
+    cov /= static_cast<double>(x.size());
+    std1 = std::sqrt(std1 / static_cast<double>(x.size()));
+    std2 = std::sqrt(std2 / static_cast<double>(x.size()));
 
     assert(std1 > 0);
     assert(std2 > 0);
@@ -152,7 +152,7 @@ std::pair<double, double> Utils::linearRegression(const std::vector<double>& x, 
     if (x.empty() || x.size() != y.size()) {
         return {};
     }
-    const auto n = x.size();
+    const auto n = static_cast<double>(x.size());
     const auto s_x = std::accumulate(x.begin(), x.end(), 0.0);
     const auto s_y = std::accumulate(y.begin(), y.end(), 0.0);
     const auto s_xx = std::inner_product(x.begin(), x.end(), x.begin(), 0.0);
@@ -171,10 +171,10 @@ std::size_t Utils::powi(std::size_t base, std::size_t exp)
 {
     std::size_t result = 1;
     while (exp > 0) {
-        if (exp & 1) {
+        if ((exp & 1U) == 1) {
             result *= base;
         }
-        exp >>= 1;
+        exp /= 2;
         base *= base;
     }
     return result;

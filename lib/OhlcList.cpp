@@ -97,9 +97,7 @@ const Ohlc& OhlcList::at(size_t i) const
 void OhlcList::save(const std::filesystem::path& filePath) const
 {
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
-    if (!outFile.is_open()) {
-        std::cout << "OhlcList::save [FAILED TO OPEN FILE] " << filePath << "\n";
-    }
+    assert(outFile.is_open());
 
     outFile << "Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,isFake,";
     outFile << "priceChange,allTimeHigh,percentFromAth,percentToAth\n";
@@ -278,7 +276,7 @@ double OhlcList::avgReturn(size_t length) const
     for (size_t i = 0; i < size; ++i) {
         result += priceChange(i, length, PriceType::HL2);
     }
-    return result / size;
+    return result / static_cast<double>(size);
 }
 
 double OhlcList::avgRisk(size_t length) const
