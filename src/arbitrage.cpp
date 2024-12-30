@@ -38,8 +38,6 @@ void runBellmanFord(const std::vector<std::string>& assets, const std::vector<st
     const size_t numAssets = assets.size();
     std::vector<double> distance(numAssets);
     std::vector<int> predecessor(numAssets);
-    // double distance[numAssets];
-    // int predecessor[numAssets];
 
     // Step 1: initialize graph
     for (size_t i = 0; i < numAssets; ++i) {
