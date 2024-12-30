@@ -18,7 +18,9 @@
 
 using namespace Farazlib;
 
-typedef std::map<std::pair<std::string, std::string>, double> Weights;
+using Weights = std::map<std::pair<std::string, std::string>, double>; // {from, to} -> rate
+
+namespace {
 
 void print(const Weights& table)
 {
@@ -31,7 +33,7 @@ void print(const Weights& table)
 // https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 // https://stackoverflow.com/questions/2282427/interesting-problem-currency-arbitrage
 
-void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::vector<double>>& rates, size_t source)
+void runBellmanFord(const std::vector<std::string>& assets, const std::vector<std::vector<double>>& rates, size_t source)
 {
     const size_t numAssets = assets.size();
     std::vector<double> distance(numAssets);
@@ -78,32 +80,42 @@ void BellmanFord(const std::vector<std::string>& assets, const std::vector<std::
     }
 }
 
+template <typename T>
+std::vector<T> to_vector(const std::set<T>& set)
+{
+    std::vector<T> result;
+    result.reserve(set.size());
+    std::copy(set.begin(), set.end(), std::back_inserter(result));
+    return result;
+}
+
+} // anonymous namespace
+
 int main()
 {
     std::cout << "current_path: " << std::filesystem::current_path() << "\n";
     const std::string basePath { "../../portfolio-optimizer/" };
 
     const CsvFile csvPairs { basePath + "data/pairs.csv", false };
-    Weights table;
-    std::set<std::string> assetsSet;
+    Weights table; // {from, to} -> rate
+    std::set<std::string> assetsSet; // unique assets
     for (const auto& item : csvPairs.data()) {
-        auto asset1 = item.at(0);
-        auto asset2 = item.at(1);
-        auto rate = std::stod(item.at(2));
+        auto asset1 = item.at(0); // from
+        auto asset2 = item.at(1); // to
+        auto rate = std::stod(item.at(2)); // rate
         table.insert({ { asset1, asset2 }, rate });
         assetsSet.insert(asset1);
         assetsSet.insert(asset2);
     }
     print(table);
 
-    std::vector<std::string> assets;
-    assets.reserve(assetsSet.size());
-    std::copy(assetsSet.begin(), assetsSet.end(), std::back_inserter(assets));
-
+    const std::vector<std::string> assets = to_vector(assetsSet);
     const size_t numAssets = assets.size();
+
     // double rates[numAssets][numAssets];
     std::vector<std::vector<double>> rates;
     rates.resize(numAssets);
+
     for (size_t i = 0; i < numAssets; ++i) {
         rates[i].resize(numAssets);
         for (size_t j = 0; j < numAssets; ++j) {
@@ -133,7 +145,7 @@ int main()
     }
     std::cout << "\n";
 
-    BellmanFord(assets, rates, 0);
+    runBellmanFord(assets, rates, 0);
 
     return 0;
 }
