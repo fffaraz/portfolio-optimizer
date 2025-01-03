@@ -19,7 +19,7 @@ int main()
     const auto monthly_savings = 1000; // stop at retirement age
     const auto monthly_expenses = 1000; // after retirement
     const auto social_security = 1000; // start at social security age
-    auto current_savings = 100'000; // at current age
+    double current_savings = 100'000; // at current age
 
     const auto rate_of_return_before = 4; // before retirement (annual)
     const auto rate_of_return_after = 2; // after retirement (annual)

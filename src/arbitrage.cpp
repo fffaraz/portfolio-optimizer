@@ -8,6 +8,7 @@
 #include "lib/CsvFile.hpp"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <filesystem>
 #include <iostream>
@@ -28,6 +29,7 @@ void print(const Weights& table)
     for (const auto& item : table) {
         std::cout << item.first.first << " -> " << item.first.second << " : " << item.second << "\n";
     }
+    std::cout << "\n";
 }
 
 // https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
@@ -36,6 +38,9 @@ void print(const Weights& table)
 void runBellmanFord(const std::vector<std::string>& assets, const std::vector<std::vector<double>>& rates, size_t source)
 {
     const size_t numAssets = assets.size();
+    assert(numAssets > 0);
+    assert(source < numAssets);
+
     std::vector<double> distance(numAssets);
     std::vector<int> predecessor(numAssets);
 
@@ -91,10 +96,7 @@ std::vector<T> to_vector(const std::set<T>& set)
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
-    const std::string basePath { "../../portfolio-optimizer/" };
-
-    const CsvFile csvPairs { basePath + "data/pairs.csv", false };
+    const CsvFile csvPairs { "./data/pairs.csv", false };
     Weights table; // {from, to} -> rate
     std::set<std::string> assetsSet; // unique assets
     for (const auto& item : csvPairs.data()) {
@@ -109,8 +111,8 @@ int main()
 
     const std::vector<std::string> assets = to_vector(assetsSet);
     const size_t numAssets = assets.size();
+    assert(numAssets > 0);
 
-    // double rates[numAssets][numAssets];
     std::vector<std::vector<double>> rates;
     rates.resize(numAssets);
 
@@ -129,15 +131,23 @@ int main()
             } else {
                 std::cout << "rate not found: " << asset1 << " -> " << asset2 << "\n";
             }
-            rates[i][j] = rate;
+            rates[i][j] = rate; // rate from asset1 to asset2
         }
     }
+    std::cout << "\n";
 
+    std::cout << std::fixed << std::setprecision(2);
+
+    std::cout << "     ";
+    for (size_t i = 0; i < numAssets; ++i) {
+        std::cout << assets[i] << "   ";
+    }
     std::cout << "\n";
     for (size_t i = 0; i < numAssets; ++i) {
+        std::cout << assets[i] << "  ";
         for (size_t j = 0; j < numAssets; ++j) {
             std::cout << rates[i][j] << "  ";
-            rates[i][j] = -std::log(rates[i][j]);
+            rates[i][j] = -std::log(rates[i][j]); // apply the negative logarithm
         }
         std::cout << "\n";
     }

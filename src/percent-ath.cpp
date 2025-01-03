@@ -16,14 +16,11 @@ using namespace Farazlib;
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
-    const std::string basePath { "../../portfolio-optimizer/" };
-
-    const CsvFile marketInfo { basePath + "data/market.csv", true };
+    const CsvFile marketInfo { "./data/market.csv", true };
     const std::set<std::string> symbols { "AMD", "VOO", "VTI" };
-    const Market market { basePath + "data/symbols", marketInfo, symbols };
+    const Market market { "./data/symbols", marketInfo, symbols };
 
-    market.saveAssets(basePath + "output/symbols"); // assets' ohlc
+    market.saveAssets("./output/symbols"); // assets' ohlc
 
     std::cout << "\nDONE\n";
     return 0;

@@ -23,10 +23,7 @@ using namespace Farazlib;
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
-    const std::string basePath { "../../portfolio-optimizer/" };
-
-    const CsvFile assetsCsv { basePath + "data/assets.csv", true };
+    const CsvFile assetsCsv { "./data/assets.csv", true };
     const auto& csvHeader = assetsCsv.header();
     std::vector<Asset> assets;
 
@@ -76,7 +73,7 @@ int main()
         data.insert_or_assign(avgRisk, std::make_pair(avgReturn, ss.str()));
     }
 
-    std::ofstream outFile(basePath + "output/risk-return-optimizer.csv", std::ios::out | std::ios::trunc);
+    std::ofstream outFile("./output/risk-return-optimizer.csv", std::ios::out | std::ios::trunc);
     outFile << "portfolio,risk,return";
     for (const auto& item : assets) {
         outFile << "," << item.symbol();

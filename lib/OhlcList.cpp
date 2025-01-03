@@ -10,7 +10,6 @@
 
 #include <cassert>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 
 using namespace Farazlib;

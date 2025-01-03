@@ -37,14 +37,11 @@ void calc(std::ofstream& outFile, const Market& market, const int category, cons
 
 int main()
 {
-    std::cout << "current_path: " << std::filesystem::current_path() << "\n";
-    const std::string basePath { "../../portfolio-optimizer/" };
-
-    const CsvFile marketInfo { basePath + "data/market.csv", true };
+    const CsvFile marketInfo { "./data/market.csv", true };
     const std::set<std::string> symbols { "BND", "VOO", "SGOL", "VNQ" };
-    const Market market { basePath + "data/symbols", marketInfo, symbols };
+    const Market market { "./data/symbols", marketInfo, symbols };
 
-    std::ofstream outFile(basePath + "output/two-asset-optimizer.csv", std::ios::out | std::ios::trunc);
+    std::ofstream outFile("./output/two-asset-optimizer.csv", std::ios::out | std::ios::trunc);
     outFile << "category,portfolio,risk,return\n";
 
     calc(outFile, market, 1, "BND", "VOO");

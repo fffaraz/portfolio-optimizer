@@ -53,14 +53,13 @@ void calc(std::ofstream& outFile, const int category, const AssetData ad1, const
 
 int main()
 {
-    const std::string basePath { "../../portfolio-optimizer/" };
-    std::ofstream outFile(basePath + "output/simple-risk-return.csv", std::ios::out | std::ios::trunc);
+    std::ofstream outFile("./output/simple-risk-return.csv", std::ios::out | std::ios::trunc);
     outFile << "category,portfolio,risk,return\n";
 
-    AssetData bnd { "BND", 0.0323, 0.0317 };
-    AssetData voo { "VOO", 0.1318, 0.1562 };
-    AssetData sgol { "SGOL", 0.1637, 0.0268 };
-    AssetData vnq { "VNQ", 0.1580, 0.1078 };
+    const AssetData bnd { "BND", 0.0323, 0.0317 };
+    const AssetData voo { "VOO", 0.1318, 0.1562 };
+    const AssetData sgol { "SGOL", 0.1637, 0.0268 };
+    const AssetData vnq { "VNQ", 0.1580, 0.1078 };
 
     calc(outFile, 1, bnd, voo, -0.07);
     calc(outFile, 2, bnd, sgol, 0.28);
