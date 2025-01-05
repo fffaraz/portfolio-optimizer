@@ -53,7 +53,8 @@ auto loadData(const CsvFile& csv)
                 result.push_back(missingRecord);
                 missingDays++;
             }
-            if (false && missingDays > 0) {
+            constexpr bool logMissing = false;
+            if (logMissing && missingDays > 0) {
                 std::cout << "OhlcList::loadData [missing] " << itr->at(0) << " " << missingDays << "\n";
             }
         }
@@ -212,7 +213,7 @@ std::vector<double> OhlcList::allTimeHigh() const
     double ath {};
     std::vector<double> result;
     result.resize(m_data.size());
-    for (int64_t i = m_data.size() - 1; i >= 0; --i) {
+    for (int64_t i = static_cast<int64_t>(m_data.size()) - 1; i >= 0; --i) {
         ath = std::max(ath, m_data[i].high);
         result[i] = ath;
     }
