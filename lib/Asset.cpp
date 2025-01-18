@@ -19,8 +19,9 @@ namespace {
 nlohmann::json loadJsonFile(const std::filesystem::path& filePath)
 {
     std::ifstream ifs(filePath);
-    const nlohmann::json document = nlohmann::json::parse(ifs);
-    return document.object();
+    nlohmann::json jsonData;
+    ifs >> jsonData;
+    return jsonData;
 }
 
 /**
