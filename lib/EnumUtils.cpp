@@ -14,7 +14,7 @@ using namespace Farazlib;
 
 std::set<AssetTag> EnumUtils::assetTag(const std::string& key)
 {
-    std::unordered_map<std::string, AssetTag> map {
+    static const std::unordered_map<std::string, AssetTag> map {
         { "AGG", AssetTag::TotalBond }, // iShares Core U.S. Aggregate Bond ETF
         { "BND", AssetTag::TotalBond }, // Vanguard Total Bond Market Index Fund ETF Shares
         { "BIV", AssetTag::TotalBond }, //
