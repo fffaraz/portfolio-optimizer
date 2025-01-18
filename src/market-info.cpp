@@ -19,7 +19,7 @@ int main()
 {
     const CsvFile marketInfo { "./data/market.csv", true };
     const std::set<std::string> symbols { "VOO", "VTI" };
-    const Market market { "./data/symbols", marketInfo, symbols };
+    const Market market { "./data/yf", marketInfo, symbols };
 
     market.saveAssets("./output/symbols"); // assets' ohlc
     market.saveSymbols("./output/marketSymbols.txt"); // symbols array

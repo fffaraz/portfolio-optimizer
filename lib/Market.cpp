@@ -56,6 +56,7 @@ auto loadAssetsFromFile(const std::filesystem::path& dataDir, const CsvFile& inf
     // Check if dataDir exists
     if (!std::filesystem::exists(dataDir)) {
         std::cout << "Market::loadAssetsFromFile [dataDir not found] " << dataDir << "\n";
+        assert(false && "dataDir not found");
         return result;
     }
 

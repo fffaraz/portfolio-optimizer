@@ -19,9 +19,8 @@ namespace {
 nlohmann::json loadJsonFile(const std::filesystem::path& filePath)
 {
     std::ifstream ifs(filePath);
-    nlohmann::json jsonData;
-    ifs >> jsonData;
-    return jsonData;
+    assert(ifs.is_open());
+    return nlohmann::json::parse(ifs);
 }
 
 /**
@@ -84,7 +83,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
 Asset::Asset(std::string symbol, const std::filesystem::path& dataDir, AssetInfo info)
     : m_symbol { std::move(symbol) }
     , m_ohlc { OhlcList { CsvFile { dataDir / (m_symbol + ".csv"), true }, OhlcTimeFrame::Daily } }
-    , m_yahoo { loadJsonFile(dataDir / (m_symbol + ".json")) }
+    , m_yahoo ( loadJsonFile(dataDir / (m_symbol + ".json")) )
     , m_info { std::move(info) }
     , m_tags { getAssetTags(*this) } // must be last to have all the necessary data
 {
@@ -105,6 +104,7 @@ std::string Asset::yahoo(const std::string& key) const
 {
     if (!m_yahoo.contains(key)) {
         std::cout << "Asset::yahoo [not found] " << m_symbol << "\t" << key << "\n";
+        return {};
     }
     std::string result = m_yahoo[key];
     std::replace(result.begin(), result.end(), ',', ' ');
