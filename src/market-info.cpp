@@ -21,10 +21,10 @@ int main()
     const std::set<std::string> symbols { "VOO", "VTI" };
     const Market market { "./data/yf", marketInfo, symbols };
 
-    market.saveAssets("./output/symbols"); // assets' ohlc
-    market.saveSymbols("./output/marketSymbols.txt"); // symbols array
-    market.saveCorrelationList("./output/CorrelationList.txt");
-    market.saveMarketInfo("./output/MarketInfo.csv");
+    market.saveAssets("./data/output/symbols"); // assets' ohlc
+    market.saveSymbols("./data/output/marketSymbols.txt"); // symbols array
+    market.saveCorrelationList("./data/output/CorrelationList.txt");
+    market.saveMarketInfo("./data/output/MarketInfo.csv");
 
     std::cout << "\nDONE\n";
     return 0;
