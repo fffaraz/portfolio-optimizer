@@ -4,9 +4,6 @@ target_link_libraries(arbitrage portopt)
 add_executable(market-info market-info.cpp)
 target_link_libraries(market-info portopt)
 
-add_executable(percent-ath percent-ath.cpp)
-target_link_libraries(percent-ath portopt)
-
 add_executable(portfolio-info portfolio-info.cpp)
 target_link_libraries(portfolio-info portopt)
 

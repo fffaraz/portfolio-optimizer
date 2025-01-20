@@ -27,19 +27,19 @@ int main()
     std::cout << "Number of holdings: " << portfolio2.holdings().size() << "\n";
 
     const CsvFile marketInfo { "./data/market.csv", true };
-    const Market market { "./data/symbols", marketInfo };
+    const Market market { "./data/yf", marketInfo };
 
     std::cout << "\n";
 
-    market.saveCorrelationList("./output/CorrelationList.txt");
-    market.saveMarketInfo("./output/MarketInfo.csv");
+    market.saveCorrelationList("./data/output/CorrelationList.txt");
+    market.saveMarketInfo("./data/output/MarketInfo.csv");
 
     std::cout << "\n";
 
     const double totalValue = Utils::totalValue(market, portfolio);
     std::cout << "\ntotalValue: " << totalValue << "\n";
 
-    Utils::saveAllocations(market, portfolio, "./output/Allocations.csv");
+    Utils::saveAllocations(market, portfolio, "./data/output/Allocations.csv");
 
     std::cout << "\nDONE\n";
 

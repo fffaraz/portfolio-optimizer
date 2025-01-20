@@ -53,7 +53,7 @@ void calc(std::ofstream& outFile, const int category, const AssetData ad1, const
 
 int main()
 {
-    std::ofstream outFile("./output/simple-risk-return.csv", std::ios::out | std::ios::trunc);
+    std::ofstream outFile("./data/output/simple-risk-return.csv", std::ios::out | std::ios::trunc);
     outFile << "category,portfolio,risk,return\n";
 
     const AssetData bnd { "BND", 0.0323, 0.0317 };

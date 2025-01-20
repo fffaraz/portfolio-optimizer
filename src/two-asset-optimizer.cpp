@@ -39,9 +39,9 @@ int main()
 {
     const CsvFile marketInfo { "./data/market.csv", true };
     const std::set<std::string> symbols { "BND", "VOO", "SGOL", "VNQ" };
-    const Market market { "./data/symbols", marketInfo, symbols };
+    const Market market { "./data/yf", marketInfo, symbols };
 
-    std::ofstream outFile("./output/two-asset-optimizer.csv", std::ios::out | std::ios::trunc);
+    std::ofstream outFile("./data/output/two-asset-optimizer.csv", std::ios::out | std::ios::trunc);
     outFile << "category,portfolio,risk,return\n";
 
     calc(outFile, market, 1, "BND", "VOO");

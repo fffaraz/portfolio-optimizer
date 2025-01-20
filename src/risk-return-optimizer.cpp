@@ -73,7 +73,7 @@ int main()
         data.insert_or_assign(avgRisk, std::make_pair(avgReturn, ss.str()));
     }
 
-    std::ofstream outFile("./output/risk-return-optimizer.csv", std::ios::out | std::ios::trunc);
+    std::ofstream outFile("./data/output/risk-return-optimizer.csv", std::ios::out | std::ios::trunc);
     outFile << "portfolio,risk,return";
     for (const auto& item : assets) {
         outFile << "," << item.symbol();
