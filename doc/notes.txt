@@ -27,3 +27,5 @@ https://investor.vanguard.com/calculator-tools/retirement-income-calculator/
 https://ficalc.app/
 
 https://etfdb.com/etf/VOO/#technicals
+
+https://etfdb.com/screener/#tab=expenses&sort_by=expense_ratio&sort_direction=asc&page=1&active_or_passive=Passive&currency_hedged=false&leveraged=False&inverse=false&tax_form=1099&structure=ETF&expense_ratio_end=0.1&assets_start=2000
