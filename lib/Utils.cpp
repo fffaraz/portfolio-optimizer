@@ -35,7 +35,7 @@ std::string Utils::to_string(const DateTime& dt)
 
 DateTime Utils::toDateTime(const std::string& str)
 {
-    assert(str.size() >= 10);
+    assert(str.size() >= 10); // "YYYY-MM-DD"
     const std::string dateOnly = str.substr(0, 10);
     const std::chrono::year y { std::stoi(dateOnly.substr(0, 4)) };
     const std::chrono::month m { static_cast<unsigned int>(std::stoi(dateOnly.substr(5, 2))) };

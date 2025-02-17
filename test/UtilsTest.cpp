@@ -15,7 +15,7 @@ constexpr double epsilon = 1e-3;
 
 TEST(Utils, toDateTime)
 {
-    EXPECT_EQ(Utils::to_string(Utils::toDateTime("2020-01-02")), "2020-01-02");
+    EXPECT_EQ(Utils::to_string(Utils::toDateTime("2020-11-28")), "2020-11-28");
 }
 
 TEST(Utils, join)
