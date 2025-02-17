@@ -1,3 +1,7 @@
+add_executable(AssetTest AssetTest.cpp)
+target_link_libraries(AssetTest portopt gtest_main)
+gtest_discover_tests(AssetTest)
+
 add_executable(OhlcListTest OhlcListTest.cpp)
 target_link_libraries(OhlcListTest portopt gtest_main)
 gtest_discover_tests(OhlcListTest)
