@@ -196,7 +196,7 @@ std::set<AssetTag> EnumUtils::assetTag(const std::string& key)
         return std::set<AssetTag> { map.at(key) };
     }
     if (!key.empty()) {
-        std::cout << "EnumUtils::getAssetTags [Not Found] " << key << "\n";
+        std::cerr << "EnumUtils::getAssetTags [Not Found] " << key << "\n";
     }
     return {};
 }

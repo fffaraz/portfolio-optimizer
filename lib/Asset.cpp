@@ -76,7 +76,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     , m_info { std::move(info) }
     , m_tags { AssetTag::Unclassified }
 {
-    std::cout << "Asset::Asset " << m_symbol << " price: " << price << "\n";
+    std::cerr << "Asset::Asset " << m_symbol << " price: " << price << "\n";
     assert(ohlc().size() == 1);
 }
 
@@ -87,7 +87,7 @@ Asset::Asset(std::string symbol, const std::filesystem::path& dataDir, AssetInfo
     , m_info { std::move(info) }
     , m_tags { getAssetTags(*this) } // must be last to have all the necessary data
 {
-    std::cout << "Asset::Asset " << m_symbol << " ohlc.size: " << m_ohlc.size() << "\n";
+    std::cerr << "Asset::Asset " << m_symbol << " ohlc.size: " << m_ohlc.size() << "\n";
 }
 
 std::string Asset::tags() const
@@ -103,7 +103,7 @@ std::string Asset::tags() const
 std::string Asset::yahoo(const std::string& key) const
 {
     if (!m_yahoo.contains(key)) {
-        std::cout << "Asset::yahoo [not found] " << m_symbol << "\t" << key << "\n";
+        std::cerr << "Asset::yahoo [not found] " << m_symbol << "\t" << key << "\n";
         return {};
     }
     std::string result = m_yahoo[key];
@@ -132,7 +132,7 @@ double Asset::correlation(const Asset& other, const PriceType priceType, const b
     constexpr size_t maxSize = 400; // TODO(faraz): parameterize
     const size_t size = std::min({ m_ohlc.size(), other.m_ohlc.size(), maxSize });
     if (!m_ohlc.matchTimePoint(other.m_ohlc, size)) {
-        std::cout << "Asset::correlation [timepoint mismatch] " << m_symbol << " " << other.m_symbol << "\n";
+        std::cerr << "Asset::correlation [timepoint mismatch] " << m_symbol << " " << other.m_symbol << "\n";
         return 0;
     }
     const auto vector1 = m_ohlc.toVector(size, 0, priceType);

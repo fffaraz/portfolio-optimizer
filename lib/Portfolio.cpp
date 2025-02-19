@@ -51,7 +51,7 @@ const Portfolio::HoldingsType& Portfolio::holdings() const noexcept
 
 void Portfolio::saveCsv(const std::filesystem::path& csvPath) const
 {
-    std::cout << "Portfolio::saveCsv [csvPath] " << csvPath << "\n";
+    std::cerr << "Portfolio::saveCsv [csvPath] " << csvPath << "\n";
     std::ofstream file(csvPath, std::ios::out | std::ios::trunc);
     assert(file.is_open());
     file << "Symbol,Quantity\n";
@@ -62,7 +62,7 @@ void Portfolio::saveCsv(const std::filesystem::path& csvPath) const
 
 void Portfolio::saveSymbols(const std::filesystem::path& filePath) const
 {
-    std::cout << "Portfolio::saveSymbols [filePath] " << filePath << "\n";
+    std::cerr << "Portfolio::saveSymbols [filePath] " << filePath << "\n";
     std::ofstream file(filePath, std::ios::out | std::ios::trunc);
     assert(file.is_open());
     file << "[";

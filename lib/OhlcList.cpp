@@ -18,7 +18,7 @@ namespace {
 
 auto loadData(const CsvFile& csv)
 {
-    std::cout << "OhlcList::loadData\n";
+    std::cerr << "OhlcList::loadData\n";
     const auto& data = csv.data();
 
     OhlcList::OhlcVector result;
@@ -34,7 +34,7 @@ auto loadData(const CsvFile& csv)
             continue;
         }
         if (item.timepoint > maxDate) {
-            // std::cout << "OhlcList::loadData [ignoring] " << itr->at(0) << "\n";
+            // std::cerr << "OhlcList::loadData [ignoring] " << itr->at(0) << "\n";
             continue;
         }
         if (item.timepoint < minDate) {
@@ -55,7 +55,7 @@ auto loadData(const CsvFile& csv)
             }
             constexpr bool logMissing = false;
             if (logMissing && missingDays > 0) {
-                std::cout << "OhlcList::loadData [missing] " << itr->at(0) << " " << missingDays << "\n";
+                std::cerr << "OhlcList::loadData [missing] " << itr->at(0) << " " << missingDays << "\n";
             }
         }
 
@@ -163,7 +163,7 @@ PriceDirection OhlcList::priceDirection(size_t i, size_t offset) const
         return PriceDirection::Down;
     }
 
-    std::cout << "OhlcList::priceDirection [PriceDirection::Invalid] "
+    std::cerr << "OhlcList::priceDirection [PriceDirection::Invalid] "
               << today.to_string() << "\t" << yesterday.to_string()
               << "\n";
     assert(false);

@@ -45,7 +45,7 @@ Ohlc::Ohlc(const CsvFile::RowType& record)
         splits = std::stod(record.at(7)); // Stock Splits
         // Capital Gains
     } catch (std::exception& e) {
-        std::cout << "Ohlc::Ohlc [exception] " << e.what() << "\t" << Utils::join(record, ",") << "\n";
+        std::cerr << "Ohlc::Ohlc [exception] " << e.what() << "\t" << Utils::join(record, ",") << "\n";
         return;
     }
 

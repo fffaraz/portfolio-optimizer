@@ -263,10 +263,10 @@ double Utils::avgReturn(const Market& market, const Portfolio& portfolio, int le
 
 void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, const std::string& filePath)
 {
-    std::cout << "\nPortfolio::saveAllocations\n";
+    std::cerr << "\nPortfolio::saveAllocations\n";
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     if (!outFile.is_open()) {
-        std::cout << "Portfolio::saveAllocations [FAILED TO OPEN FILE] " << filePath << "\n";
+        std::cerr << "Portfolio::saveAllocations [FAILED TO OPEN FILE] " << filePath << "\n";
     }
 
     // Header

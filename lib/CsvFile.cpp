@@ -10,7 +10,7 @@
 #include <algorithm> // For: std::remove
 #include <cassert>
 #include <fstream> // For: std::ifstream
-#include <iostream> // For: std::cout
+#include <iostream> // For: std::cerr
 #include <sstream> // For: std::istringstream
 
 using namespace Farazlib;
