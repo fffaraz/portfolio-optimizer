@@ -25,7 +25,8 @@ int main()
     const auto rate_of_return_before = 4; // annual growth rate (before retirement)
     const auto rate_of_return_after = 2; // annual growth rate (after retirement)
 
-    std::cout << "age\tsavings\n" << std::fixed << std::setprecision(2);
+    std::cout << "age\tsavings\n"
+              << std::fixed << std::setprecision(2);
     std::cout << current_age << "\t" << current_savings << "\n";
 
     auto current_age_month = current_age * 12;
