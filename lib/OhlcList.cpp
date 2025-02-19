@@ -16,7 +16,7 @@ using namespace Farazlib;
 
 namespace {
 
-auto loadData(const CsvFile& csv)
+auto loadOhlcCsv(const CsvFile& csv)
 {
     std::cerr << "OhlcList::loadData\n";
     const auto& data = csv.data();
@@ -80,7 +80,7 @@ OhlcList::OhlcList(OhlcList::OhlcVector data)
 }
 
 OhlcList::OhlcList(const CsvFile& csv, OhlcTimeFrame timeFrame)
-    : m_data { loadData(csv) }
+    : m_data { loadOhlcCsv(csv) }
     , m_timeFrame { timeFrame }
 {
 }
