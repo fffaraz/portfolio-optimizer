@@ -22,7 +22,7 @@ class Portfolio;
 
 namespace Utils {
 
-    std::string to_string(const TimePoint& dt);
+    std::string to_string(const TimePoint& tp);
     TimePoint toTimePoint(const std::string& str);
     std::string join(const std::vector<std::string>& list, const std::string& delim);
 

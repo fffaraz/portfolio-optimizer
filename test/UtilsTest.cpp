@@ -15,6 +15,10 @@ constexpr double epsilon = 1e-3;
 
 TEST(Utils, toTimePoint)
 {
+    EXPECT_EQ(Utils::to_string(Utils::toTimePoint("2000-01-01")), "2000-01-01");
+    EXPECT_EQ(Utils::to_string(Utils::toTimePoint("2000-01-02")), "2000-01-02");
+    EXPECT_EQ(Utils::to_string(Utils::toTimePoint("2000-02-01")), "2000-02-01");
+    EXPECT_EQ(Utils::to_string(Utils::toTimePoint("2000-02-02")), "2000-02-02");
     EXPECT_EQ(Utils::to_string(Utils::toTimePoint("2020-11-28")), "2020-11-28");
 }
 

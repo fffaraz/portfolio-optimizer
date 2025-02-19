@@ -17,31 +17,50 @@
 #include <iostream>
 #include <numbers>
 #include <numeric>
+#include <iomanip>
+#include <sstream>
 
 using namespace Farazlib;
 using namespace Farazlib::Utils;
 
-std::string Utils::to_string(const TimePoint& dt)
+std::string Utils::to_string(const TimePoint& tp)
 {
-    const auto tt = std::chrono::system_clock::to_time_t(dt);
+    const auto tt = std::chrono::system_clock::to_time_t(tp);
+
     std::tm tmbuf {};
     std::tm* const tm = localtime_r(&tt, &tmbuf);
     assert(tm != nullptr);
+
+#if 0
     std::array<char, 32> buf {};
     const size_t res = std::strftime(buf.data(), sizeof(buf), "%Y-%m-%d", tm);
     assert(res > 0);
+
     return { buf.data(), res };
+#else
+    std::ostringstream oss;
+    oss << std::put_time(tm, "%F"); // %F is equivalent to "%Y-%m-%d"
+    return oss.str();
+#endif
 }
 
 TimePoint Utils::toTimePoint(const std::string& str)
 {
     assert(str.size() >= 10); // "YYYY-MM-DD"
     const std::string dateOnly = str.substr(0, 10);
+#if 0
     const std::chrono::year y { std::stoi(dateOnly.substr(0, 4)) };
     const std::chrono::month m { static_cast<unsigned int>(std::stoi(dateOnly.substr(5, 2))) };
     const std::chrono::day d { static_cast<unsigned int>(std::stoi(dateOnly.substr(8, 2))) };
     const std::chrono::year_month_day ymd { y, m, d };
     return std::chrono::system_clock::from_time_t(std::chrono::system_clock::to_time_t(std::chrono::sys_days(ymd)));
+#else
+    std::tm tm {};
+    std::istringstream iss(dateOnly);
+    iss >> std::get_time(&tm, "%Y-%m-%d");
+    assert(iss.good());
+    return std::chrono::system_clock::from_time_t(std::mktime(&tm));
+#endif
 }
 
 std::string Utils::join(const std::vector<std::string>& list, const std::string& delim)
