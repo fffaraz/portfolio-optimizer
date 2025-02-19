@@ -24,8 +24,8 @@ auto loadData(const CsvFile& csv)
     OhlcList::OhlcVector result;
     result.reserve(data.size());
 
-    const auto maxDateTime = Utils::toTimePoint("2021-12-01"); // TODO(faraz): parameterize
-    const auto minDateTime = Utils::toTimePoint("2010-01-01"); // TODO(faraz): parameterize
+    const auto maxDate = Utils::toTimePoint("2021-12-01"); // TODO(faraz): parameterize
+    const auto minDate = Utils::toTimePoint("2010-01-01"); // TODO(faraz): parameterize
 
     for (auto itr = data.rbegin(); itr != data.rend(); ++itr) {
         const Ohlc item { *itr };
@@ -33,11 +33,11 @@ auto loadData(const CsvFile& csv)
         if (!item.isValid) {
             continue;
         }
-        if (item.timepoint > maxDateTime) {
+        if (item.timepoint > maxDate) {
             // std::cout << "OhlcList::loadData [ignoring] " << itr->at(0) << "\n";
             continue;
         }
-        if (item.timepoint < minDateTime) {
+        if (item.timepoint < minDate) {
             break;
         }
 
@@ -299,7 +299,7 @@ double OhlcList::avgRisk(size_t length) const
     return Utils::stdDev(vector);
 }
 
-bool OhlcList::matchDatetime(const OhlcList& other, size_t maxSize) const
+bool OhlcList::matchTimePoint(const OhlcList& other, size_t maxSize) const
 {
     assert(maxSize <= m_data.size());
     assert(maxSize <= other.m_data.size());
@@ -307,7 +307,7 @@ bool OhlcList::matchDatetime(const OhlcList& other, size_t maxSize) const
         const auto& date1 = m_data.at(i).timepoint;
         const auto& date2 = other.m_data.at(i).timepoint;
         if (date1 != date2) {
-            std::cerr << "OhlcList::matchDatetime [datetime mismatch]" << i
+            std::cerr << "OhlcList::matchTimePoint [timepoint mismatch]" << i
                       << Utils::to_string(date1) << Utils::to_string(date2);
             return false;
         }

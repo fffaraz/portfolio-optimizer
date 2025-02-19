@@ -53,7 +53,7 @@ public:
 
     [[nodiscard]] double avgReturn(size_t length) const;
     [[nodiscard]] double avgRisk(size_t length) const;
-    [[nodiscard]] bool matchDatetime(const OhlcList& other, size_t maxSize) const;
+    [[nodiscard]] bool matchTimePoint(const OhlcList& other, size_t maxSize) const;
 
 private:
     const OhlcVector m_data;
