@@ -85,6 +85,11 @@ OhlcList::OhlcList(const CsvFile& csv, OhlcTimeFrame timeFrame)
 {
 }
 
+size_t OhlcList::size() const noexcept
+{
+    return m_data.size();
+}
+
 const Ohlc& OhlcList::at(size_t i) const
 {
     assert(!m_data.empty());

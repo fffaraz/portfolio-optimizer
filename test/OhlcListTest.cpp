@@ -13,11 +13,13 @@ using namespace Farazlib;
 
 TEST(OhlcList, sameDay)
 {
-    const Ohlc ohlc1 { 95, 100, 90, 92 };
     const Ohlc ohlc0 { 95, 100, 90, 98 };
+    const Ohlc ohlc1 { 95, 100, 90, 92 };
     const OhlcList list { { ohlc0, ohlc1 } };
+
     EXPECT_EQ(PriceDirection::Up, list.priceDirection(0, 0));
     EXPECT_EQ(3.0 / 95, list.priceChange(0, 0, PriceType::Close));
+
     EXPECT_EQ(PriceDirection::Down, list.priceDirection(1, 0));
     EXPECT_EQ(-3.0 / 95, list.priceChange(1, 0, PriceType::Close));
 }
