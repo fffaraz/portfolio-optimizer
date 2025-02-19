@@ -21,7 +21,7 @@
 using namespace Farazlib;
 using namespace Farazlib::Utils;
 
-std::string Utils::to_string(const DateTime& dt)
+std::string Utils::to_string(const TimePoint& dt)
 {
     const auto tt = std::chrono::system_clock::to_time_t(dt);
     std::tm tmbuf {};
@@ -33,7 +33,7 @@ std::string Utils::to_string(const DateTime& dt)
     return { buf.data(), res };
 }
 
-DateTime Utils::toDateTime(const std::string& str)
+TimePoint Utils::toTimePoint(const std::string& str)
 {
     assert(str.size() >= 10); // "YYYY-MM-DD"
     const std::string dateOnly = str.substr(0, 10);

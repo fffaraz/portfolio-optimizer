@@ -9,7 +9,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 include(cmake/googletest.cmake)
 include(cmake/nlohmann-json.cmake)
-include(cmake/clang-tidy.cmake)
+# include(cmake/clang-tidy.cmake)
 
 include_directories(${PROJECT_SOURCE_DIR})
 

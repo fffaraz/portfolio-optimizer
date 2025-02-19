@@ -34,7 +34,7 @@ Ohlc::Ohlc(double open, double high, double low, double close, double volume)
 Ohlc::Ohlc(const CsvFile::RowType& record)
 {
     assert(record.size() == 9);
-    datetime = Utils::toDateTime(record.at(0)); // Date
+    timepoint = Utils::toTimePoint(record.at(0)); // Date
     try {
         open = std::stod(record.at(1)); // Open
         high = std::stod(record.at(2)); // High
@@ -99,7 +99,7 @@ double Ohlc::get(PriceType type) const
 std::string Ohlc::to_string() const
 {
     // clang-format off
-    return Utils::to_string(datetime) +
+    return Utils::to_string(timepoint) +
            "\tO " + std::to_string(open) +
            "\tH " + std::to_string(high) +
            "\tL " + std::to_string(low) +

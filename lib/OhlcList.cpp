@@ -24,8 +24,8 @@ auto loadData(const CsvFile& csv)
     OhlcList::OhlcVector result;
     result.reserve(data.size());
 
-    const auto maxDateTime = Utils::toDateTime("2021-12-01"); // TODO(faraz): parameterize
-    const auto minDateTime = Utils::toDateTime("2010-01-01"); // TODO(faraz): parameterize
+    const auto maxDateTime = Utils::toTimePoint("2021-12-01"); // TODO(faraz): parameterize
+    const auto minDateTime = Utils::toTimePoint("2010-01-01"); // TODO(faraz): parameterize
 
     for (auto itr = data.rbegin(); itr != data.rend(); ++itr) {
         const Ohlc item { *itr };
@@ -33,11 +33,11 @@ auto loadData(const CsvFile& csv)
         if (!item.isValid) {
             continue;
         }
-        if (item.datetime > maxDateTime) {
+        if (item.timepoint > maxDateTime) {
             // std::cout << "OhlcList::loadData [ignoring] " << itr->at(0) << "\n";
             continue;
         }
-        if (item.datetime < minDateTime) {
+        if (item.timepoint < minDateTime) {
             break;
         }
 
@@ -46,9 +46,9 @@ auto loadData(const CsvFile& csv)
         if (!result.empty()) {
             int missingDays = 0;
             const auto lastRecord = result.at(result.size() - 1);
-            for (auto date = lastRecord.datetime - one_day; date > item.datetime; date -= one_day) {
+            for (auto date = lastRecord.timepoint - one_day; date > item.timepoint; date -= one_day) {
                 auto missingRecord = lastRecord;
-                missingRecord.datetime = date;
+                missingRecord.timepoint = date;
                 missingRecord.isFake = true;
                 result.push_back(missingRecord);
                 missingDays++;
@@ -111,7 +111,7 @@ void OhlcList::save(const std::filesystem::path& filePath) const
 
     for (size_t i = 0; i < m_data.size(); ++i) {
         const auto& itr = m_data.at(i);
-        outFile << Utils::to_string(itr.datetime) << ",";
+        outFile << Utils::to_string(itr.timepoint) << ",";
         outFile << itr.open << ",";
         outFile << itr.high << ",";
         outFile << itr.low << ",";
@@ -304,8 +304,8 @@ bool OhlcList::matchDatetime(const OhlcList& other, size_t maxSize) const
     assert(maxSize <= m_data.size());
     assert(maxSize <= other.m_data.size());
     for (size_t i = 0; i < maxSize; ++i) {
-        const auto& date1 = m_data.at(i).datetime;
-        const auto& date2 = other.m_data.at(i).datetime;
+        const auto& date1 = m_data.at(i).timepoint;
+        const auto& date2 = other.m_data.at(i).timepoint;
         if (date1 != date2) {
             std::cerr << "OhlcList::matchDatetime [datetime mismatch]" << i
                       << Utils::to_string(date1) << Utils::to_string(date2);

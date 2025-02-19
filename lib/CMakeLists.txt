@@ -21,6 +21,7 @@ add_library(
   OhlcList.hpp
   Portfolio.cpp
   Portfolio.hpp
+  TimePoint.hpp
   Utils.cpp
   Utils.hpp)
 

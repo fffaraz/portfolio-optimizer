@@ -9,13 +9,11 @@
 
 #include "CsvFile.hpp"
 #include "OhlcEnums.hpp"
+#include "TimePoint.hpp"
 
-#include <chrono>
 #include <string>
 
 namespace Farazlib {
-
-using DateTime = std::chrono::system_clock::time_point;
 
 // Open, High, Low, Close (OHLC) price information
 struct Ohlc {
@@ -27,7 +25,7 @@ struct Ohlc {
     bool isValid {}; // Whether data was parsed correctly
     bool isFake {}; // Set to true for filling missing data
 
-    DateTime datetime;
+    TimePoint timepoint {};
 
     double open {};
     double high {};

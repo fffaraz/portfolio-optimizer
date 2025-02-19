@@ -13,9 +13,9 @@ using namespace Farazlib;
 
 constexpr double epsilon = 1e-3;
 
-TEST(Utils, toDateTime)
+TEST(Utils, toTimePoint)
 {
-    EXPECT_EQ(Utils::to_string(Utils::toDateTime("2020-11-28")), "2020-11-28");
+    EXPECT_EQ(Utils::to_string(Utils::toTimePoint("2020-11-28")), "2020-11-28");
 }
 
 TEST(Utils, join)

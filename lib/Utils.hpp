@@ -8,8 +8,8 @@
 #pragma once
 
 #include "AssetEnums.hpp"
+#include "TimePoint.hpp"
 
-#include <chrono>
 #include <set>
 #include <string>
 #include <utility>
@@ -22,10 +22,8 @@ class Portfolio;
 
 namespace Utils {
 
-    using DateTime = std::chrono::system_clock::time_point;
-
-    std::string to_string(const DateTime& dt);
-    DateTime toDateTime(const std::string& str);
+    std::string to_string(const TimePoint& dt);
+    TimePoint toTimePoint(const std::string& str);
     std::string join(const std::vector<std::string>& list, const std::string& delim);
 
     double avgRisk(const Market& market, const Portfolio& portfolio);
