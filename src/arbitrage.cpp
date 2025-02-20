@@ -96,7 +96,7 @@ std::vector<T> to_vector(const std::set<T>& set)
 
 int main()
 {
-    const CsvFile csvPairs { "./data/pairs.csv", false };
+    const CsvFile csvPairs { "./data/misc/pairs.csv", false };
     Weights table; // {from, to} -> rate
     std::set<std::string> assetsSet; // unique assets
     for (const auto& item : csvPairs.data()) {

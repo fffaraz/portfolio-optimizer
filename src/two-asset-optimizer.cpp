@@ -37,7 +37,7 @@ void calc(std::ofstream& outFile, const Market& market, const int category, cons
 
 int main()
 {
-    const CsvFile marketInfo { "./data/market.csv", true };
+    const CsvFile marketInfo { "./data/misc/market.csv", true };
     const std::set<std::string> symbols { "BND", "VOO", "SGOL", "VNQ" };
     const Market market { "./data/yf", marketInfo, symbols };
 

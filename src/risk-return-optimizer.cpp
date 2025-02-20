@@ -23,7 +23,7 @@ using namespace Farazlib;
 
 int main()
 {
-    const CsvFile assetsCsv { "./data/assets.csv", true };
+    const CsvFile assetsCsv { "./data/misc/assets.csv", true };
     const auto& csvHeader = assetsCsv.header();
     std::vector<Asset> assets;
 

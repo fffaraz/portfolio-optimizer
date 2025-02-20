@@ -26,7 +26,7 @@ int main()
     const Portfolio portfolio2 { "./data/output/portfolio.csv" };
     std::cout << "Number of holdings: " << portfolio2.holdings().size() << "\n";
 
-    const CsvFile marketInfo { "./data/market.csv", true };
+    const CsvFile marketInfo { "./data/misc/market.csv", true };
     const Market market { "./data/yf", marketInfo };
 
     std::cout << "\n";

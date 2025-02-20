@@ -17,7 +17,7 @@ using namespace Farazlib;
 
 int main()
 {
-    const CsvFile marketInfo { "./data/market.csv", true };
+    const CsvFile marketInfo { "./data/misc/market.csv", true };
     const std::set<std::string> symbols { "VOO", "VTI" };
     const Market market { "./data/yf", marketInfo, symbols };
 
