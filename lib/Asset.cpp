@@ -19,7 +19,9 @@ namespace {
 nlohmann::json loadJsonFile(const std::filesystem::path& filePath)
 {
     std::ifstream ifs(filePath);
-    assert(ifs.is_open());
+    if (!ifs.is_open()) {
+        return {};
+    }
     return nlohmann::json::parse(ifs);
 }
 

@@ -270,11 +270,7 @@ std::vector<double> OhlcList::percentTo(const std::vector<double>& ath) const
 double OhlcList::avgReturn(size_t length) const
 {
     assert(!m_data.empty());
-    // assert(length < m_data.size());
-
-    if (length >= m_data.size()) {
-        length = m_data.size() - 1;
-    }
+    length = std::min(length, m_data.size() - 1);
 
     double result {};
     const size_t size = m_data.size() - length;
@@ -287,11 +283,7 @@ double OhlcList::avgReturn(size_t length) const
 double OhlcList::avgRisk(size_t length) const
 {
     assert(!m_data.empty());
-    // assert(length < m_data.size());
-
-    if (length >= m_data.size()) {
-        length = m_data.size() - 1;
-    }
+    length = std::min(length, m_data.size() - 1);
 
     const size_t size = m_data.size() - length;
     std::vector<double> vector;
