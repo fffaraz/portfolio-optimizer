@@ -160,11 +160,11 @@ void Market::saveCorrelationList(const std::filesystem::path& filePath) const
                 << " (" << asset.yahoo("longName") << ") [" << asset.info().expenseRatio << "] "
                 << asset.tags() << "\n";
 
-        std::vector<std::pair<double, std::string>> list;
+        std::vector<std::pair<double, std::string>> list; // list of correlations with other ETFs (correlation, symbol)
 
         for (const auto& item2 : m_assets) {
             if (item1.first == item2.first || !item2.second.isETF()) {
-                continue;
+                continue; // skip the same asset and non-ETF assets
             }
 
             const auto correlation1 = asset.correlation(item2.second, PriceType::HL2, false);
@@ -179,9 +179,9 @@ void Market::saveCorrelationList(const std::filesystem::path& filePath) const
             list.emplace_back(correlation1, ss.str());
         }
 
-        std::sort(list.rbegin(), list.rend());
+        std::sort(list.rbegin(), list.rend()); // sort in descending order
 
-        const size_t maxSize = std::min(static_cast<size_t>(10), list.size());
+        const size_t maxSize = std::min(static_cast<size_t>(10), list.size()); // top 10 with highest correlation
         for (size_t i = 0; i < maxSize; ++i) {
             if (list[i].first > 0.95) {
                 outFile << "\t" << list[i].second << "\n";

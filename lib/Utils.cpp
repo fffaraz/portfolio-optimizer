@@ -58,7 +58,7 @@ TimePoint Utils::toTimePoint(const std::string& str)
     std::tm tm {};
     std::istringstream iss(dateOnly);
     iss >> std::get_time(&tm, "%Y-%m-%d");
-    assert(iss.good());
+    // assert(iss.good());
     return std::chrono::system_clock::from_time_t(std::mktime(&tm));
 #endif
 }

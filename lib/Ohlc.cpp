@@ -33,7 +33,7 @@ Ohlc::Ohlc(double open, double high, double low, double close, double volume)
 
 Ohlc::Ohlc(const CsvFile::RowType& record)
 {
-    assert(record.size() == 9);
+    assert(record.size() == 8 || record.size() == 9);
     timepoint = Utils::toTimePoint(record.at(0)); // Date
     try {
         open = std::stod(record.at(1)); // Open
@@ -43,7 +43,8 @@ Ohlc::Ohlc(const CsvFile::RowType& record)
         volume = std::stod(record.at(5)); // Volume
         dividends = std::stod(record.at(6)); // Dividends
         splits = std::stod(record.at(7)); // Stock Splits
-        // Capital Gains
+        if (record.size() == 9)
+            capitalGains = std::stod(record.at(8)); // Capital Gains
     } catch (std::exception& e) {
         std::cerr << "Ohlc::Ohlc [exception] " << e.what() << "\t" << Utils::join(record, ",") << "\n";
         return;

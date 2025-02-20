@@ -15,10 +15,14 @@
 
 using namespace Farazlib;
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc > 1) {
+        chdir(argv[1]);
+    }
+
     const CsvFile marketInfo { "./data/misc/market.csv", true };
-    const std::set<std::string> symbols { "VOO", "VTI" };
+    const std::set<std::string> symbols; // { "VOO", "VTI" };
     const Market market { "./data/yf", marketInfo, symbols };
 
     market.saveAssets("./data/output/symbols"); // assets' ohlc

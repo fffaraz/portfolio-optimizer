@@ -35,6 +35,7 @@ struct Ohlc {
     double volume {};
     double dividends {};
     double splits {};
+    double capitalGains {};
 
     [[nodiscard]] double get(PriceType type) const;
     [[nodiscard]] std::string to_string() const;
