@@ -3,7 +3,7 @@ name: Sonar
 on:
   push:
     branches:
-      - main
+      - main2
   pull_request:
     types: [opened, synchronize, reopened]
 
