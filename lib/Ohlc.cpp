@@ -43,8 +43,9 @@ Ohlc::Ohlc(const CsvFile::RowType& record)
         volume = std::stod(record.at(5)); // Volume
         dividends = std::stod(record.at(6)); // Dividends
         splits = std::stod(record.at(7)); // Stock Splits
-        if (record.size() == 9)
+        if (record.size() == 9) {
             capitalGains = std::stod(record.at(8)); // Capital Gains
+        }
     } catch (std::exception& e) {
         std::cerr << "Ohlc::Ohlc [exception] " << e.what() << "\t" << Utils::join(record, ",") << "\n";
         return;

@@ -1,9 +1,11 @@
 #!/bin/bash
 set -euxo pipefail
 
-clang-format --version
+CLANG_FORMAT=clang-format-18
 
-find . -not -path "./build/*" -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format --verbose -style=file -i {} \;
+$CLANG_FORMAT --version
+
+find . -not -path "./build/*" -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec $CLANG_FORMAT --verbose -style=file -i {} \;
 
 # pip3 install --user cmake-format
 cmake-format --version
