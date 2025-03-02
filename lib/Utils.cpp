@@ -278,13 +278,14 @@ void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, co
         const auto value = totalValue(market, portfolio, tag);
         outFile << EnumUtils::to_string(tag) << ","
                 << value.first << ","
-                << std::round(100.0 * value.first / total) << ","
+                << std::round(10000.0 * value.first / total) / 100 << ","
                 << value.second.size();
         for (const auto& symbol : value.second) {
             outFile << "," << symbol;
         }
         outFile << "\n";
     }
+    outFile << "Total," << total << ",100," << portfolio.holdings().size() << "\n";
 }
 
 double Utils::totalValue(const Market& market, const Portfolio& portfolio, std::size_t i)
