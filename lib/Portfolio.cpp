@@ -66,11 +66,16 @@ void Portfolio::saveSymbols(const std::filesystem::path& filePath) const
     std::ofstream file(filePath, std::ios::out | std::ios::trunc);
     assert(file.is_open());
     file << "[";
+    bool first = true;
     for (const auto& [symbol, quantity] : m_holdings) {
         if (symbol == "CASH") {
             continue;
         }
-        file << "\"" << symbol << "\", ";
+        if (!first) {
+            file << ", ";
+        }
+        file << "\"" << symbol << "\"";
+        first = false;
     }
     file << "]\n";
 }

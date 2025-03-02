@@ -270,7 +270,7 @@ void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, co
     }
 
     // Header
-    outFile << "tag,totalAmount,percent,symbols...\n";
+    outFile << "Tag,Total Amount $,Percent %,Num Symbols,Symbol List ...\n";
     const double total = totalValue(market, portfolio, 0);
 
     // Body

@@ -14,6 +14,8 @@ namespace Farazlib {
 class AssetRatio {
 public:
     AssetRatio(const Asset& asset1, const Asset& asset2);
+    [[nodiscard]] size_t size() const noexcept;
+    [[nodiscard]] const Ohlc& at(size_t i) const;
 
 private:
     const Asset& m_asset1;

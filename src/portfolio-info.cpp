@@ -20,13 +20,14 @@ int main()
     const EtradePortfolio portfolio { "./data/etrade/PortfolioDownload.csv" };
 
     std::cout << "Number of holdings: " << portfolio.holdings().size() << "\n";
-    portfolio.saveCsv("./data/output/portfolio.csv");
-    portfolio.saveSymbols("./data/output/symbols.txt");
+    portfolio.saveCsv("./data/output/portfolio.csv"); // Symbol, Quantity
+    portfolio.saveSymbols("./data/output/symbols.txt"); // [sym1, sym2, ...]
 
     const Portfolio portfolio2 { "./data/output/portfolio.csv" };
     std::cout << "Number of holdings: " << portfolio2.holdings().size() << "\n";
+    assert(portfolio.holdings().size() == portfolio2.holdings().size());
 
-    const CsvFile marketInfo { "./data/misc/market.csv", true };
+    const CsvFile marketInfo { "./data/misc/market.csv", true }; // Symbol, Dividend Yield, Expense Ratio
     const Market market { "./data/yf", marketInfo };
 
     std::cout << "\n";

@@ -24,7 +24,7 @@ namespace {
 
 auto loadAssetInfo(const CsvFile& infoCsv)
 {
-    std::unordered_map<std::string, std::vector<std::string>> result;
+    std::unordered_map<std::string, CsvFile::RowType> result; // symbol -> asset info
     for (const auto& item : infoCsv.data()) {
         const std::string& symbol = item.at(0);
         result.insert({ symbol, item });

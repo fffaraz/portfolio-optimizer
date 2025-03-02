@@ -230,7 +230,7 @@ std::string EnumUtils::to_string(AssetTag tag)
         { AssetTag::CorporateBond, "CorporateBond" },
         { AssetTag::WorldBondUSDHedged, "WorldBondUSDHedged" },
 
-        { AssetTag::SandP500, "SandP500" },
+        { AssetTag::SandP500, "S&P500" },
         { AssetTag::TotalMarket, "TotalMarket" },
         { AssetTag::TotalIntl, "TotalIntl" },
 
