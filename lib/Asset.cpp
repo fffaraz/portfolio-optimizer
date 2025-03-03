@@ -113,13 +113,14 @@ std::string Asset::yahoo(const std::string& key) const
     return result;
 }
 
-void Asset::save(const std::string& dataDir) const
+void Asset::save(const std::filesystem::path& dataDir) const
 {
-    m_ohlc.save(dataDir + "/" + m_symbol + ".csv");
+    m_ohlc.save(dataDir / (m_symbol + ".csv"));
 }
 
-double Asset::correlation(const Asset& other, const PriceType priceType, const bool rankify) const
+double Asset::correlation(const Asset& other, const PriceType priceType, const bool rankify, size_t length, size_t offset) const
 {
+    (void) offset; // TODO: implement offset
     if (m_symbol == other.m_symbol) {
         return 1; // correlation with itself is 1
     }
@@ -131,10 +132,10 @@ double Asset::correlation(const Asset& other, const PriceType priceType, const b
         // if price data is not available, use the correlation from the info
         return other.m_info.correlation.contains(m_symbol) ? other.m_info.correlation.at(m_symbol) : 0;
     }
-    constexpr size_t maxSize = 400; // TODO(faraz): parameterize
-    const size_t size = std::min({ m_ohlc.size(), other.m_ohlc.size(), maxSize });
+    const size_t size = std::min({ m_ohlc.size(), other.m_ohlc.size(), length });
     if (!m_ohlc.matchTimePoint(other.m_ohlc, size)) {
         std::cerr << "Asset::correlation [timepoint mismatch] " << m_symbol << " " << other.m_symbol << "\n";
+        assert(false);
         return 0;
     }
     const auto vector1 = m_ohlc.toVector(size, 0, priceType);

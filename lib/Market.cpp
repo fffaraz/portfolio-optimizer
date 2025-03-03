@@ -133,7 +133,7 @@ double Market::correlation(const std::string& symbol1, const std::string& symbol
 {
     const auto& asset1 = get(symbol1);
     const auto& asset2 = get(symbol2);
-    return asset1.correlation(asset2, PriceType::HL2, false);
+    return asset1.correlation(asset2, PriceType::HL2, false, 400);
 }
 
 void Market::saveAssets(const std::filesystem::path& symbolsDir) const
@@ -167,8 +167,8 @@ void Market::saveCorrelationList(const std::filesystem::path& filePath) const
                 continue; // skip the same asset and non-ETF assets
             }
 
-            const auto correlation1 = asset.correlation(item2.second, PriceType::HL2, false);
-            const auto correlation2 = asset.correlation(item2.second, PriceType::HL2, true);
+            const auto correlation1 = asset.correlation(item2.second, PriceType::HL2, false, 400);
+            const auto correlation2 = asset.correlation(item2.second, PriceType::HL2, true, 400);
 
             std::stringstream ss;
             ss << std::setprecision(3) << correlation1 << "\t" << correlation2 << "\t"
@@ -251,7 +251,7 @@ void Market::saveMarketInfo(const std::filesystem::path& filePath) const
             if (!item2.second.isETF()) {
                 continue;
             }
-            outFile << "," << item1.second.correlation(item2.second, PriceType::OHLC4, false);
+            outFile << "," << item1.second.correlation(item2.second, PriceType::OHLC4, false, 400);
         }
 
         // Spearman Correlation
@@ -259,7 +259,7 @@ void Market::saveMarketInfo(const std::filesystem::path& filePath) const
             if (!item2.second.isETF()) {
                 continue;
             }
-            outFile << "," << item1.second.correlation(item2.second, PriceType::OHLC4, true);
+            outFile << "," << item1.second.correlation(item2.second, PriceType::OHLC4, true, 400);
         }
 
         outFile << "\n";

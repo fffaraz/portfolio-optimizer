@@ -216,7 +216,7 @@ double Utils::avgRisk(const Market& market, const Portfolio& portfolio)
         for (const auto& [symbol2, quantity2] : portfolio.holdings()) {
             const auto& asset2 = market.get(symbol2);
             const double value2 = asset2.ohlc().at(0).hl2() * quantity2;
-            const double corr = symbol1 == symbol2 ? 1 : asset1.correlation(asset2, PriceType::HL2, false);
+            const double corr = symbol1 == symbol2 ? 1 : asset1.correlation(asset2, PriceType::HL2, false, 400);
             result += (value1 / total) * (value2 / total) * corr * asset1.avgRisk(0) * asset2.avgRisk(0);
         }
     }

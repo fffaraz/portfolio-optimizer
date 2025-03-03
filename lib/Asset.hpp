@@ -44,9 +44,9 @@ public:
     bool hasTag(AssetTag tag) const { return m_tags.contains(tag); }
 
     std::string yahoo(const std::string& key) const; ///< Returns value from yahoo json
-    void save(const std::string& dataDir) const; ///< save ohlc data to a symbol.csv file
+    void save(const std::filesystem::path& dataDir) const; ///< save ohlc data to a symbol.csv file
 
-    double correlation(const Asset& other, PriceType priceType, bool rankify) const;
+    double correlation(const Asset& other, PriceType priceType, bool rankify, size_t length, size_t offset = 0) const;
     double avgRisk(size_t length) const;
     double avgReturn(size_t length) const;
 
