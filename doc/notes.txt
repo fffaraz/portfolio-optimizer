@@ -31,3 +31,5 @@ https://etfdb.com/etf/VOO/#technicals
 https://etfdb.com/screener/#tab=expenses&sort_by=expense_ratio&sort_direction=asc&page=1&active_or_passive=Passive&currency_hedged=false&leveraged=False&inverse=false&tax_form=1099&structure=ETF&expense_ratio_end=0.1&assets_start=2000
 
 https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model
+
+https://www.reddit.com/r/Bogleheads/comments/1kg9y2v/3fund_portfolio_us_stocks_exus_stocks_us_bonds/
