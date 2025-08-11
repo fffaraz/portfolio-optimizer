@@ -2,6 +2,6 @@
 build/
 build2/
 build-*/
-data/yf-data/
+data/yf/
 *.user
 *.autosave
