@@ -21,6 +21,7 @@ if not os.path.exists("./data/yf"):
     exit(1)
 
 symbols = ["AGG", "AMD", "ARKK", "BIV", "BLV", "BLZE", "BND", "BNDX", "BSV", "CIBR", "CRWD", "DGRO", "DIVB", "DIVO", "DJD", "DOCN", "DTD", "EDV", "HDV", "IAGG", "IEUR", "IGIB", "IGLB", "IGSB", "IJR", "ILTB", "INTC", "IPAC", "ISTB", "ITOT", "IUSB", "IUSG", "IUSV", "IVE", "IVV", "IVW", "IWB", "IWV", "IXUS", "JEPI", "JEPQ", "JPSE", "MGK", "MGV", "MUB", "NET", "PFF", "QQQ", "QQQE", "QQQM", "QYLD", "REET", "RSP", "SCHB", "SCHD", "SCHG", "SCHH", "SCHK", "SCHX", "SCHY", "SCYB", "SGOL", "SGOV", "SIVR", "SLQD", "SPHD", "SPHY", "SPLG", "SPLV", "SPTL", "SPTM", "SPY", "SPYD", "SPYV", "STIP", "TFLO", "TIP", "TLT", "USHY", "USRT", "VAW", "VB", "VBK", "VBR", "VCIT", "VCLT", "VCR", "VCSH", "VDC", "VDE", "VEA", "VEU", "VFH", "VGSH", "VGT", "VHT", "VIG", "VIS", "VMBS", "VNQ", "VNQI", "VO", "VOE", "VONE", "VOO", "VOOV", "VOT", "VOX", "VPU", "VSS", "VT", "VTEB", "VTI", "VTIP", "VTV", "VUG", "VUSB", "VV", "VWO", "VXF", "VXUS", "VYM", "VYMI", "XLC", "XLE"]
+symbols = ["VOO", "VTI", "VXUS", "BND", "BNDX", "QQQ", "VUG", "VEA"]
 
 for symbol in symbols:
     print(symbol)

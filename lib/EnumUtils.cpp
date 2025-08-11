@@ -17,11 +17,11 @@ std::set<AssetTag> EnumUtils::assetTag(const std::string& key)
     static const std::unordered_map<std::string, AssetTag> map {
         { "AGG", AssetTag::TotalBond }, // iShares Core U.S. Aggregate Bond ETF
         { "BND", AssetTag::TotalBond }, // Vanguard Total Bond Market Index Fund ETF Shares
-        { "BIV", AssetTag::TotalBond }, //
-        { "BSV", AssetTag::TotalBond }, //
+        { "BIV", AssetTag::TotalBond }, // VANGUARD INTERMEDIATE-TERM BOND ETF
+        { "BSV", AssetTag::TotalBond }, // VANGUARD SHORT-TERM BOND ETF
         { "ILTB", AssetTag::TotalBond }, //
         { "IUSB", AssetTag::TotalBond }, // iShares Core Total USD Bond Market ETF
-        { "BLV", AssetTag::TotalBond }, //
+        { "BLV", AssetTag::TotalBond }, // VANGUARD LONG-TERM BOND ETF
         { "IMTB", AssetTag::TotalBond }, //
         { "VMBS", AssetTag::TotalBond }, //
         { "ISTB", AssetTag::TotalBond }, //
@@ -85,6 +85,7 @@ std::set<AssetTag> EnumUtils::assetTag(const std::string& key)
 
         { "IGLB", AssetTag::LongCorpBd }, // iShares 10+ Year Investment Grade Corp Bond ETF
         { "VCLT", AssetTag::LongCorpBd }, // Vanguard Long-Term Corporate Bond Idx Fund ETF
+        { "VCIT", AssetTag::IntermediateCorpBd }, // VANGUARD INTERMEDIATE-TERM CORPORATE BOND ETF
 
         { "REET", AssetTag::REIT }, //
         { "RWR", AssetTag::REIT }, //
@@ -223,6 +224,7 @@ std::string EnumUtils::to_string(AssetTag tag)
         { AssetTag::IntlBond, "Intl Bond" },
         { AssetTag::MuniBond, "Muni Bond" },
         { AssetTag::ShortCorpBd, "Short Corp Bond" },
+        { AssetTag::IntermediateCorpBd, "Intermediate Corp Bond" },
         { AssetTag::LongCorpBd, "Long Corp Bond" },
         { AssetTag::IntermediateBond, "Intermediate Bond" },
         { AssetTag::LongTermBond, "Long Term Bond" },
