@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-namespace Farazlib {
+namespace portopt {
 
 // Read only CSV file loaded into memory
 class CsvFile {
@@ -29,4 +29,4 @@ private:
     TableType m_data; // list of rows (each row is a list of columns)
 };
 
-} // namespace Farazlib
+} // namespace portopt

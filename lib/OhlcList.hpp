@@ -10,7 +10,7 @@
 #include "CsvFile.hpp"
 #include "Ohlc.hpp"
 
-namespace Farazlib {
+namespace portopt {
 
 // List of Open, High, Low, Close (OHLC) data
 class OhlcList {
@@ -59,4 +59,4 @@ private:
     const OhlcTimeFrame m_timeFrame;
 };
 
-} // namespace Farazlib
+} // namespace portopt

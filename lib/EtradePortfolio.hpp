@@ -11,7 +11,7 @@
 
 #include <filesystem>
 
-namespace Farazlib {
+namespace portopt {
 
 // Portfolio loaded from an Etrade CSV file
 class EtradePortfolio : public Portfolio {
@@ -19,4 +19,4 @@ public:
     explicit EtradePortfolio(const std::filesystem::path& csvPath);
 };
 
-} // namespace Farazlib
+} // namespace portopt

@@ -18,7 +18,7 @@
 #include <sstream> // std::stringstream
 #include <unordered_map>
 
-using namespace Farazlib;
+using namespace portopt;
 
 namespace {
 

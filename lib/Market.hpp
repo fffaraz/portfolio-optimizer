@@ -11,7 +11,7 @@
 
 #include <map>
 
-namespace Farazlib {
+namespace portopt {
 
 class Market {
 public:
@@ -53,4 +53,4 @@ private:
     const std::map<std::string, Asset> m_assets; ///< Symbol to Asset hashmap
 };
 
-} // namespace Farazlib
+} // namespace portopt

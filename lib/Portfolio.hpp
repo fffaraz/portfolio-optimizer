@@ -11,7 +11,7 @@
 #include <map>
 #include <string>
 
-namespace Farazlib {
+namespace portopt {
 
 class Portfolio {
 public:
@@ -32,4 +32,4 @@ protected:
     HoldingsType m_holdings; ///< List of {Symbol -> Quantity} pairs
 };
 
-} // namespace Farazlib
+} // namespace portopt

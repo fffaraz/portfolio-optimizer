@@ -13,7 +13,7 @@
 #include <iostream> // For: std::cerr
 #include <sstream> // For: std::istringstream
 
-using namespace Farazlib;
+using namespace portopt;
 
 CsvFile::CsvFile(const std::filesystem::path& filePath, bool hasHeader)
 {

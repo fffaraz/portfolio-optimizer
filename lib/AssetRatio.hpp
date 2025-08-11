@@ -9,7 +9,7 @@
 
 #include "Asset.hpp"
 
-namespace Farazlib {
+namespace portopt {
 
 class AssetRatio {
 public:
@@ -22,4 +22,4 @@ private:
     const Asset& m_asset2;
 };
 
-} // namespace Farazlib
+} // namespace portopt

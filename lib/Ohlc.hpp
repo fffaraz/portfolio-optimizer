@@ -13,7 +13,7 @@
 
 #include <string>
 
-namespace Farazlib {
+namespace portopt {
 
 // Open, High, Low, Close (OHLC) price information
 struct Ohlc {
@@ -45,4 +45,4 @@ struct Ohlc {
     [[nodiscard]] double ohlc4() const noexcept { return (open + high + low + close) / 4.0; }
 };
 
-} // namespace Farazlib
+} // namespace portopt

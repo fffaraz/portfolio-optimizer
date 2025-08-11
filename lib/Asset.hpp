@@ -18,7 +18,7 @@
 #include <set>
 #include <string>
 
-namespace Farazlib {
+namespace portopt {
 
 class Asset {
 public:
@@ -65,4 +65,4 @@ private:
     const std::set<AssetTag> m_tags; ///< Tags
 };
 
-} // namespace Farazlib
+} // namespace portopt

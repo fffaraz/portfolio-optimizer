@@ -9,7 +9,7 @@
 
 #include <cstdint>
 
-namespace Farazlib {
+namespace portopt {
 
 enum class AssetTag : std::uint8_t {
     Unclassified,
@@ -217,4 +217,4 @@ enum class BondType : std::uint8_t {
     USInflationProtected,
 };
 
-} // namespace Farazlib
+} // namespace portopt

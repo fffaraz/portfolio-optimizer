@@ -19,7 +19,7 @@
 #include <iostream>
 #include <sstream>
 
-using namespace Farazlib;
+using namespace portopt;
 
 int main()
 {

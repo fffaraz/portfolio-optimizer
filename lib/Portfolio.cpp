@@ -14,7 +14,7 @@
 #include <fstream>
 #include <iostream>
 
-using namespace Farazlib;
+using namespace portopt;
 
 Portfolio::Portfolio(const std::filesystem::path& csvPath)
 {

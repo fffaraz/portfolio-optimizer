@@ -15,7 +15,7 @@
 #include <utility>
 #include <vector>
 
-namespace Farazlib {
+namespace portopt {
 
 class Market;
 class Portfolio;
@@ -50,4 +50,4 @@ namespace Utils {
     std::size_t powi(std::size_t base, std::size_t exp);
 
 } // namespace Utils
-} // namespace Farazlib
+} // namespace portopt

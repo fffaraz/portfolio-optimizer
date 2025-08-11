@@ -9,7 +9,7 @@
 
 #include <cstdint>
 
-namespace Farazlib {
+namespace portopt {
 
 // clang-format off
 enum class PriceDirection : std::uint8_t {
@@ -38,4 +38,4 @@ enum class OhlcTimeFrame : std::uint8_t {
     Weekly,
 };
 
-} // namespace Farazlib
+} // namespace portopt

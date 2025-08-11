@@ -13,7 +13,7 @@
 #include <filesystem>
 #include <iostream>
 
-using namespace Farazlib;
+using namespace portopt;
 
 int main()
 {

@@ -13,7 +13,7 @@
 #include <iostream>
 #include <set>
 
-using namespace Farazlib;
+using namespace portopt;
 
 int main(int argc, char* argv[])
 {

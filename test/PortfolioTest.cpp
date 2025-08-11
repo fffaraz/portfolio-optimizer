@@ -12,7 +12,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace Farazlib;
+using namespace portopt;
 
 constexpr double epsilon = 1e-3;
 

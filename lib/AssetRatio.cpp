@@ -7,7 +7,7 @@
 
 #include "AssetRatio.hpp"
 
-using namespace Farazlib;
+using namespace portopt;
 
 AssetRatio::AssetRatio(const Asset& asset1, const Asset& asset2)
     : m_asset1 { asset1 }

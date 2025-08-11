@@ -12,7 +12,7 @@
 #include <cassert>
 #include <iostream>
 
-using namespace Farazlib;
+using namespace portopt;
 
 Ohlc::Ohlc(double value) noexcept
     : open { value }

@@ -10,7 +10,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace Farazlib {
+namespace portopt {
 
 // AssetInfo is a struct that holds extra attributes of an asset
 struct __attribute__((aligned(128))) AssetInfo {
@@ -40,4 +40,4 @@ struct __attribute__((aligned(128))) AssetInfo {
     // uint64_t totalAssets{}; // ETF only, Net Assets
 };
 
-} // namespace Farazlib
+} // namespace portopt

@@ -9,7 +9,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace Farazlib;
+using namespace portopt;
 
 TEST(Asset, Asset1)
 {

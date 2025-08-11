@@ -12,7 +12,7 @@
 #include <cassert>
 #include <iostream>
 
-using namespace Farazlib;
+using namespace portopt;
 
 constexpr const char* CASH = "CASH";
 

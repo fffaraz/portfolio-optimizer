@@ -15,7 +15,7 @@
 #include <fstream>
 #include <iostream>
 
-using namespace Farazlib;
+using namespace portopt;
 
 void calc(std::ofstream& outFile, const Market& market, const int category, const std::string symbol1, const std::string symbol2)
 {
