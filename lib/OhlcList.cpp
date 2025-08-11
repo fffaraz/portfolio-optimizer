@@ -30,7 +30,7 @@ auto loadOhlcCsv(const CsvFile& csv)
     for (auto itr = data.rbegin(); itr != data.rend(); ++itr) {
         const Ohlc item { *itr };
 
-        if (!item.isValid) {
+        if (!item.valid) {
             continue;
         }
         if (item.timepoint > maxDate) {
@@ -49,7 +49,7 @@ auto loadOhlcCsv(const CsvFile& csv)
             for (auto date = lastRecord.timepoint - one_day; date > item.timepoint; date -= one_day) {
                 auto missingRecord = lastRecord;
                 missingRecord.timepoint = date;
-                missingRecord.isFake = true;
+                missingRecord.dummy = true;
                 result.push_back(missingRecord);
                 missingDays++;
             }
@@ -104,11 +104,12 @@ void OhlcList::save(const std::filesystem::path& filePath) const
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     assert(outFile.is_open());
 
-    outFile << "Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,isFake,";
+    outFile << "Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,dummy,";
     outFile << "priceChange,allTimeHigh,percentFromAth,percentToAth\n";
 
     outFile.setf(std::ios::fixed);
-    // outFile.precision(8);
+    outFile.precision(2);
+    // outFile << std::fixed << std::setprecision(2);
 
     const auto ath = allTimeHigh();
     const auto pfAth = percentFrom(ath);
@@ -124,7 +125,7 @@ void OhlcList::save(const std::filesystem::path& filePath) const
         outFile << std::fixed << std::noshowpoint << itr.volume << ",";
         outFile << std::noshowpoint << itr.dividends << ",";
         outFile << std::noshowpoint << itr.splits << ",";
-        outFile << itr.isFake << ",";
+        outFile << itr.dummy << ",";
         outFile << priceChange(i) << ",";
         outFile << ath.at(i) << ",";
         outFile << pfAth.at(i) << ",";

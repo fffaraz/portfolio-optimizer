@@ -22,8 +22,8 @@ struct Ohlc {
     Ohlc(double open, double high, double low, double close, double volume = 0);
     explicit Ohlc(const CsvFile::RowType& record);
 
-    bool isValid {}; // Whether data was parsed correctly
-    bool isFake {}; // Set to true for filling missing data
+    bool valid {}; // Whether data was parsed correctly
+    bool dummy {}; // Set to true for filling missing data
 
     TimePoint timepoint {};
 

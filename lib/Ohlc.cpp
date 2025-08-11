@@ -73,7 +73,7 @@ Ohlc::Ohlc(const CsvFile::RowType& record)
     assert(low <= high);
     assert(low <= close);
 
-    isValid = true;
+    valid = true; // Set to true for a correctly parsed record
 }
 
 double Ohlc::get(PriceType type) const

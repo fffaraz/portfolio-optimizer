@@ -31,6 +31,7 @@ enum class AssetTag : std::uint8_t {
     IntlBond,
     MuniBond,
     ShortCorpBd,
+    IntermediateCorpBd,
     LongCorpBd,
     IntermediateBond, // IntermediateCoreBond
     LongTermBond,

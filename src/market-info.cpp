@@ -18,7 +18,10 @@ using namespace Farazlib;
 int main(int argc, char* argv[])
 {
     if (argc > 1) {
-        chdir(argv[1]);
+        if (chdir(argv[1]) != 0) {
+            std::cerr << "Error changing directory to " << argv[1] << "\n";
+            return 1;
+        }
     }
 
     const CsvFile marketInfo { "./data/misc/market.csv", true };
