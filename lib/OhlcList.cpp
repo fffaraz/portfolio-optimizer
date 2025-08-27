@@ -99,7 +99,7 @@ const Ohlc& OhlcList::at(size_t i) const
     return m_data.at(i);
 }
 
-void OhlcList::save(const std::filesystem::path& filePath) const
+void OhlcList::save(const FilePath& filePath) const
 {
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
     assert(outFile.is_open());

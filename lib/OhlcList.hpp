@@ -23,7 +23,7 @@ public:
 
     [[nodiscard]] size_t size() const noexcept;
     [[nodiscard]] const Ohlc& at(size_t i) const; // first elemet (data[0]) is the most recent
-    void save(const std::filesystem::path& filePath) const;
+    void save(const FilePath& filePath) const;
 
     [[nodiscard]] PriceDirection priceDirection(size_t i, size_t offset) const;
     [[nodiscard]] double priceChange(size_t i) const;

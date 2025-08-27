@@ -49,7 +49,7 @@ auto getAssetInfo(const CsvFile::RowType& info)
     return result;
 }
 
-auto loadAssetsFromFile(const std::filesystem::path& dataDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
+auto loadAssetsFromFile(const FilePath& dataDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
 {
     std::map<std::string, Asset> result;
 
@@ -100,7 +100,7 @@ auto loadAssetsFromVector(const std::vector<Asset>& assets)
 
 } // anonymous namespace
 
-Market::Market(const std::filesystem::path& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
+Market::Market(const FilePath& symbolsDir, const CsvFile& infoCsv, const std::set<std::string>& symbols)
     : m_assets { loadAssetsFromFile(symbolsDir, infoCsv, symbols) }
 {
     std::cerr << "\nMarket::Market assets.size: " << m_assets.size() << "\n";
@@ -136,14 +136,14 @@ double Market::correlation(const std::string& symbol1, const std::string& symbol
     return asset1.correlation(asset2, PriceType::HL2, false, 400);
 }
 
-void Market::saveAssets(const std::filesystem::path& symbolsDir) const
+void Market::saveAssets(const FilePath& symbolsDir) const
 {
     for (const auto& asset : m_assets) {
         asset.second.save(symbolsDir);
     }
 }
 
-void Market::saveCorrelationList(const std::filesystem::path& filePath) const
+void Market::saveCorrelationList(const FilePath& filePath) const
 {
     std::cerr << "\nMarket::saveCorrelationList [begin]\n";
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
@@ -192,7 +192,7 @@ void Market::saveCorrelationList(const std::filesystem::path& filePath) const
     std::cerr << "Market::saveCorrelationList [end]\n";
 }
 
-void Market::saveMarketInfo(const std::filesystem::path& filePath) const
+void Market::saveMarketInfo(const FilePath& filePath) const
 {
     std::cerr << "\nMarket::saveMarketInfo [begin]\n";
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);
@@ -267,7 +267,7 @@ void Market::saveMarketInfo(const std::filesystem::path& filePath) const
     std::cerr << "Market::saveMarketInfo [end]\n";
 }
 
-void Market::saveSymbols(const std::filesystem::path& filePath) const
+void Market::saveSymbols(const FilePath& filePath) const
 {
     std::cerr << "\nMarket::saveSymbols\n";
     std::ofstream outFile(filePath, std::ios::out | std::ios::trunc);

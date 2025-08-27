@@ -16,7 +16,7 @@
 
 using namespace portopt;
 
-Portfolio::Portfolio(const std::filesystem::path& csvPath)
+Portfolio::Portfolio(const FilePath& csvPath)
 {
     std::cerr << "Portfolio::Portfolio [csvPath] " << csvPath << "\n";
     const CsvFile csv { csvPath, true };
@@ -44,12 +44,12 @@ double Portfolio::get(const std::string& symbol) const
     return itr == m_holdings.end() ? 0 : itr->second;
 }
 
-const Portfolio::HoldingsType& Portfolio::holdings() const noexcept
+const Portfolio::PositionMap& Portfolio::holdings() const noexcept
 {
     return m_holdings;
 }
 
-void Portfolio::saveCsv(const std::filesystem::path& csvPath) const
+void Portfolio::saveCsv(const FilePath& csvPath) const
 {
     std::cerr << "Portfolio::saveCsv [csvPath] " << csvPath << "\n";
     std::ofstream file(csvPath, std::ios::out | std::ios::trunc);
@@ -60,7 +60,7 @@ void Portfolio::saveCsv(const std::filesystem::path& csvPath) const
     }
 }
 
-void Portfolio::saveSymbols(const std::filesystem::path& filePath) const
+void Portfolio::saveSymbols(const FilePath& filePath) const
 {
     std::cerr << "Portfolio::saveSymbols [filePath] " << filePath << "\n";
     std::ofstream file(filePath, std::ios::out | std::ios::trunc);

@@ -16,7 +16,7 @@ namespace portopt {
 // Portfolio loaded from an Etrade CSV file
 class EtradePortfolio : public Portfolio {
 public:
-    explicit EtradePortfolio(const std::filesystem::path& csvPath);
+    explicit EtradePortfolio(const FilePath& csvPath);
 };
 
 } // namespace portopt

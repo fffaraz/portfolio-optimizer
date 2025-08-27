@@ -36,7 +36,7 @@ public:
      * @param dataDir directory path for SYM.csv and SYM.json files
      * @param info extra asset attributes
      */
-    Asset(std::string symbol, const std::filesystem::path& dataDir, AssetInfo info);
+    Asset(std::string symbol, const FilePath& dataDir, AssetInfo info);
 
     const std::string& symbol() const noexcept { return m_symbol; }
     const OhlcList& ohlc() const noexcept { return m_ohlc; }
@@ -44,7 +44,7 @@ public:
     bool hasTag(AssetTag tag) const { return m_tags.contains(tag); }
 
     std::string yahoo(const std::string& key) const; ///< Returns value from yahoo json
-    void save(const std::filesystem::path& dataDir) const; ///< save ohlc data to a symbol.csv file
+    void save(const FilePath& dataDir) const; ///< save ohlc data to a symbol.csv file
 
     double correlation(const Asset& other, PriceType priceType, bool rankify, size_t length, size_t offset = 0) const;
     double avgRisk(size_t length) const;

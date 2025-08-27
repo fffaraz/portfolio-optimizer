@@ -16,7 +16,7 @@ using namespace portopt;
 
 constexpr const char* CASH = "CASH";
 
-EtradePortfolio::EtradePortfolio(const std::filesystem::path& csvPath)
+EtradePortfolio::EtradePortfolio(const FilePath& csvPath)
 {
     std::cerr << "EtradePortfolio::EtradePortfolio [csvPath] " << csvPath << "\n";
     const CsvFile csv { csvPath, false };

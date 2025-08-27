@@ -16,7 +16,7 @@ using namespace portopt;
 
 namespace {
 
-nlohmann::json loadJsonFile(const std::filesystem::path& filePath)
+nlohmann::json loadJsonFile(const FilePath& filePath)
 {
     std::ifstream ifs(filePath);
     if (!ifs.is_open()) {
@@ -82,7 +82,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     assert(ohlc().size() == 1);
 }
 
-Asset::Asset(std::string symbol, const std::filesystem::path& dataDir, AssetInfo info)
+Asset::Asset(std::string symbol, const FilePath& dataDir, AssetInfo info)
     : m_symbol { std::move(symbol) }
     , m_ohlc { OhlcList { CsvFile { dataDir / (m_symbol + ".csv"), true }, OhlcTimeFrame::Daily } }
     , m_yahoo(loadJsonFile(dataDir / (m_symbol + ".json")))
@@ -113,7 +113,7 @@ std::string Asset::yahoo(const std::string& key) const
     return result;
 }
 
-void Asset::save(const std::filesystem::path& dataDir) const
+void Asset::save(const FilePath& dataDir) const
 {
     m_ohlc.save(dataDir / (m_symbol + ".csv"));
 }

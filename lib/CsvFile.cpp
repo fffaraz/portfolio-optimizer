@@ -15,11 +15,11 @@
 
 using namespace portopt;
 
-CsvFile::CsvFile(const std::filesystem::path& filePath, bool hasHeader)
+CsvFile::CsvFile(const FilePath& path, bool hasHeader)
 {
-    std::cerr << "CsvFile::CsvFile [filePath] " << filePath << "\n";
+    std::cerr << "CsvFile::CsvFile [path] " << path << "\n";
 
-    std::ifstream file { filePath };
+    std::ifstream file { path };
     assert(file.is_open());
 
     m_header.reserve(16); // reserve 16 columns
@@ -27,11 +27,11 @@ CsvFile::CsvFile(const std::filesystem::path& filePath, bool hasHeader)
 
     // line buffer
     std::string line;
-    line.reserve(256);
+    line.reserve(500);
 
     // cell buffer
     std::string cell;
-    cell.reserve(128);
+    cell.reserve(100);
 
     // row buffer
     std::vector<std::string> row;

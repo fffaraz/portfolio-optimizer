@@ -13,10 +13,12 @@
 
 namespace portopt {
 
+using FilePath = FilePath;
+
 // Read only CSV file loaded into memory
 class CsvFile {
 public:
-    CsvFile(const std::filesystem::path& filePath, bool hasHeader);
+    CsvFile(const FilePath& path, bool hasHeader);
 
     using RowType = std::vector<std::string>; // list of columns in a row
     using TableType = std::vector<RowType>; // list of rows (each row is a list of columns)
