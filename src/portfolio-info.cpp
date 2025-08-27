@@ -20,10 +20,11 @@ int main()
     const EtradePortfolio portfolio { "./data/etrade/PortfolioDownload.csv" };
 
     std::cout << "Number of holdings: " << portfolio.holdings().size() << "\n";
-    portfolio.saveCsv("./data/output/portfolio-info-portfolio.csv"); // Symbol, Quantity
+    portfolio.saveCsv("./data/output/portfolio-info-simple.csv"); // Symbol, Quantity
+    portfolio.saveAllocations("./data/output/portfolio-info-allocations.csv"); // Symbol, Quantity, Last Price, Total Value, Allocation
     portfolio.saveSymbols("./data/output/portfolio-info-symbols.txt"); // [sym1, sym2, ...]
 
-    const Portfolio portfolio2 { "./data/output/portfolio-info-portfolio.csv" };
+    const Portfolio portfolio2 { "./data/output/portfolio-info-simple.csv" };
     std::cout << "Number of holdings: " << portfolio2.holdings().size() << "\n";
     assert(portfolio.holdings().size() == portfolio2.holdings().size());
 
@@ -40,7 +41,7 @@ int main()
     const double totalValue = Utils::totalValue(market, portfolio);
     std::cout << "\ntotalValue: " << totalValue << "\n";
 
-    Utils::saveAllocations(market, portfolio, "./data/output/portfolio-info-allocations.csv");
+    Utils::saveAllocations(market, portfolio, "./data/output/portfolio-info-market-allocations.csv");
 
     std::cout << "\nDONE\n";
 

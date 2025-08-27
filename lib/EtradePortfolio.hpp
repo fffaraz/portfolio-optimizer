@@ -17,6 +17,10 @@ namespace portopt {
 class EtradePortfolio : public Portfolio {
 public:
     explicit EtradePortfolio(const FilePath& csvPath);
+    void saveAllocations(const FilePath& csvPath) const;
+
+protected:
+    PositionMap m_priceInfo; // {Symbol -> Last Price} pairs
 };
 
 } // namespace portopt
