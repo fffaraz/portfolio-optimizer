@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
     const std::set<std::string> symbols; // { "VOO", "VTI" };
     const Market market { "./data/yf", marketInfo, symbols };
 
-    market.saveAssets("./data/output/symbols"); // assets' ohlc
-    market.saveSymbols("./data/output/marketSymbols.txt"); // symbols array
-    market.saveCorrelationList("./data/output/CorrelationList.txt");
-    market.saveMarketInfo("./data/output/MarketInfo.csv");
+    market.saveAssets("./data/output/symbols"); // save ohlc for assets
+    market.saveSymbols("./data/output/market-info-symbols.txt"); // symbols array
+    market.saveCorrelationList("./data/output/market-info-correlation.txt");
+    market.saveMarketInfo("./data/output/market-info.csv");
 
     std::cout << "\nDONE\n";
     return 0;
