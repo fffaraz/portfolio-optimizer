@@ -120,7 +120,7 @@ void Asset::save(const std::filesystem::path& dataDir) const
 
 double Asset::correlation(const Asset& other, const PriceType priceType, const bool rankify, size_t length, size_t offset) const
 {
-    (void) offset; // TODO: implement offset
+    (void)offset; // TODO: implement offset
     if (m_symbol == other.m_symbol) {
         return 1; // correlation with itself is 1
     }
