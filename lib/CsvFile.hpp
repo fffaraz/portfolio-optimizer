@@ -7,13 +7,12 @@
 
 #pragma once
 
-#include <filesystem>
+#include "FilePath.hpp"
+
 #include <string>
 #include <vector>
 
 namespace portopt {
-
-using FilePath = FilePath;
 
 // Read only CSV file loaded into memory
 class CsvFile {

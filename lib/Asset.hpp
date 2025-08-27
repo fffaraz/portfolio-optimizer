@@ -9,11 +9,11 @@
 
 #include "AssetEnums.hpp"
 #include "AssetInfo.hpp"
+#include "FilePath.hpp"
 #include "OhlcList.hpp"
 
 #include <nlohmann/json.hpp>
 
-#include <filesystem>
 #include <optional>
 #include <set>
 #include <string>
