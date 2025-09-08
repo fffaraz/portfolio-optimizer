@@ -39,12 +39,12 @@ std::set<AssetClass> EnumUtils::assetTag(const std::string& key)
         { "IWV", AssetClass::TotalMarket }, // iShares Russell 3000 ETF
         { "VT", AssetClass::TotalMarket }, //
 
-        { "SPY", AssetClass::SandP500 }, // SPDR S&P 500 ETF Trust
-        { "IVV", AssetClass::SandP500 }, // iShares Core S&P 500 ETF
-        { "VOO", AssetClass::SandP500 }, // Vanguard 500 Index Fund ETF
-        { "SPLG", AssetClass::SandP500 }, // SPDR Portfolio S&P 500 ETF
-        { "VV", AssetClass::SandP500 }, // Vanguard Large-Cap Index Fund ETF
-        { "RSP", AssetClass::SandP500 }, // Invesco S&P 500 Eql Wght ETF
+        { "SPY", AssetClass::SP500 }, // SPDR S&P 500 ETF Trust
+        { "IVV", AssetClass::SP500 }, // iShares Core S&P 500 ETF
+        { "VOO", AssetClass::SP500 }, // Vanguard 500 Index Fund ETF
+        { "SPLG", AssetClass::SP500 }, // SPDR Portfolio S&P 500 ETF
+        { "VV", AssetClass::SP500 }, // Vanguard Large-Cap Index Fund ETF
+        { "RSP", AssetClass::SP500 }, // Invesco S&P 500 Eql Wght ETF
 
         { "VONE", AssetClass::Russell1000 }, // Vanguard Russell 1000 Index Fund ETF
         { "IWB", AssetClass::Russell1000 }, // iShares Russell 1000 ETF
@@ -232,7 +232,7 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::CorporateBond, "Corporate Bond" },
         { AssetClass::WorldBondUSDHedged, "World Bond USD Hedged" },
 
-        { AssetClass::SandP500, "S&P 500" },
+        { AssetClass::SP500, "S&P 500" },
         { AssetClass::TotalMarket, "Total Market" },
         { AssetClass::TotalIntl, "Total Intl" },
 

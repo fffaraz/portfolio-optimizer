@@ -19,6 +19,9 @@ enum class AssetClass : std::uint8_t {
     NotETF, // Common Stock, corporate equity, ...
     Foreign,
     REIT, // Real estate investment trust
+    Gold, // Physical gold
+    Crypto, // Cryptocurrency
+    Commodities,
 
     BlackRock, // iShares
     Vanguard,
@@ -27,19 +30,22 @@ enum class AssetClass : std::uint8_t {
     Invesco,
 
     Bond,
-    TotalBond,
-    IntlBond,
-    MuniBond,
+    TotalBond, // Total Bond Market
+    IntlBond, // International Bond
+    MuniBond, // Municipal Bond
+
     ShortCorpBd,
     IntermediateCorpBd,
     LongCorpBd,
-    IntermediateBond, // IntermediateCoreBond
-    LongTermBond,
-    ShortTermBond,
     CorporateBond,
+
+    ShortTermBond, // Short Treasuries
+    IntermediateBond, // Intermediate Treasuries
+    LongTermBond, // Long Treasuries
+
     WorldBondUSDHedged,
 
-    SandP500, // S&P 500 Index
+    SP500, // S&P 500 Index
     TotalMarket,
     TotalIntl,
 
@@ -80,8 +86,9 @@ enum class AssetClass : std::uint8_t {
     FinancialServices,
     NaturalResources,
 
+    US, // United States Stock Market
     China,
-    Emerging,
+    Emerging, // Emerging Markets
     Europe,
     Leveraged,
 
@@ -108,7 +115,7 @@ enum class WorldRegions : std::uint8_t // Asset Geography
 
     US,
     EmergingMarkets,
-    DevelopedInternational,
+    DevelopedInternational, // Intl Developed Markets
 
     NorthAmerica, // Americas
     LatinAmerica, // Americas
