@@ -128,19 +128,22 @@ enum class StockSector : std::uint8_t // Industry
 {
     Unclassified,
 
-    CommunicationServices, // Sensitive
-    Energy, // Sensitive
-    Industrials, // Sensitive
-    Technology, // Sensitive
+    // Sensitive: not as immune to economic downturns as their defensive counterparts, but they are also not as profoundly affected as cyclical stocks
+    CommunicationServices, 
+    Energy,
+    Industrials,
+    Technology,
 
-    ConsumerDefensive, // Defensive
-    HealthCare, // Defensive
-    Utilities, // Defensive
+    // Defensive: demand remains relatively constant even during recessions
+    ConsumerStaples, 
+    HealthCare,
+    Utilities,
 
-    BasicMaterials, // Cyclical
-    ConsumerCyclical, // Cyclical
-    FinancialServices, // Cyclical
-    RealEstate, // Cyclical
+    // Cyclical: thriving during periods of expansion and contracting during recessions
+    BasicMaterials, 
+    ConsumerDiscretionary,
+    FinancialServices,
+    RealEstate,
 };
 
 enum class StockStyle : std::uint8_t {
