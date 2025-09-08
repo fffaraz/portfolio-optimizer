@@ -32,7 +32,7 @@ namespace Utils {
     double avgReturn(const Market& market, const Portfolio& portfolio, int length);
 
     double totalValue(const Market& market, const Portfolio& portfolio, std::size_t i = 0);
-    std::pair<double, std::set<std::string>> totalValue(const Market& market, const Portfolio& portfolio, AssetTag tag);
+    std::pair<double, std::set<std::string>> totalValue(const Market& market, const Portfolio& portfolio, AssetClass tag);
     double valueChange(const Market& market, const Portfolio& portfolio, std::size_t i, std::size_t offset);
 
     void saveAllocations(const Market& market, const Portfolio& portfolio, const std::string& filePath);

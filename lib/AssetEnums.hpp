@@ -11,7 +11,7 @@
 
 namespace portopt {
 
-enum class AssetTag : std::uint8_t {
+enum class AssetClass : std::uint8_t {
     Unclassified,
 
     ETF, // passive or active

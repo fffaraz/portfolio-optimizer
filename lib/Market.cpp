@@ -202,7 +202,7 @@ void Market::saveMarketInfo(const FilePath& filePath) const
     outFile << "symbol,name,category,dividendYield,expenseRatio,percentFromAth,percentToAth,historySize,return30days,return365days,avgReturn,avgRisk";
 
     // Tags
-    for (AssetTag tag = AssetTag::ETF; tag <= AssetTag::Unclassified; tag = static_cast<AssetTag>(static_cast<int>(tag) + 1)) {
+    for (AssetClass tag = AssetClass::ETF; tag <= AssetClass::Unclassified; tag = static_cast<AssetClass>(static_cast<int>(tag) + 1)) {
         outFile << ",is-" << EnumUtils::to_string(tag);
     }
 
@@ -242,7 +242,7 @@ void Market::saveMarketInfo(const FilePath& filePath) const
                 << asset.ohlc().avgRisk(365); // 12
 
         // Tags
-        for (AssetTag tag = AssetTag::ETF; tag <= AssetTag::Unclassified; tag = static_cast<AssetTag>(static_cast<int>(tag) + 1)) {
+        for (AssetClass tag = AssetClass::ETF; tag <= AssetClass::Unclassified; tag = static_cast<AssetClass>(static_cast<int>(tag) + 1)) {
             outFile << "," << asset.hasTag(tag);
         }
 

@@ -30,26 +30,26 @@ nlohmann::json loadJsonFile(const FilePath& filePath)
  * @param asset
  * @return a set of tags associated with this asset
  */
-std::set<AssetTag> getAssetTags(const Asset& asset)
+std::set<AssetClass> getAssetTags(const Asset& asset)
 {
-    std::set<AssetTag> result;
+    std::set<AssetClass> result;
 
     if (asset.isETF()) {
-        result.insert(AssetTag::ETF);
+        result.insert(AssetClass::ETF);
         // Only ETFs have tags based on their symbol
         auto symbolTags = EnumUtils::assetTag(asset.symbol());
         result.insert(symbolTags.begin(), symbolTags.end());
     } else {
-        result.insert(AssetTag::NotETF);
+        result.insert(AssetClass::NotETF);
     }
     if (asset.isBond()) {
-        result.insert(AssetTag::Bond);
+        result.insert(AssetClass::Bond);
     }
     if (asset.isForeign()) {
-        result.insert(AssetTag::Foreign);
+        result.insert(AssetClass::Foreign);
     }
     if (asset.isREIT()) {
-        result.insert(AssetTag::REIT);
+        result.insert(AssetClass::REIT);
     }
 
     auto categoryTags = EnumUtils::assetTag(asset.yahoo("category"));
@@ -59,7 +59,7 @@ std::set<AssetTag> getAssetTags(const Asset& asset)
     result.insert(sectorTags.begin(), sectorTags.end());
 
     if (result.empty()) {
-        result.insert(AssetTag::Unclassified);
+        result.insert(AssetClass::Unclassified);
     }
 
     const auto mngt = asset.management();
@@ -76,7 +76,7 @@ Asset::Asset(std::string symbol, double price, AssetInfo info)
     : m_symbol { std::move(symbol) }
     , m_ohlc { price }
     , m_info { std::move(info) }
-    , m_tags { AssetTag::Unclassified }
+    , m_tags { AssetClass::Unclassified }
 {
     std::cerr << "Asset::Asset " << m_symbol << " price: " << price << "\n";
     assert(ohlc().size() == 1);
@@ -96,7 +96,7 @@ std::string Asset::tags() const
 {
     std::vector<std::string> result;
     result.reserve(m_tags.size());
-    for (const AssetTag tag : m_tags) {
+    for (const AssetClass tag : m_tags) {
         result.push_back(EnumUtils::to_string(tag));
     }
     return Utils::join(result, ", ");
@@ -218,23 +218,23 @@ bool Asset::isREIT() const
     return false;
 }
 
-std::optional<AssetTag> Asset::management() const
+std::optional<AssetClass> Asset::management() const
 {
     const auto name = yahoo("longName");
     if (name.find("iShares") != std::string::npos) {
-        return AssetTag::BlackRock;
+        return AssetClass::BlackRock;
     }
     if (name.find("Vanguard") != std::string::npos) {
-        return AssetTag::Vanguard;
+        return AssetClass::Vanguard;
     }
     if (name.find("Schwab") != std::string::npos) {
-        return AssetTag::Schwab;
+        return AssetClass::Schwab;
     }
     if (name.find("SPDR") != std::string::npos) {
-        return AssetTag::SPDR;
+        return AssetClass::SPDR;
     }
     if (name.find("Invesco") != std::string::npos) {
-        return AssetTag::Invesco;
+        return AssetClass::Invesco;
     }
     return {}; // empty optional
 }

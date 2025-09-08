@@ -41,7 +41,7 @@ public:
     const std::string& symbol() const noexcept { return m_symbol; }
     const OhlcList& ohlc() const noexcept { return m_ohlc; }
     const AssetInfo& info() const noexcept { return m_info; }
-    bool hasTag(AssetTag tag) const { return m_tags.contains(tag); }
+    bool hasTag(AssetClass tag) const { return m_tags.contains(tag); }
 
     std::string yahoo(const std::string& key) const; ///< Returns value from yahoo json
     void save(const FilePath& dataDir) const; ///< save ohlc data to a symbol.csv file
@@ -55,14 +55,14 @@ public:
     bool isBond() const; ///< returns true if the asset is a bond
     bool isForeign() const; ///< returns true if the asset is a Foreign asset
     bool isREIT() const; ///< returns true if the asset is a REIT
-    std::optional<AssetTag> management() const; ///< returns ETF asset management company
+    std::optional<AssetClass> management() const; ///< returns ETF asset management company
 
 private:
     const std::string m_symbol; ///< Ticker symbol
     const OhlcList m_ohlc; ///< Open-high-low-close chart
     const nlohmann::json m_yahoo; ///< Yahoo Finance Json
     const AssetInfo m_info; ///< Other asset attributes
-    const std::set<AssetTag> m_tags; ///< Tags
+    const std::set<AssetClass> m_tags; ///< Tags
 };
 
 } // namespace portopt

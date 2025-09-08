@@ -14,7 +14,7 @@
 
 namespace portopt::EnumUtils {
 
-std::set<AssetTag> assetTag(const std::string& key);
-std::string to_string(AssetTag tag);
+std::set<AssetClass> assetTag(const std::string& key);
+std::string to_string(AssetClass tag);
 
 } // namespace portopt::EnumUtils

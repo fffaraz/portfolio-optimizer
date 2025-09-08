@@ -274,7 +274,7 @@ void Utils::saveAllocations(const Market& market, const Portfolio& portfolio, co
     const double total = totalValue(market, portfolio, 0);
 
     // Body
-    for (AssetTag tag = AssetTag::Unclassified; tag < AssetTag::LastTag; tag = static_cast<AssetTag>(static_cast<int>(tag) + 1)) {
+    for (AssetClass tag = AssetClass::Unclassified; tag < AssetClass::LastTag; tag = static_cast<AssetClass>(static_cast<int>(tag) + 1)) {
         const auto value = totalValue(market, portfolio, tag);
         outFile << EnumUtils::to_string(tag) << ","
                 << value.first << ","
@@ -298,7 +298,7 @@ double Utils::totalValue(const Market& market, const Portfolio& portfolio, std::
     return total;
 }
 
-std::pair<double, std::set<std::string>> Utils::totalValue(const Market& market, const Portfolio& portfolio, AssetTag tag)
+std::pair<double, std::set<std::string>> Utils::totalValue(const Market& market, const Portfolio& portfolio, AssetClass tag)
 {
     double total {};
     std::set<std::string> list;
