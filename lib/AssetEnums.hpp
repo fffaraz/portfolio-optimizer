@@ -22,6 +22,7 @@ enum class AssetClass : std::uint8_t {
     Gold, // Physical gold
     Crypto, // Cryptocurrency
     Commodities,
+    Cash,
 
     BlackRock, // iShares
     Vanguard,
@@ -33,10 +34,12 @@ enum class AssetClass : std::uint8_t {
     TotalBond, // Total Bond Market
     IntlBond, // International Bond
     MuniBond, // Municipal Bond
+    InvestGradeBond, // Investment Grade Bond
+    HighYieldBond,
 
-    ShortCorpBd,
-    IntermediateCorpBd,
-    LongCorpBd,
+    ShortCorpBond,
+    IntermediateCorpBond,
+    LongCorpBond,
     CorporateBond,
 
     ShortTermBond, // Short Treasuries
@@ -47,7 +50,7 @@ enum class AssetClass : std::uint8_t {
 
     SP500, // S&P 500 Index
     TotalMarket,
-    TotalIntl,
+    TotalIntl, // International stocks
 
     PreciousMetal, // Gold, Silver, ...
     Russell1000,

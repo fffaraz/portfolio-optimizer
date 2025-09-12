@@ -16,12 +16,12 @@ using namespace portopt;
 
 namespace {
 
-auto loadOhlcCsv(const CsvFile& csv)
+OhlcVector loadOhlcCsv(const CsvFile& csv)
 {
     std::cerr << "OhlcList::loadData\n";
     const auto& data = csv.data();
 
-    OhlcList::OhlcVector result;
+    OhlcVector result;
     result.reserve(data.size());
 
     const auto maxDate = Utils::toTimePoint("2024-12-13"); // TODO(faraz): parameterize
@@ -73,7 +73,7 @@ OhlcList::OhlcList(double price)
 {
 }
 
-OhlcList::OhlcList(OhlcList::OhlcVector data)
+OhlcList::OhlcList(OhlcVector data)
     : m_data { std::move(data) }
     , m_timeFrame { OhlcTimeFrame::Daily }
 {
@@ -94,7 +94,7 @@ const Ohlc& OhlcList::at(size_t i) const
 {
     assert(!m_data.empty());
     if (i >= m_data.size()) {
-        i = m_data.size() - 1;
+        i = m_data.size() - 1; // cap to last (oldest) element
     }
     return m_data.at(i);
 }

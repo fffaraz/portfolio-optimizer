@@ -12,18 +12,18 @@
 
 namespace portopt {
 
+using OhlcVector = std::vector<Ohlc>;
+
 // List of Open, High, Low, Close (OHLC) data
 class OhlcList {
 public:
-    using OhlcVector = std::vector<Ohlc>;
-
     explicit OhlcList(double price);
     explicit OhlcList(OhlcVector data);
     OhlcList(const CsvFile& csv, OhlcTimeFrame timeFrame);
 
-    [[nodiscard]] size_t size() const noexcept;
+    void save(const FilePath& filePath) const; // save to CSV file
+    [[nodiscard]] size_t size() const noexcept; // number of OHLC entries
     [[nodiscard]] const Ohlc& at(size_t i) const; // first elemet (data[0]) is the most recent
-    void save(const FilePath& filePath) const;
 
     [[nodiscard]] PriceDirection priceDirection(size_t i, size_t offset) const;
     [[nodiscard]] double priceChange(size_t i) const;
