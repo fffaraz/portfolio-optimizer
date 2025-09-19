@@ -79,13 +79,13 @@ std::set<AssetClass> EnumUtils::assetTag(const std::string& key)
         { "VOT", AssetClass::LargeGrowth },
         { "VHT", AssetClass::LargeGrowth },
 
-        { "SLQD", AssetClass::ShortCorpBd }, // iShares 0-5 Year Investment Grade Corporate Bd ETF
-        { "IGSB", AssetClass::ShortCorpBd }, // iShares 1-5 Year Investment Grade Corporate Bd ETF
-        { "IGIB", AssetClass::ShortCorpBd },
+        { "SLQD", AssetClass::ShortCorpBond }, // iShares 0-5 Year Investment Grade Corporate Bd ETF
+        { "IGSB", AssetClass::ShortCorpBond }, // iShares 1-5 Year Investment Grade Corporate Bd ETF
+        { "IGIB", AssetClass::ShortCorpBond },
 
-        { "IGLB", AssetClass::LongCorpBd }, // iShares 10+ Year Investment Grade Corp Bond ETF
-        { "VCLT", AssetClass::LongCorpBd }, // Vanguard Long-Term Corporate Bond Idx Fund ETF
-        { "VCIT", AssetClass::IntermediateCorpBd }, // VANGUARD INTERMEDIATE-TERM CORPORATE BOND ETF
+        { "IGLB", AssetClass::LongCorpBond }, // iShares 10+ Year Investment Grade Corp Bond ETF
+        { "VCLT", AssetClass::LongCorpBond }, // Vanguard Long-Term Corporate Bond Idx Fund ETF
+        { "VCIT", AssetClass::IntermediateCorpBond }, // VANGUARD INTERMEDIATE-TERM CORPORATE BOND ETF
 
         { "REET", AssetClass::REIT }, //
         { "RWR", AssetClass::REIT }, //
@@ -223,9 +223,9 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::TotalBond, "Total Bond" },
         { AssetClass::IntlBond, "Intl Bond" },
         { AssetClass::MuniBond, "Muni Bond" },
-        { AssetClass::ShortCorpBd, "Short Corp Bond" },
-        { AssetClass::IntermediateCorpBd, "Intermediate Corp Bond" },
-        { AssetClass::LongCorpBd, "Long Corp Bond" },
+        { AssetClass::ShortCorpBond, "Short Corp Bond" },
+        { AssetClass::IntermediateCorpBond, "Intermediate Corp Bond" },
+        { AssetClass::LongCorpBond, "Long Corp Bond" },
         { AssetClass::IntermediateBond, "Intermediate Bond" },
         { AssetClass::LongTermBond, "Long Term Bond" },
         { AssetClass::ShortTermBond, "Short Term Bond" },
