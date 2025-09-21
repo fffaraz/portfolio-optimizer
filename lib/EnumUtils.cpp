@@ -212,6 +212,10 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::NotETF, "Not ETF" },
         { AssetClass::Foreign, "Foreign" },
         { AssetClass::REIT, "REIT" },
+        { AssetClass::Gold, "Gold" },
+        { AssetClass::Crypto, "Crypto" },
+        { AssetClass::Commodities, "Commodities" },
+        { AssetClass::Cash, "Cash" },
 
         { AssetClass::BlackRock, "BlackRock" },
         { AssetClass::Vanguard, "Vanguard" },
@@ -223,13 +227,18 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::TotalBond, "Total Bond" },
         { AssetClass::IntlBond, "Intl Bond" },
         { AssetClass::MuniBond, "Muni Bond" },
+        { AssetClass::InvestGradeBond, "Investment Grade Bond" },
+        { AssetClass::HighYieldBond, "High Yield Bond" },
+
         { AssetClass::ShortCorpBond, "Short Corp Bond" },
         { AssetClass::IntermediateCorpBond, "Intermediate Corp Bond" },
         { AssetClass::LongCorpBond, "Long Corp Bond" },
+        { AssetClass::CorporateBond, "Corporate Bond" },
+
+        { AssetClass::ShortTermBond, "Short Term Bond" },
         { AssetClass::IntermediateBond, "Intermediate Bond" },
         { AssetClass::LongTermBond, "Long Term Bond" },
-        { AssetClass::ShortTermBond, "Short Term Bond" },
-        { AssetClass::CorporateBond, "Corporate Bond" },
+
         { AssetClass::WorldBondUSDHedged, "World Bond USD Hedged" },
 
         { AssetClass::SP500, "S&P 500" },
@@ -253,14 +262,14 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::SmallValue, "Small Value" },
 
         { AssetClass::MidCap, "Mid Cap" },
-        { AssetClass::MidCapGrowth, "Mid Cap Growth" },
         { AssetClass::MidCapBlend, "Mid Cap Blend" },
+        { AssetClass::MidCapGrowth, "Mid Cap Growth" },
         { AssetClass::MidCapValue, "Mid Cap Value" },
 
         { AssetClass::LargeCap, "Large Cap" },
         { AssetClass::LargeBlend, "Large Blend" },
-        { AssetClass::LargeValue, "Large Value" },
         { AssetClass::LargeGrowth, "Large Growth" },
+        { AssetClass::LargeValue, "Large Value" },
 
         { AssetClass::Energy, "Energy" },
         { AssetClass::Technology, "Technology" },
@@ -278,5 +287,5 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::Europe, "Europe" },
         { AssetClass::Leveraged, "Leveraged" },
     };
-    return map.contains(tag) ? map.at(tag) : "AssetTag::" + std::to_string(static_cast<int>(tag));
+    return map.contains(tag) ? map.at(tag) : "AssetClass::" + std::to_string(static_cast<int>(tag));
 }

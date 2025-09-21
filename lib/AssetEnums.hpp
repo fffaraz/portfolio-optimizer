@@ -75,8 +75,8 @@ enum class AssetClass : std::uint8_t {
 
     LargeCap,
     LargeBlend,
-    LargeValue,
     LargeGrowth,
+    LargeValue,
 
     Energy,
     Technology,
