@@ -33,3 +33,5 @@ https://etfdb.com/screener/#tab=expenses&sort_by=expense_ratio&sort_direction=as
 https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model
 
 https://www.reddit.com/r/Bogleheads/comments/1kg9y2v/3fund_portfolio_us_stocks_exus_stocks_us_bonds/
+
+https://totalrealreturns.com/
