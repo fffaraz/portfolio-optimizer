@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <iostream>
 #include <set>
+#include <unistd.h>
 
 using namespace portopt;
 

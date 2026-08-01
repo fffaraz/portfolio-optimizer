@@ -282,6 +282,7 @@ std::string EnumUtils::to_string(AssetClass tag)
         { AssetClass::FinancialServices, "Financial Services" },
         { AssetClass::NaturalResources, "Natural Resources" },
 
+        { AssetClass::US, "US" },
         { AssetClass::China, "China" },
         { AssetClass::Emerging, "Emerging" },
         { AssetClass::Europe, "Europe" },
